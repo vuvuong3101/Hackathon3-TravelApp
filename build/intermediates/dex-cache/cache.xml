@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/mac-vuongvu/.android/build-cache/6f1f60e9039aa1cc3f3173498dd7f2891982426f/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="3c93d2036504ebd68245b628348063e4297b055b">
+        <dex dex="/Users/mac-vuongvu/Documents/TravelApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_329e72a26955404cf321b78fc226ef7c06efd39c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mac-vuongvu/.gradle/caches/modules-2/files-2.1/com.readystatesoftware.systembartint/systembartint/1.0.4/6404f77b92ec723cc132e825afe85a07da85ee6/systembartint-1.0.4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="06404f77b92ec723cc132e825afe85a07da85ee6">
+        <dex dex="/Users/mac-vuongvu/Documents/TravelApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/systembartint-1.0.4_adbd7ce3d8812871824d896ceea6c05691c8ad0e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mac-vuongvu/.android/build-cache/a3891e81b01970451ad660a91ba4a0bd876f4753/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="ee07783aa59eefdeacc107abf472f45f60272302">
+        <dex dex="/Users/mac-vuongvu/Documents/TravelApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4a4bff2ef9b29bfac6e6f296a05a7225c3c54a43/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mac-vuongvu/Documents/TravelApp/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/mac-vuongvu/Documents/TravelApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_92d4c36e92f4b9ec0ce7b096c906f39e9f5e8d6e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mac-vuongvu/Documents/TravelApp/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="b7f706fbf9cddb5a5b5b27a51f92aa24f75a0e86">
+        <dex dex="/Users/mac-vuongvu/Documents/TravelApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_95ae0cdaec0a45f7c56d0dfb8e0ae23bc177d47c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mac-vuongvu/.android/build-cache/4b0c3df91c9a402942190d53cdb9c81643b0b3c1/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="a44c2defa7d0b0cb44d0386185da05cc9493e346">
+        <dex dex="/Users/mac-vuongvu/Documents/TravelApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_485ffc8907eaa8fb8d59b12eced394acbe2c0577/classes.dex" />
+    </item>
+
+</items>
