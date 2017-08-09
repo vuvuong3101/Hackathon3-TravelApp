@@ -15,4 +15,11 @@ public class ScreenManager {
         fragmentTransaction.addToBackStack(fragment.getClass().getSimpleName());
         fragmentTransaction.commit();
     }
+    public static void replaceFragment(FragmentManager fragmentManager, Fragment fragment, int layoutID) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(layoutID, fragment);
+        fragmentTransaction.addToBackStack(fragment.getClass().getSimpleName());
+        fragmentTransaction.commit();
+    }
+
 }

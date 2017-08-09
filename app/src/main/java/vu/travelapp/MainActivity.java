@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import vu.travelapp.fragments.UserFragment;
+import vu.travelapp.managers.ScreenManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,9 +25,7 @@ public class MainActivity extends AppCompatActivity {
         user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "onClick: " + "oke nhe");
-                UserFragment fm =  new UserFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.main, fm).commit();
+                ScreenManager.replaceFragment(getSupportFragmentManager(), new UserFragment(), R.id.main);
 
             }
         });
