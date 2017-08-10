@@ -1,5 +1,6 @@
 package vu.travelapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import vu.travelapp.Maps.MapsActivity;
 import vu.travelapp.fragments.UserFragment;
 import vu.travelapp.managers.ScreenManager;
 
@@ -19,9 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = (Toolbar) findViewById(R.id.toolbar_home);
-        user = (ImageView) findViewById(R.id.profile_user);
-        setSupportActionBar(toolbar);
+        Init();
         user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -29,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+    }
+    private void Init(){
+        toolbar = (Toolbar) findViewById(R.id.toolbar_home);
+        user = (ImageView) findViewById(R.id.profile_user);
+        setSupportActionBar(toolbar);
 
     }
 }

@@ -41,5 +41,8 @@ dependencies {
     compile 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.google.android.gms:play-services-maps:10.2.0'
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     testCompile 'junit:junit:4.12'
 }

@@ -63,8 +63,9 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d(TAG, "onCompleted: Đã lấy dữ liệu người dùng từ facebook");
 
                             URL url = new URL(profileModel.getImageURL());
-                            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                            profileModel.setBitmap(bmp);
+                            //TODO: bug nè anh Hưng, bỏ comment đi chạy là crash nhé!
+//                            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+//                            profileModel.setBitmap(bmp);
 
                             EventBus.getDefault().postSticky(profileModel); //Chuyển dữ liệu profile sang Home Screen Activity
                             Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);

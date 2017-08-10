@@ -40,7 +40,13 @@ tools:context="vu.travelapp.fragments.UserFragment">
                            android:layout_below="@+id/profile_thumbail"
                            android:layout_width="match_parent"
                            android:layout_height="match_parent">
-
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:id="@+id/iv_direction"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/ic_directions_black_24dp"/>
                        </RelativeLayout>
                        <TextView
                            android:layout_above="@id/content_profile_top"

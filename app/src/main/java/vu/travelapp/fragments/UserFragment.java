@@ -1,6 +1,7 @@
 package vu.travelapp.fragments;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import vu.travelapp.MainActivity;
+import vu.travelapp.Maps.MapsActivity;
 import vu.travelapp.R;
 import vu.travelapp.models.ProfileModel;
 
@@ -21,6 +24,7 @@ public class UserFragment extends Fragment {
     ImageView ivBack, avatar, ivImageCrop;
     Dialog dialog;
     TextView tvName;
+    ImageView direction;
 
     ProfileModel profileModel;
 
@@ -46,6 +50,13 @@ public class UserFragment extends Fragment {
                 getActivity().onBackPressed();
             }
         });
+        direction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),MapsActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -53,7 +64,7 @@ public class UserFragment extends Fragment {
         tvName = view.findViewById(R.id.profile_user_name);
         ivBack = view.findViewById(R.id.back);
         avatar = view.findViewById(R.id.profile_avatar);
-
+        direction = view.findViewById(R.id.iv_direction);
     }
 
 
