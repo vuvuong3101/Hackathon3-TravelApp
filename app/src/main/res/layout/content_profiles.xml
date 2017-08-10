@@ -8,16 +8,25 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:textColor="#000"
-            android:text="Truyện Nữ Nhân Sau Lưng Đế Quốc Thiên Tài Tiểu Vương Phi là tác phẩm thần tiên đầy ma mị. Khi tác giả Vệ Sơ Lãng đã khéo léo diễn tả những tình tiết độc thoại nội tâm lồng ghép vào trong chính lời thoai của nhân vật giúp câu chuyện trở nên cao trào đầy hấp dẫn.
+        <LinearLayout
+            android:background="@color/colorPrimary"
+            android:gravity="left"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="5dp"
+            android:orientation="vertical"
+            android:layout_width="150dp"
+            android:layout_height="40dp">
+            <TextView
+                android:text="Thư viện ảnh"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </TextView>
+        </LinearLayout>
 
-Truyện xuyên không này kể về hắn lúc còn 6 tuổi, đôi mắt đa tình giống như bậc thần tiên không nhiễm bụi bẩn, khuôn mặt luôn nở nụ cười xấu xa, lại giống như tên ác ma tới từ địa ngục. “Tiểu nha đầu, ta đã hôn nàng, nàng đã là người của ta, lớn lên phải gả cho ta!”. Tô Mạt trừng mắt “Ngươi thích “cỏ non” nhưng ta không có hứng thú với “trâu già” !” Lời lẽ nàng thốt lên như những mũi tên đâm vào tận trong tim hắn, ấy vậy chính cái tính ngang ngược này của nàng lại khiến hắn khó lòng để nàng thoát thân. Bởi lẽ, chỉ số thông minh của nàng vượt 160 cơ mà.
-
-Ta đã xuyên không tới đây thì phải cố gắng làm chủ cuộc đời mình, sao có thể để người khác chi phối một cách dễ dàng? Nàng vốn xinh đẹp, có trí tuệ chứ không phải bình hoa di động, điều đó khiến không riêng ta mà bất cứ chàng trai nào cũng muốn sở hữu nàng. Nam tử chỉ có thể phục tùng nàng, đừng nghĩ đến việc chinh phục nàng, huống chi lại nuôi lòng sở hữu nàng. Ta biết rằng, từ giây phút khi xuyên không đến thế giới này, từ giây phút mà đôi mắt ta toàn hình bóng nàng in đậm, ta biết nàng thuộc về ta, chí ít là kiếp này nàng sẽ thuộc về ta.
-
-Luôn luôn có những tình tiết bất ngờ được xuất hiện ở những chương tiếp theo của truyện. Đến với đọc truyện mới nhất để tìm hiểu rõ hơn về hắn và đi theo lối chân nàng để khám phá những khung trời bí ẩn thú vị. Bên cạnh đó, Ngự Hỏa Mỹ Nương Tử và Thần Tiên Cũng Có Giang Hồ sẽ là những tác phẩm đáng để người đọc chiêm nghiệm và khám phá."
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
     </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

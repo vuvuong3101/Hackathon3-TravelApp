@@ -40,17 +40,17 @@
                     android:layout_centerInParent="true"
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/logo"/>
 
                 <ImageView
                     android:layout_marginEnd="3dp"
                     android:layout_alignParentEnd="true"
                     android:padding="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_create"/>
+                    android:src="@drawable/ic_send"/>
             </RelativeLayout>
 
         </android.support.v7.widget.Toolbar>
@@ -61,7 +61,6 @@
         android:layout_height="match_parent">
         <include
             layout="@layout/fragment_home"/>
-    </RelativeLayout>
     </RelativeLayout>
         <it.sephiroth.android.library.bottomnavigation.BottomNavigation
             android:background="@color/colorPrimary"
@@ -74,4 +73,7 @@
             app:bbn_scrollEnabled="true"
             app:bbn_badgeProvider="@string/bbn_badgeProvider"
             app:layout_behavior="@string/bbn_phone_view_behavior" />
- </RelativeLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>

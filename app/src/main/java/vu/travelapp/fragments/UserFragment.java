@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
@@ -36,16 +38,16 @@ public class UserFragment extends Fragment {
     }
 
     private void ProcessUI() {
-        //
-        avatar.setImageBitmap(profileModel.getBitmap());
         tvName.setText(profileModel.getName());
-
+        Picasso.with(getContext()).load(profileModel.getImageURL()).into(avatar);
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getActivity().onBackPressed();
             }
         });
+
+        Log.d(TAG, "ProcessUI+ Location: " + profileModel.getLocation());
 
     }
 

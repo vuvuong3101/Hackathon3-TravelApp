@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import vu.travelapp.R;
+
 /**
  * Created by ADMIN on 8/6/2017.
  */
@@ -18,6 +20,7 @@ public class ScreenManager {
     public static void replaceFragment(FragmentManager fragmentManager, Fragment fragment, int layoutID) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(layoutID, fragment);
+        fragmentTransaction.setCustomAnimations(R.anim.anim_left, R.anim.anim_right);
         fragmentTransaction.addToBackStack(fragment.getClass().getSimpleName());
         fragmentTransaction.commit();
     }
