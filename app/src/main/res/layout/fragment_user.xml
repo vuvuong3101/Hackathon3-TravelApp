@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+<<<<<<< HEAD
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -41,6 +42,88 @@
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+=======
+    android:layout_height="match_parent">
+   <android.support.design.widget.AppBarLayout
+       android:background="#fff"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+               <android.support.design.widget.CollapsingToolbarLayout
+                   app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed|snap"
+                   android:fitsSystemWindows="true"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+                   <RelativeLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="240dp">
+                       <ImageView
+                           android:id="@+id/profile_thumbail"
+                           android:scaleType="centerCrop"
+                           android:src="@drawable/sapa"
+                           android:layout_width="match_parent"
+                           android:layout_height="170dp" />
+                       <ImageView
+                           android:background="#6c414141"
+                           android:layout_width="match_parent"
+                           android:layout_height="match_parent" />
+
+                       <RelativeLayout
+                           android:id="@+id/content_profile_top"
+                           android:background="@color/colorPrimary"
+                           android:layout_below="@+id/profile_thumbail"
+                           android:layout_width="match_parent"
+                           android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:id="@+id/iv_direction"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/ic_directions_black_24dp"/>
+                       </RelativeLayout>
+                       <TextView
+                           android:layout_above="@id/content_profile_top"
+                           android:id="@+id/profile_user_name"
+                           android:textAlignment="center"
+                           android:text="LyLy MayMac"
+                           android:textStyle="bold"
+                           android:textSize="16dp"
+                           android:textColor="@color/colorPrimary"
+                           android:layout_margin="6dp"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_marginBottom="10dp"/>
+                       <com.github.siyamed.shapeimageview.CircularImageView
+                           android:id="@+id/profile_avatar"
+                           android:layout_width="70dp"
+                           android:layout_height="70dp"
+                           android:src="@drawable/girl"
+                           app:siBorderWidth="3dp"
+                           app:siBorderColor="@color/colorPrimary"
+                           android:layout_centerHorizontal="true"
+                           android:layout_above="@id/profile_user_name"
+                           />
+
+
+                   </RelativeLayout>
+                  <android.support.v7.widget.Toolbar
+                      app:layout_collapseMode="pin"
+                      android:id="@+id/toolbar_profile"
+                       android:layout_width="match_parent"
+                       android:layout_height="?actionBarSize">
+                       <RelativeLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="match_parent">
+                           <ImageView
+                               android:id="@+id/back"
+                               android:layout_centerVertical="true"
+                               android:src="@drawable/ic_arrow_back"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content" />
+                       </RelativeLayout>
+                   </android.support.v7.widget.Toolbar>
+               </android.support.design.widget.CollapsingToolbarLayout>
+>>>>>>> 17559cbec4d746b36b9ceb08f8e0715f309b8567
 
                         <com.github.siyamed.shapeimageview.CircularImageView
                             android:id="@+id/profile_avatar"
