@@ -67,14 +67,12 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d(TAG, "onCompleted: Đã lấy dữ liệu người dùng từ facebook");
 
                             URL url = new URL(profileModel.getImageURL());
-<<<<<<< HEAD
 //                            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
                             profileModel.setUrl(url);
-=======
+
                             //TODO: bug nè anh Hưng, bỏ comment đi chạy là crash nhé!
 //                            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
 //                            profileModel.setBitmap(bmp);
->>>>>>> 17559cbec4d746b36b9ceb08f8e0715f309b8567
 
                             //
 

@@ -16,7 +16,6 @@ import com.squareup.picasso.Picasso;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import vu.travelapp.MainActivity;
 import vu.travelapp.Maps.MapsActivity;
 import vu.travelapp.R;
 import vu.travelapp.models.ProfileModel;
@@ -35,6 +34,7 @@ public class UserFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user, container, false);
+        
         EventBus.getDefault().register(this);
         FindView(view);
         ProcessUI();
@@ -66,7 +66,7 @@ public class UserFragment extends Fragment {
         tvName = view.findViewById(R.id.profile_user_name);
         ivBack = view.findViewById(R.id.back);
         avatar = view.findViewById(R.id.profile_avatar);
-        direction = view.findViewById(R.id.iv_direction);
+        direction = view.findViewById(R.id.iv_map);
     }
 
 
