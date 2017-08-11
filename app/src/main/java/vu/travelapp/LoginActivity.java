@@ -1,6 +1,8 @@
 package vu.travelapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -74,8 +76,10 @@ public class LoginActivity extends AppCompatActivity {
 //                            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
 //                            profileModel.setBitmap(bmp);
 
-                            //
-
+                            SharedPreferences sharedPreferences = getSharedPreferences("TravelAppId", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("idfacebook",profileModel.getId());
+                            editor.commit();
                             //
                             EventBus.getDefault().postSticky(profileModel); //Chuyển dữ liệu profile sang Home Screen Activity
                             Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
