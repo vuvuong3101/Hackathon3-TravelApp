@@ -3,19 +3,20 @@
 
     <item
         is-multidex="true"
-        jar="/Users/mac-vuongvu/.android/build-cache/a72e110f1e8b2f4edb36b6ba914708b206e3695f/output/jars/classes.jar"
+        jar="C:\Users\ADMIN\Documents\Hackathon3-TravelApp\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
-        sha1="3d13e510077b35fe8e49930a627dd849ad5da0dc">
-        <dex dex="/Users/mac-vuongvu/Documents/Hackathon3-TravelApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2063d5824f23c0d83a658e18f1c2c73f04803912/classes.dex" />
+        sha1="b33e347f5be513cc32fa94177f8a5180dd3268d6">
+        <dex dex="C:\Users\ADMIN\Documents\Hackathon3-TravelApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_a99543d645a4174561c43b9bb84f4586716b0c7d\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/mac-vuongvu/.android/build-cache/6070d8bf24056c3dede4751db027bf78cc83b935/output/jars/classes.jar"
+        jar="C:\Users\ADMIN\Documents\Hackathon3-TravelApp\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
+<<<<<<< HEAD
         sha1="1ac56e5801e986583cbe27f2cce57f626cc7ff93">
         <dex dex="/Users/mac-vuongvu/Documents/Hackathon3-TravelApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_255a3c83516cf75e5a5e569f567fd94f374a3133/classes.dex" />
     </item>
@@ -45,6 +46,10 @@
         revision="26.0.0"
         sha1="6da05b7498da036b5b37c3beb861cd2060929dcd">
         <dex dex="/Users/mac-vuongvu/Documents/Hackathon3-TravelApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f6198a3fa3d8938ad11034e163ef5dd7d7aec16f/classes.dex" />
+=======
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="C:\Users\ADMIN\Documents\Hackathon3-TravelApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_248b939d9b3210416e1d76a0c4eb4c46753c8d65\classes.dex" />
+>>>>>>> 99930b6a9257884b49d3cdf60e486b8ceee3ad7c
     </item>
 
 </items>

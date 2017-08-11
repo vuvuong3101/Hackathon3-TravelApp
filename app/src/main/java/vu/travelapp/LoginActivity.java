@@ -1,9 +1,14 @@
 package vu.travelapp;
 
+import android.content.Context;
 import android.content.Intent;
+<<<<<<< HEAD
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+=======
+import android.content.SharedPreferences;
+>>>>>>> 99930b6a9257884b49d3cdf60e486b8ceee3ad7c
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -136,6 +141,18 @@ public class LoginActivity extends AppCompatActivity {
 
                             URL url = new URL(profileModel.getImageURL());
                             profileModel.setUrl(url);
+<<<<<<< HEAD
+=======
+
+                            //TODO: bug nè anh Hưng, bỏ comment đi chạy là crash nhé!
+//                            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+//                            profileModel.setBitmap(bmp);
+
+                            SharedPreferences sharedPreferences = getSharedPreferences("TravelAppId", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("idfacebook",profileModel.getId());
+                            editor.commit();
+>>>>>>> 99930b6a9257884b49d3cdf60e486b8ceee3ad7c
                             //
                             EventBus.getDefault().postSticky(profileModel); //Chuyển dữ liệu profile sang Home Screen Activity
                             Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
