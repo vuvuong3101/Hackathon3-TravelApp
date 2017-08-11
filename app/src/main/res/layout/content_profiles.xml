@@ -20,7 +20,7 @@
             android:layout_height="40dp">
             <TextView
                 android:text="Thư viện ảnh"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:textColor="@color/colorAccent"
                 android:layout_width="match_parent"

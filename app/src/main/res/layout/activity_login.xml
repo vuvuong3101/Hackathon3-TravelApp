@@ -9,19 +9,41 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView
-            android:layout_margin="100dp"
+            android:scaleType="centerCrop"
+            android:layout_centerInParent="true"
+            android:src="@drawable/background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:background="#4a4d4c4c"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:id="@+id/logo_login"
+            android:layout_marginTop="110dp"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="50dp"
             android:src="@drawable/logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <com.facebook.login.widget.LoginButton
-            android:layout_centerInParent="true"
-            android:layout_margin="10dp"
-            android:id="@+id/login_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="visible" />
+        <RelativeLayout
+            android:layout_marginBottom="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+            <Button
+                android:textColor="#e3ffffff"
+                android:textSize="14sp"
+                android:id="@+id/login_button"
+                android:text="Đăng nhập với Facebook"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/radius"
+                android:layout_marginBottom="30dp"
+                android:layout_width="270dp"
+                android:layout_height="45dp" />
+        </RelativeLayout>
+
 
         <!--<Button-->
             <!--android:layout_centerInParent="true"-->

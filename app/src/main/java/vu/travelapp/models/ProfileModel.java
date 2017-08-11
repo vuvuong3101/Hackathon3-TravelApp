@@ -12,8 +12,16 @@ public class ProfileModel {
     private String id;
     private URL url;
     private String location;
+    private String birthday;
 
 
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
 
     public String getImage() {
         return image;
