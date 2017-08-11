@@ -80,6 +80,7 @@ public class UserFragment extends Fragment {
                 startActivity(intent);
                 LoginManager.getInstance().logOut();
 
+
             }
         });
 
@@ -99,6 +100,9 @@ public class UserFragment extends Fragment {
     public void onReceivedProfileModel(ProfileModel profileModel) {
         this.profileModel = profileModel;
         Log.d(TAG, "onReceivedProfileModel: Đã đổ dữ liệu vào profile Fragment");
+    }
+    public final void CloseandClear() {
+
     }
 
 }

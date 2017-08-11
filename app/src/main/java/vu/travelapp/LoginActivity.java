@@ -55,16 +55,16 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 //
-//        acessTokenTracker = new AccessTokenTracker() {
-//            @Override
-//            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken newAccessToken) {
-//                updateWithToken(newAccessToken);
-//            }
-//        };
-//
-//
-//        updateWithToken(AccessToken.getCurrentAccessToken());
-//
+        acessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken newAccessToken) {
+                updateWithToken(newAccessToken);
+            }
+        };
+
+
+        updateWithToken(AccessToken.getCurrentAccessToken());
+
 //        //====================
         // lấy ra keyhash
         try {
@@ -87,22 +87,13 @@ public class LoginActivity extends AppCompatActivity {
         this.onClickSign();
     }
 //
-//    private void updateWithToken(AccessToken currentAccessToken) {
-//
-//        if (currentAccessToken != null) {
-//            new Handler().postDelayed(new Runnable() {
-//
-//                @Override
-//                public void run() {
-//                    Log.d(TAG, "run: " + "Đã đăng nhập rồi");
-//                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
-//                    startActivity(i);
-//
-//                    finish();
-//                }
-//            }, 1000);
-//        }
-//    }
+    private void updateWithToken(AccessToken currentAccessToken) {
+
+        if (currentAccessToken != null) {
+            LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("public_profile", "email", "user_birthday", "user_hometown") );
+
+        }
+    }
 
 
     private void setupUI(){
