@@ -11,17 +11,12 @@
         android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_data_home_fragment"
             android:layout_below="@+id/appbar"
             android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         </android.support.v7.widget.RecyclerView>
-        <TextView
-            android:textColor="#000"
-            android:textAlignment="center"
-            android:text="HRLLLO"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
     </RelativeLayout>
 </RelativeLayout>
