@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,41 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-<<<<<<< HEAD
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize">
-        <android.support.v7.widget.Toolbar
-            android:contentInsetEnd="0dp"
-            android:contentInsetRight="0dp"
-            android:contentInsetStart="0dp"
-            app:contentInsetEnd="0dp"
-            app:contentInsetLeft="0dp"
-            app:contentInsetRight="0dp"
-            app:contentInsetStart="0dp"
-            android:id="@+id/toolbar_home"
-            android:background="@color/colorPrimary"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize">
-            <RelativeLayout
-                android:gravity="center_horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize">
-                <RelativeLayout
-                    android:clickable="true"
-                    android:id="@+id/profile_user"
-                    android:paddingRight="16dp"
-                    android:paddingLeft="16dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
-                    <ImageView
-=======
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize">
             <android.support.v7.widget.Toolbar
+                app:contentInsetEnd="0dp"
+                app:contentInsetLeft="0dp"
+                app:contentInsetRight="0dp"
+                app:contentInsetStart="0dp"
                 android:id="@+id/toolbar_home"
                 android:background="@color/colorPrimary"
                 android:layout_width="match_parent"
@@ -56,100 +30,65 @@
                     android:layout_marginEnd="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="?actionBarSize">
+                <RelativeLayout
+                    android:id="@+id/profile_user"
+                    android:paddingRight="16dp"
+                    android:paddingLeft="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
                     <ImageView
-                        android:clickable="true"
                         android:padding="0dp"
-                        android:id="@+id/profile_user"
->>>>>>> 99930b6a9257884b49d3cdf60e486b8ceee3ad7c
                         android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_person"/>
-<<<<<<< HEAD
-                </RelativeLayout>
-
-                <ImageView
-                    android:id="@+id/logo"
-                    android:layout_centerInParent="true"
-                    android:layout_centerVertical="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:src="@drawable/logo"/>
-            <RelativeLayout
-                android:clickable="true"
-                android:id="@+id/send"
-                android:paddingRight="16dp"
-                android:paddingLeft="16dp"
-                android:layout_alignParentEnd="true"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-                <ImageView
-                    android:layout_marginEnd="3dp"
-                    android:padding="0dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_send"/>
-                </RelativeLayout>
-            </RelativeLayout>
-
-        </android.support.v7.widget.Toolbar>
-
-    </android.support.design.widget.AppBarLayout>
-    <RelativeLayout
-        android:id="@+id/container"
-        android:layout_marginTop="2dp"
-        android:paddingTop="10dp"
-        android:layout_below="@id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <include
-            layout="@layout/fragment_home"/>
-    </RelativeLayout>
-=======
+                    </RelativeLayout>
                     <ImageView
                         android:layout_margin="2dp"
                         android:id="@+id/logo"
                         android:layout_centerInParent="true"
                         android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:src="@drawable/logo"/>
-
+                <RelativeLayout
+                    android:layout_alignParentEnd="true"
+                    android:clickable="true"
+                    android:id="@+id/send"
+                    android:paddingRight="16dp"
+                    android:paddingLeft="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
                     <ImageView
-                        android:layout_marginEnd="3dp"
-                        android:layout_alignParentEnd="true"
                         android:padding="0dp"
+                        android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_send"/>
+                        android:src="@drawable/ic_send_black"/>
+                    </RelativeLayout>
                 </RelativeLayout>
 
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
         <RelativeLayout
+            android:layout_marginBottom="55dp"
             android:id="@+id/rl_content"
             android:layout_below="@id/appbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <!--<include-->
-            <!--layout="@layout/fragment_home"/>-->
-
+            <include
+                layout="@layout/fragment_home"/>
         </RelativeLayout>
->>>>>>> 99930b6a9257884b49d3cdf60e486b8ceee3ad7c
-        <it.sephiroth.android.library.bottomnavigation.BottomNavigation
-            android:background="@color/colorPrimary"
-            android:layout_alignParentBottom="true"
-            android:id="@+id/BottomNavigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:bbn_entries="@menu/bottombar_menu"
-            app:bbn_scrollEnabled="true"
-            app:bbn_badgeProvider="@string/bbn_badgeProvider"
-            app:layout_behavior="@string/bbn_phone_view_behavior" />
-    </RelativeLayout>
-
-
-</RelativeLayout>
+    <it.sephiroth.android.library.bottomnavigation.BottomNavigation
+        android:background="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="bottom"
+        app:bbn_entries="@menu/bottombar_menu"
+        app:bbn_scrollEnabled="true"
+        app:bbn_badgeProvider="@string/bbn_badgeProvider"
+        app:layout_behavior="@string/bbn_phone_view_behavior" />
+        </RelativeLayout>
+</FrameLayout>

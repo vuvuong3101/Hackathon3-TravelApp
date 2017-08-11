@@ -7,6 +7,7 @@
     android:background="@color/colorPrimary"
     tools:context="vu.travelapp.fragments.UserFragment">
     <LinearLayout
+        android:elevation="20dp"
         android:id="@+id/user_content_main"
         android:background="@color/colorPrimary"
         android:orientation="vertical"

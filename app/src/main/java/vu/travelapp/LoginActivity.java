@@ -2,16 +2,12 @@ package vu.travelapp;
 
 import android.content.Context;
 import android.content.Intent;
-<<<<<<< HEAD
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-=======
-import android.content.SharedPreferences;
->>>>>>> 99930b6a9257884b49d3cdf60e486b8ceee3ad7c
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
@@ -58,18 +54,18 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        acessTokenTracker = new AccessTokenTracker() {
-            @Override
-            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken newAccessToken) {
-                updateWithToken(newAccessToken);
-            }
-        };
-
-
-        updateWithToken(AccessToken.getCurrentAccessToken());
-
-        //====================
+//
+//        acessTokenTracker = new AccessTokenTracker() {
+//            @Override
+//            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken newAccessToken) {
+//                updateWithToken(newAccessToken);
+//            }
+//        };
+//
+//
+//        updateWithToken(AccessToken.getCurrentAccessToken());
+//
+//        //====================
         // lấy ra keyhash
         try {
             PackageInfo info = getPackageManager().getPackageInfo(
@@ -90,23 +86,23 @@ public class LoginActivity extends AppCompatActivity {
 
         this.onClickSign();
     }
-
-    private void updateWithToken(AccessToken currentAccessToken) {
-
-        if (currentAccessToken != null) {
-            new Handler().postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                    Log.d(TAG, "run: " + "Đã đăng nhập rồi");
-                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(i);
-
-                    finish();
-                }
-            }, 1000);
-        }
-    }
+//
+//    private void updateWithToken(AccessToken currentAccessToken) {
+//
+//        if (currentAccessToken != null) {
+//            new Handler().postDelayed(new Runnable() {
+//
+//                @Override
+//                public void run() {
+//                    Log.d(TAG, "run: " + "Đã đăng nhập rồi");
+//                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
+//                    startActivity(i);
+//
+//                    finish();
+//                }
+//            }, 1000);
+//        }
+//    }
 
 
     private void setupUI(){
@@ -141,8 +137,6 @@ public class LoginActivity extends AppCompatActivity {
 
                             URL url = new URL(profileModel.getImageURL());
                             profileModel.setUrl(url);
-<<<<<<< HEAD
-=======
 
                             //TODO: bug nè anh Hưng, bỏ comment đi chạy là crash nhé!
 //                            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
@@ -152,7 +146,6 @@ public class LoginActivity extends AppCompatActivity {
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putString("idfacebook",profileModel.getId());
                             editor.commit();
->>>>>>> 99930b6a9257884b49d3cdf60e486b8ceee3ad7c
                             //
                             EventBus.getDefault().postSticky(profileModel); //Chuyển dữ liệu profile sang Home Screen Activity
                             Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
