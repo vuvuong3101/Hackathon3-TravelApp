@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
 import com.squareup.picasso.Picasso;
@@ -75,10 +76,11 @@ public class UserFragment extends Fragment {
         ivSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "onClick: " + " logout FB");
                 Intent intent = new Intent(getContext(),LoginActivity.class);
                 startActivity(intent);
                 LoginManager.getInstance().logOut();
+                Toast.makeText(getContext(), "Đã đăng xuất !", Toast.LENGTH_LONG).show();
+                getActivity().onBackPressed();
 
 
             }

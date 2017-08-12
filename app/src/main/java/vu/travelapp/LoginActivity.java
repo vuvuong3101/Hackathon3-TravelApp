@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
 
         this.onClickSign();
     }
-//
+// auto login
     private void updateWithToken(AccessToken currentAccessToken) {
 
         if (currentAccessToken != null) {

@@ -3,6 +3,7 @@ package vu.travelapp.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -32,6 +33,7 @@ public class HomeFragment extends Fragment {
     private List<DataModel> dataModelList;
     private RecyclerView rvHomeFragment;
     private AdapterHomeFragment adapterHomeFragment;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,7 +43,21 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         this.init(view);
+        swipeRefreshLayout = view.findViewById(R.id.refeshlayout);
+        Refesh();
         return view;
+    }
+
+    private void Refesh() {
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+//                adapterHomeFragment.notifyDataSetChanged();
+
+            }
+
+        });
+
     }
 
     private void init(View view) {
@@ -81,5 +97,9 @@ public class HomeFragment extends Fragment {
         Log.d(TAG, "init: Đã có dữ liệu");
 
     }
+
+
+
+
 
 }

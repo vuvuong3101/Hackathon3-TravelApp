@@ -22,11 +22,13 @@ import vu.travelapp.models.DataModel;
 public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragment.HomeModelViewHolder> {
     private List<DataModel> dataModels;
     private Context context;
-
+    private final int view_item = 1;
+    private  final  int view_pro = 0;
     public AdapterHomeFragment(List<DataModel> dataModels, Context context) {
         this.dataModels = dataModels;
         this.context = context;
     }
+
 
     @Override
     public HomeModelViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
@@ -66,7 +68,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
         }
 
         public void setData(DataModel data, Context context){
-            Picasso.with(context).load(data.getBase64image()).into(ivItemPictureHome); //        <- chính nó đó
+            Picasso.with(context).load(data.getBase64image()).resize(1280,720 ).onlyScaleDown().into(ivItemPictureHome); //        <- chính nó đó
             tvUserName.setText(data.getName());
             tvContent.setText(data.getContent());
         }

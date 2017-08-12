@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorPrimary"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <android.support.v7.widget.CardView
+        android:layout_marginBottom="20dp"
         android:background="@color/colorPrimary"
         android:layout_marginTop="0dp"
         app:cardCornerRadius="8dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="420dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             <ImageView
                 android:id="@+id/item_image"
                 android:layout_width="match_parent"
-                android:layout_height="190dp"
+                android:layout_height="290dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/sapa" />
 
@@ -32,7 +32,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginBottom="20dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="165dp"
+                android:layout_marginTop="265dp"
                 android:src="@drawable/user" />
 
             <LinearLayout
@@ -89,7 +89,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:ellipsize="end"
-                        android:maxLines="2"
+                        android:maxLines="3"
                         android:paddingStart="10dp"
                         android:text="Tháng 5, khi bắt đầu mùa mưa là lúc những thửa ruộng bậc thang. Sa Pa - Bát Xát, Lào Cai lấp lánh như những chiếc gương giữa trời tạo nên vẻ đẹp vô cùng quyến rũ đối với du khách."
                         android:textColor="@color/colorAccent" />
