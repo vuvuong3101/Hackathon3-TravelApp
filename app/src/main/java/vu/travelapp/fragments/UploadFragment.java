@@ -96,7 +96,7 @@ public class UploadFragment extends Fragment {
                     e.printStackTrace();
                 }
             } else if(requestCode == REQUEST_TAKE_PHOTO){
-                Bitmap bitmap = data
+                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
                 ivUploadImage.setImageBitmap(bitmap);
             }
         }
