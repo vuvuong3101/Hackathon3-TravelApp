@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -96,8 +98,7 @@ public class UploadFragment extends Fragment {
                     e.printStackTrace();
                 }
             } else if(requestCode == REQUEST_TAKE_PHOTO){
-                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-                ivUploadImage.setImageBitmap(bitmap);
+                Picasso.with(getContext()).load(data.getData()).into(ivUploadImage);
             }
         }
     }
