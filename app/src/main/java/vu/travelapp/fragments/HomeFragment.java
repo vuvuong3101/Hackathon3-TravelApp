@@ -69,7 +69,7 @@ public class HomeFragment extends Fragment {
                 for (int i = 0; i < response.body().size(); i++) {
                     DataModel dataModel = new DataModel();
                     dataModel.setName(response.body().get(i).getUsername());
-                    dataModel.setBase64image(response.body().get(i).getBase64image());
+                    dataModel.setImage(response.body().get(i).getImage());
                     dataModel.setId(response.body().get(i).getId());
                     dataModel.setContent(response.body().get(i).getContent());
 

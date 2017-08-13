@@ -68,7 +68,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
         }
 
         public void setData(DataModel data, Context context){
-            Picasso.with(context).load(data.getBase64image()).resize(1280,720 ).onlyScaleDown().into(ivItemPictureHome); //        <- chính nó đó
+            Picasso.with(context).load(data.getImage()).resize(1280,720 ).onlyScaleDown().into(ivItemPictureHome); //        <- chính nó đó
             tvUserName.setText(data.getName());
             tvContent.setText(data.getContent());
         }

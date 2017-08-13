@@ -9,8 +9,8 @@ import com.google.gson.annotations.SerializedName;
 public class DataModelJson {
     @SerializedName("_id")
     private String id;
-    @SerializedName("base64image")
-    private String base64image;
+    @SerializedName("image")
+    private String image;
     @SerializedName("username")
     private String username;
     @SerializedName("content")
@@ -27,12 +27,12 @@ public class DataModelJson {
         this.id = id;
     }
 
-    public String getBase64image() {
-        return base64image;
+    public String getImage() {
+        return image;
     }
 
-    public void setBase64image(String base64image) {
-        this.base64image = base64image;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getUsername() {

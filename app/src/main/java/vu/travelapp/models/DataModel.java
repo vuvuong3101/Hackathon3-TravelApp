@@ -6,7 +6,7 @@ package vu.travelapp.models;
 
 public class DataModel {
     private String id;
-    private String base64image;
+    private String image;
     private String name;
     private String content;
 
@@ -21,12 +21,12 @@ public class DataModel {
         this.id = id;
     }
 
-    public String getBase64image() {
-        return base64image;
+    public String getImage() {
+        return image;
     }
 
-    public void setBase64image(String base64image) {
-        this.base64image = base64image;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getName() {
