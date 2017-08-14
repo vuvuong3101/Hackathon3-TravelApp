@@ -43,7 +43,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         this.init(view);
-        swipeRefreshLayout = view.findViewById(R.id.refeshlayout);
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refeshlayout);
         Refesh();
         return view;
     }
@@ -86,7 +86,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        rvHomeFragment = view.findViewById(R.id.rv_data_home_fragment);
+        rvHomeFragment = (RecyclerView) view.findViewById(R.id.rv_data_home_fragment);
         adapterHomeFragment = new AdapterHomeFragment(dataModelList, getContext());
         rvHomeFragment.setLayoutManager(new LinearLayoutManager(getContext()));
 

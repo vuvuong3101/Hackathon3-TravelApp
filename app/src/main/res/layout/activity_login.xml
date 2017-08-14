@@ -15,15 +15,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <ImageView
-            android:background="#4a4d4c4c"
+            android:background="#9effffff"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <ImageView
             android:id="@+id/logo_login"
-            android:layout_marginTop="110dp"
+            android:layout_marginTop="70dp"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="50dp"
-            android:src="@drawable/logo"
+            android:src="@drawable/logo_screen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <RelativeLayout

@@ -29,7 +29,6 @@ import org.greenrobot.eventbus.Subscribe;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -108,7 +107,6 @@ public class UploadFragment extends Fragment {
                     @Override
                     public void onResponse(Call<UploadRespondModel> call, Response<UploadRespondModel> response) {
                         String mess = response.body().getMessage();
-                        Log.d("Hàm on Respond retrofit: ", "" + mess);
                     }
 
                     @Override
@@ -170,15 +168,15 @@ public class UploadFragment extends Fragment {
     }
 
     private void FindView(View view) {
-        ivclose = view.findViewById(R.id.iv_close);
-        ivUploadImage = view.findViewById(R.id.iv_upload_image);
-        btnUpload = view.findViewById(R.id.bt_upload);
-        circleImageView = view.findViewById(R.id.avatar_upload);
-        ivcamera = view.findViewById(R.id.iv_camera);
-        tvUserName = view.findViewById(R.id.username_upload);
-        etDescription = view.findViewById(R.id.et_description);
-        llMain = view.findViewById(R.id.ll_main);
-        etDescription = view.findViewById(R.id.et_destination);
+        ivclose = (ImageView) view.findViewById(R.id.iv_close);
+        ivUploadImage = (ImageView) view.findViewById(R.id.iv_upload_image);
+        btnUpload = (Button) view.findViewById(R.id.bt_upload);
+        circleImageView = (ImageView) view.findViewById(R.id.avatar_upload);
+        ivcamera = (ImageView) view.findViewById(R.id.iv_camera);
+        tvUserName = (TextView) view.findViewById(R.id.username_upload);
+        etDescription = (EditText) view.findViewById(R.id.et_description);
+        llMain = (LinearLayout) view.findViewById(R.id.ll_main);
+        etDescription = (EditText) view.findViewById(R.id.et_destination);
     }
 
     @Subscribe(sticky = true)
@@ -192,7 +190,7 @@ public class UploadFragment extends Fragment {
         if (resultCode == getActivity().RESULT_OK) {
             if (requestCode == REQUEST_CHOOSE_PHOTO) {
                 try {
-                    final Uri imageUri = data.getData();
+                    Uri imageUri = data.getData();
                     InputStream is = getActivity().getContentResolver().openInputStream(imageUri);
                     Bitmap bitmap = BitmapFactory.decodeStream(is);
                     ivUploadImage.setImageBitmap(bitmap);

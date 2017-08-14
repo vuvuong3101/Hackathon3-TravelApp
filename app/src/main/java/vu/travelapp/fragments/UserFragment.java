@@ -20,7 +20,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import vu.travelapp.LoginActivity;
-import vu.travelapp.Maps.MapsActivity;
 import vu.travelapp.R;
 import vu.travelapp.models.ProfileModel;
 
@@ -57,7 +56,7 @@ public class UserFragment extends Fragment {
         tvName.setText(profileModel.getName());
         tvLocation.setText(b);
         Log.d(TAG, "ProcessUI: " + profileModel.getLocation());
-        tvBirthday.setText(profileModel.getBirthday());
+//        tvBirthday.setText(profileModel.getBirthday());
         Picasso.with(getContext()).load(profileModel.getImageURL()).into(avatar);
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,13 +65,13 @@ public class UserFragment extends Fragment {
 
             }
         });
-        direction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),MapsActivity.class);
-                startActivity(intent);
-            }
-        });
+//        direction.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(),MapsActivity.class);
+//                startActivity(intent);
+//            }
+//        });
         ivSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,13 +88,13 @@ public class UserFragment extends Fragment {
     }
 
     private void FindView(View view) {
-        tvName = view.findViewById(R.id.profile_user_name);
-        tvLocation =  view.findViewById(R.id.location);
-        tvBirthday =  view.findViewById(R.id.birthday);
-        ivBack = view.findViewById(R.id.rl_back);
-        avatar = view.findViewById(R.id.profile_avatar);
-        direction = view.findViewById(R.id.iv_map);
-        ivSetting = view.findViewById(R.id.rl_setting);
+        tvName = (TextView) view.findViewById(R.id.profile_user_name);
+        tvLocation = (TextView) view.findViewById(R.id.location);
+//        tvBirthday = (TextView) view.findViewById(R.id.birthday);
+        ivBack = (RelativeLayout) view.findViewById(R.id.rl_back);
+        avatar = (ImageView) view.findViewById(R.id.profile_avatar);
+//        direction = (ImageView) view.findViewById(R.id.iv_map);
+        ivSetting = (RelativeLayout) view.findViewById(R.id.rl_setting);
     }
 
     @Subscribe(sticky = true)

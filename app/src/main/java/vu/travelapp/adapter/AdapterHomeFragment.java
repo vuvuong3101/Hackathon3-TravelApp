@@ -61,9 +61,9 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
         }
 
         private void init(View itemView){
-            ivItemPictureHome = itemView.findViewById(R.id.item_image);
-            tvContent = itemView.findViewById(R.id.time);
-            tvUserName = itemView.findViewById(R.id.user_name);
+            ivItemPictureHome = (ImageView) itemView.findViewById(R.id.item_image);
+            tvContent = (TextView) itemView.findViewById(R.id.time);
+            tvUserName = (TextView) itemView.findViewById(R.id.user_name);
 
         }
 
