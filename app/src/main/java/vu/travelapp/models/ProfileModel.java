@@ -13,7 +13,15 @@ public class ProfileModel {
     private URL url;
     private String location;
     private String birthday;
+    private String urlImage;
 
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
+    }
 
     public String getBirthday() {
         return birthday;

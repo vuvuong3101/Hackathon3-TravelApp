@@ -22,7 +22,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
             <android.support.v7.widget.Toolbar
-                android:elevation="20dp"
                 app:layout_collapseMode="pin"
                 app:contentInsetEnd="0dp"
                 app:contentInsetLeft="0dp"
@@ -55,8 +54,8 @@
                         android:layout_centerInParent="true"
                         android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:src="@drawable/logo"/>
+                        android:layout_height="match_parent"
+                        android:src="@drawable/logo_home"/>
                 <RelativeLayout
                     android:layout_alignParentEnd="true"
                     android:clickable="true"
@@ -90,6 +89,7 @@
     <it.sephiroth.android.library.bottomnavigation.BottomNavigation
         android:elevation="10dp"
         android:background="@drawable/stroketop"
+        app:theme="@style/Theme.AppCompat.NoActionBar"
         android:layout_alignParentBottom="true"
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"

@@ -1,22 +1,28 @@
 package vu.travelapp;
 
-import android.content.ClipData;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> b4040669a9edde84b971423f67bc922e06e1a8b0
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+
+>>>>>>> b4040669a9edde84b971423f67bc922e06e1a8b0
 import it.sephiroth.android.library.bottomnavigation.BottomNavigation;
 import vu.travelapp.fragments.HomeFragment;
 import vu.travelapp.fragments.UploadFragment;
@@ -48,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onMenuItemSelect(@IdRes int item, int i, boolean b) {
                 if(item == R.id.bbn_item3){
-                    ScreenManager.openFragment(getSupportFragmentManager(), new UploadFragment(),R.id.main);
+                    ScreenManager.replaceFragment(getSupportFragmentManager(), new UploadFragment(),R.id.main);
                 }
             }
 

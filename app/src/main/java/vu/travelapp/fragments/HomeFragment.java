@@ -21,9 +21,9 @@ import retrofit2.Response;
 import vu.travelapp.R;
 import vu.travelapp.adapter.AdapterHomeFragment;
 import vu.travelapp.models.DataModel;
-import vu.travelapp.networks.DataModelJson;
-import vu.travelapp.networks.GetAllDataModel;
-import vu.travelapp.networks.RetrofitFactory;
+import vu.travelapp.networks.pullData.DataModelJson;
+import vu.travelapp.networks.pullData.GetAllDataModel;
+import vu.travelapp.networks.pullData.RetrofitFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,7 +43,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         this.init(view);
-        swipeRefreshLayout = view.findViewById(R.id.refeshlayout);
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refeshlayout);
         Refesh();
         return view;
     }
@@ -69,7 +69,7 @@ public class HomeFragment extends Fragment {
                 for (int i = 0; i < response.body().size(); i++) {
                     DataModel dataModel = new DataModel();
                     dataModel.setName(response.body().get(i).getUsername());
-                    dataModel.setBase64image(response.body().get(i).getBase64image());
+                    dataModel.setImage(response.body().get(i).getImage());
                     dataModel.setId(response.body().get(i).getId());
                     dataModel.setContent(response.body().get(i).getContent());
 
@@ -86,10 +86,12 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        rvHomeFragment = view.findViewById(R.id.rv_data_home_fragment);
+        rvHomeFragment = (RecyclerView) view.findViewById(R.id.rv_data_home_fragment);
         adapterHomeFragment = new AdapterHomeFragment(dataModelList, getContext());
+        rvHomeFragment.hasFixedSize();
         rvHomeFragment.setLayoutManager(new LinearLayoutManager(getContext()));
-
+        rvHomeFragment.setItemViewCacheSize(20);
+        rvHomeFragment.setDrawingCacheEnabled(true);
         rvHomeFragment.setAdapter(adapterHomeFragment);
 
 

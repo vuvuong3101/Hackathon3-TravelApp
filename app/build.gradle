@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 25
     buildToolsVersion "26.0.0"
     defaultConfig {
         applicationId "vu.travelapp"
         minSdkVersion 17
-        targetSdkVersion 26
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -46,5 +46,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.dinuscxj:recyclerrefreshlayout:2.0.5'
+    compile group: 'com.cloudinary', name: 'cloudinary-android', version: '1.13.0'
+    compile group: 'com.cloudinary', name: 'cloudinary-core', version: '1.13.0'
 
 }

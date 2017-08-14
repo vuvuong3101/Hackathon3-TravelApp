@@ -14,10 +14,12 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleInstance"></activity>
+            android:launchMode="singleInstance">
+
+        </activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,6 +56,8 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
+        <!--<meta-data android:name="CLOUDINARY_URL" android:value="cloudinary://265947211736866:hSeTC462QKOMlpVqWI8f_DVeqDs@hanoi-university-of-science-and-technology"/>-->
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -61,6 +65,7 @@
         <activity
             android:name=".Maps.MapsActivity"
             android:label="@string/title_activity_maps"></activity>
+
     </application>
 
 </manifest>

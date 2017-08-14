@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -61,14 +62,30 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
         }
 
         private void init(View itemView){
-            ivItemPictureHome = itemView.findViewById(R.id.item_image);
-            tvContent = itemView.findViewById(R.id.time);
-            tvUserName = itemView.findViewById(R.id.user_name);
+            ivItemPictureHome = (ImageView) itemView.findViewById(R.id.item_image);
+            tvContent = (TextView) itemView.findViewById(R.id.time);
+            tvUserName = (TextView) itemView.findViewById(R.id.user_name);
 
         }
 
         public void setData(DataModel data, Context context){
-            Picasso.with(context).load(data.getBase64image()).resize(1280,720 ).onlyScaleDown().into(ivItemPictureHome); //        <- chính nó đó
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+            Picasso.with(context).load(data.getImage()).resize(1280,720 ).memoryPolicy(MemoryPolicy.NO_CACHE).onlyScaleDown().into(ivItemPictureHome); //        <- chính nó đó
+=======
+            Picasso.with(context).load(data.getImage()).resize(1280,720 ).onlyScaleDown().into(ivItemPictureHome); //        <- chính nó đó
+>>>>>>> c55085a26efdcddad1279c4af92d4716e11491e9
+=======
+            Picasso.with(context).load(data.getImage()).resize(1280,720 ).onlyScaleDown().into(ivItemPictureHome); //        <- chính nó đó
+>>>>>>> c55085a26efdcddad1279c4af92d4716e11491e9
+=======
+            Picasso.with(context).load(data.getImage()).resize(1280,720 ).onlyScaleDown().into(ivItemPictureHome); //        <- chính nó đó
+>>>>>>> b4040669a9edde84b971423f67bc922e06e1a8b0
+=======
+            Picasso.with(context).load(data.getImage()).resize(1280,720 ).onlyScaleDown().into(ivItemPictureHome); //        <- chính nó đó
+>>>>>>> b4040669a9edde84b971423f67bc922e06e1a8b0
             tvUserName.setText(data.getName());
             tvContent.setText(data.getContent());
         }
