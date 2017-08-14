@@ -19,12 +19,12 @@
         />
     <item
         android:title="Yêu thích"
-        android:id="@+id/bbn_item4"
+        android:id="@+id/action4"
         android:icon="@drawable/ic_fav"
         />
     <item
         android:title="Tìm kiếm"
-        android:id="@+id/bbn_item5"
+        android:id="@+id/action5"
         android:icon="@drawable/ic_search"
         />
 </menu>

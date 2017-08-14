@@ -1,6 +1,6 @@
 package vu.travelapp.models;
 
-import java.net.URL;
+import android.graphics.Bitmap;
 
 /**
  * Created by ADMIN on 8/10/2017.
@@ -10,49 +10,14 @@ public class ProfileModel {
     private String image;
     private String name;
     private String id;
-    private URL url;
-    private String location;
-    private String birthday;
-    private String urlImage;
+    private Bitmap bitmap;
 
-    public String getUrlImage() {
-        return urlImage;
+    public Bitmap getBitmap() {
+        return bitmap;
     }
 
-    public void setUrlImage(String urlImage) {
-        this.urlImage = urlImage;
-    }
-
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public URL getUrl() {
-        return url;
-    }
-
-    public void setUrl(URL url) {
-        this.url = url;
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 
     public ProfileModel() {

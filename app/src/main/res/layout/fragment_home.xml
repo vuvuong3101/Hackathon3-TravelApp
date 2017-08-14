@@ -9,20 +9,19 @@
         android:id="@+id/content_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/refeshlayout"
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_below="@+id/appbar"
+            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_data_home_fragment"
-                android:layout_below="@+id/appbar"
-                android:background="#f2f4f4f4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-            </android.support.v7.widget.RecyclerView>
-
-        </android.support.v4.widget.SwipeRefreshLayout>
-
+        </android.support.v7.widget.RecyclerView>
+        <TextView
+            android:textColor="#000"
+            android:textAlignment="center"
+            android:text="HRLLLO"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </RelativeLayout>
 </RelativeLayout>
