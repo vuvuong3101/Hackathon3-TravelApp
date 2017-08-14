@@ -1,4 +1,4 @@
-package vu.travelapp.networks;
+package vu.travelapp.networks.pullData;
 
 import com.google.gson.annotations.SerializedName;
 

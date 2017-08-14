@@ -3,6 +3,15 @@
 
     <item
         is-multidex="true"
+        jar="C:\Users\User\Documents\Hackathon3-TravelApp\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="fe87e297e417a93e63712028a5bb82dfe4302741">
+        <dex dex="C:\Users\User\Documents\Hackathon3-TravelApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_f1a94543193f786ef8e039663ba9eb2ad0b5926c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\User\Documents\Hackathon3-TravelApp\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
@@ -12,12 +21,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\User\Documents\Hackathon3-TravelApp\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jar="C:\Users\User\.android\build-cache\febf2f144920d834da0660f972a1ea6edae465bf\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
-        sha1="7ed71ecba9c1bdf2282b2735aafc672119071d29">
-        <dex dex="C:\Users\User\Documents\Hackathon3-TravelApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_f1a94543193f786ef8e039663ba9eb2ad0b5926c\classes.dex" />
+        sha1="d701d6af8b8aba5492342f052c27a94cad889c95">
+        <dex dex="C:\Users\User\Documents\Hackathon3-TravelApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2028fcf3bbfaa70982f7b4108f0f530bd05ba9f1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\User\.gradle\caches\modules-2\files-2.1\com.cloudinary\cloudinary-core\1.13.0\c0baae14e47270d90fca9747a2d76c9e13bc73f9\cloudinary-core-1.13.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="c0baae14e47270d90fca9747a2d76c9e13bc73f9">
+        <dex dex="C:\Users\User\Documents\Hackathon3-TravelApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\cloudinary-core-1.13.0_61a0362d475603cdeccd2741f98869497676de18\classes.dex" />
     </item>
 
 </items>

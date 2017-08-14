@@ -1,4 +1,4 @@
-package vu.travelapp.networks;
+package vu.travelapp.networks.pullData;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

@@ -21,9 +21,9 @@ import retrofit2.Response;
 import vu.travelapp.R;
 import vu.travelapp.adapter.AdapterHomeFragment;
 import vu.travelapp.models.DataModel;
-import vu.travelapp.networks.DataModelJson;
-import vu.travelapp.networks.GetAllDataModel;
-import vu.travelapp.networks.RetrofitFactory;
+import vu.travelapp.networks.pullData.DataModelJson;
+import vu.travelapp.networks.pullData.GetAllDataModel;
+import vu.travelapp.networks.pullData.RetrofitFactory;
 
 /**
  * A simple {@link Fragment} subclass.

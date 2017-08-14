@@ -1,46 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:clickable="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:layout_height="match_parent">
+    android:clickable="true"
+    android:orientation="vertical"
+    android:id="@+id/ll_main"
+    android:visibility="visible">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary">
+
         <ImageView
+            android:id="@+id/iv_close"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:id="@+id/iv_close"
-            android:src="@drawable/ic_close_black_24dp"
-            android:elevation="1dp"/>
+            android:elevation="1dp"
+            android:src="@drawable/ic_close_black_24dp" />
+
+        <ImageView
+            android:id="@+id/iv_camera"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_camera_alt_black_24dp" />
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="300dp"
         android:layout_marginBottom="10dp">
-        
+
         <ImageView
+            android:id="@+id/iv_upload_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/iv_upload_image"/>
-
+            android:layout_marginTop="10dp" />
     </RelativeLayout>
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="120dp">
+
+        <com.github.siyamed.shapeimageview.CircularImageView
+            android:id="@+id/avatar_upload"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/girl" />
+
+        <TextView
+            android:id="@+id/username_upload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/avatar_upload"
+            android:layout_marginLeft="3dp"
+            android:text="Trọng Phương"
+            android:textColor="@color/bb_darkBackgroundColor"
+            android:textSize="16sp" />
+        <EditText
+            android:id="@+id/et_destination"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textColor="@color/bb_darkBackgroundColor"
+            android:textSize="13sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/username_upload" />
+        <EditText
+            android:id="@+id/et_description"
+            android:layout_width="match_parent"
+            android:layout_below="@id/et_destination"
+            android:layout_height="60dp"
+            android:textColor="@color/bb_darkBackgroundColor"
+            android:textSize="16sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/username_upload" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <Button
-            android:id="@+id/btn_gallery"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:text="Thư Viện"
-            android:layout_height="match_parent" />
-        <Button
-            android:id="@+id/btn_camera"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:text="Máy Ảnh"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+            android:id="@+id/bt_upload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Post Bài Nào!" />
+    </RelativeLayout>
 </LinearLayout>

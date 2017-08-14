@@ -31,6 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -54,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 //
         acessTokenTracker = new AccessTokenTracker() {
             @Override
@@ -133,10 +135,10 @@ public class LoginActivity extends AppCompatActivity {
 //                            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
 //                            profileModel.setBitmap(bmp);
 
-                            SharedPreferences sharedPreferences = getSharedPreferences("TravelAppId", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("idfacebook",profileModel.getId());
-                            editor.commit();
+//                            SharedPreferences sharedPreferences = getSharedPreferences("TravelAppId", Context.MODE_PRIVATE);
+//                            SharedPreferences.Editor editor = sharedPreferences.edit();
+//                            editor.putString("idfacebook",profileModel.getId());
+//                            editor.commit();
                             //
                             EventBus.getDefault().postSticky(profileModel); //Chuyển dữ liệu profile sang Home Screen Activity
                             Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
