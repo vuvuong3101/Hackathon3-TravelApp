@@ -10,7 +10,10 @@ import android.widget.RelativeLayout;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> b4040669a9edde84b971423f67bc922e06e1a8b0
 =======
 >>>>>>> b4040669a9edde84b971423f67bc922e06e1a8b0
 import com.cloudinary.Cloudinary;

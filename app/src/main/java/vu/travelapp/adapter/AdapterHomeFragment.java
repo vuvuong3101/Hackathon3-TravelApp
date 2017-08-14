@@ -73,6 +73,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             Picasso.with(context).load(data.getImage()).resize(1280,720 ).memoryPolicy(MemoryPolicy.NO_CACHE).onlyScaleDown().into(ivItemPictureHome); //        <- chính nó đó
 =======
             Picasso.with(context).load(data.getImage()).resize(1280,720 ).onlyScaleDown().into(ivItemPictureHome); //        <- chính nó đó
@@ -80,6 +81,9 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
 =======
             Picasso.with(context).load(data.getImage()).resize(1280,720 ).onlyScaleDown().into(ivItemPictureHome); //        <- chính nó đó
 >>>>>>> c55085a26efdcddad1279c4af92d4716e11491e9
+=======
+            Picasso.with(context).load(data.getImage()).resize(1280,720 ).onlyScaleDown().into(ivItemPictureHome); //        <- chính nó đó
+>>>>>>> b4040669a9edde84b971423f67bc922e06e1a8b0
 =======
             Picasso.with(context).load(data.getImage()).resize(1280,720 ).onlyScaleDown().into(ivItemPictureHome); //        <- chính nó đó
 >>>>>>> b4040669a9edde84b971423f67bc922e06e1a8b0

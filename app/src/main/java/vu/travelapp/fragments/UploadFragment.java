@@ -192,6 +192,9 @@ public class UploadFragment extends Fragment {
         this.profileModel = profileModel;
         Log.d(TAG, "onReceivedProfileModel: upload data");
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b4040669a9edde84b971423f67bc922e06e1a8b0
+=======
 >>>>>>> b4040669a9edde84b971423f67bc922e06e1a8b0
 =======
 >>>>>>> b4040669a9edde84b971423f67bc922e06e1a8b0
