@@ -1,97 +1,177 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:orientation="vertical"
-android:background="@color/colorPrimary"
-tools:context="vu.travelapp.fragments.UserFragment">
-<LinearLayout
-    android:background="@color/colorPrimary"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-   <android.support.design.widget.AppBarLayout
-       android:background="#fff"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content">
-               <android.support.design.widget.CollapsingToolbarLayout
-                   app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed|snap"
-                   android:fitsSystemWindows="true"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent">
-                   <RelativeLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="240dp">
-                       <ImageView
-                           android:id="@+id/profile_thumbail"
-                           android:scaleType="centerCrop"
-                           android:src="@drawable/sapa"
-                           android:layout_width="match_parent"
-                           android:layout_height="170dp" />
-                       <ImageView
-                           android:background="#6c414141"
-                           android:layout_width="match_parent"
-                           android:layout_height="match_parent" />
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    tools:context="vu.travelapp.fragments.UserFragment">
+    <LinearLayout
+        android:elevation="20dp"
+        android:id="@+id/user_content_main"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.design.widget.AppBarLayout
 
-                       <RelativeLayout
-                           android:id="@+id/content_profile_top"
-                           android:background="@color/colorPrimary"
-                           android:layout_below="@+id/profile_thumbail"
-                           android:layout_width="match_parent"
-                           android:layout_height="match_parent">
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.design.widget.CollapsingToolbarLayout
+                app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed|snap"
+                android:fitsSystemWindows="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    app:layout_collapseMode="pin"
+                    android:background="@color/colorPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp">
+                    <ImageView
+                        android:id="@+id/profile_thumbail"
+                        android:scaleType="centerCrop"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp" />
+                    <ImageView
+                        android:background="#ffffff"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp" />
+                    <LinearLayout
+                        android:isScrollContainer="true"
+                        android:id="@+id/profiles_head"
+                        android:layout_marginBottom="16dp"
+                        android:layout_alignParentBottom="true"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                       </RelativeLayout>
-                       <TextView
-                           android:layout_above="@id/content_profile_top"
-                           android:id="@+id/profile_user_name"
-                           android:textAlignment="center"
-                           android:text="LyLy MayMac"
-                           android:textStyle="bold"
-                           android:textSize="16dp"
-                           android:textColor="@color/colorPrimary"
-                           android:layout_margin="6dp"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:layout_marginBottom="10dp"/>
-                       <com.github.siyamed.shapeimageview.CircularImageView
-                           android:id="@+id/profile_avatar"
-                           android:layout_width="70dp"
-                           android:layout_height="70dp"
-                           android:src="@drawable/girl"
-                           app:siBorderWidth="3dp"
-                           app:siBorderColor="@color/colorPrimary"
-                           android:layout_centerHorizontal="true"
-                           android:layout_above="@id/profile_user_name"
-                           />
+                        <com.github.siyamed.shapeimageview.CircularImageView
+                            android:id="@+id/profile_avatar"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:src="@drawable/girl"
+                            android:layout_marginLeft="16dp"
+                            app:siBorderWidth="2dp"
+                            app:siBorderColor="@color/colorAccent" />
+                        <LinearLayout
+                            android:layout_marginEnd="16dp"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/profile_user_name"
+                                android:textAlignment="center"
+                                android:text="LyLy MayMac"
+                                android:textStyle="bold"
+                                android:textSize="16dp"
+                                android:textColor="@color/colorAccent"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="4dp"/>
+                            <LinearLayout
+                                android:paddingLeft="16dp"
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorAccent"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:id="@+id/location"
+                                    android:textSize="12sp"
+                                    android:text="London"
+                                    android:textColor="@color/colorAccent"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:textSize="12sp"
+                                android:id="@+id/birthday"
+                                android:text="01/10/1994"
+                                android:textColor="@color/colorAccent"
+                                android:layout_marginLeft="16dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
 
 
-                   </RelativeLayout>
-                  <android.support.v7.widget.Toolbar
-                      app:layout_collapseMode="pin"
-                      android:id="@+id/toolbar_profile"
-                       android:layout_width="match_parent"
-                       android:layout_height="?actionBarSize">
-                       <RelativeLayout
-                           android:layout_width="match_parent"
-                           android:layout_height="match_parent">
-                           <ImageView
-                               android:id="@+id/back"
-                               android:layout_centerVertical="true"
-                               android:src="@drawable/ic_arrow_back"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content" />
-                       </RelativeLayout>
-                   </android.support.v7.widget.Toolbar>
-               </android.support.design.widget.CollapsingToolbarLayout>
-
-   </android.support.design.widget.AppBarLayout>
-    <include
-        layout="@layout/content_profiles">
-
-    </include>
-        </LinearLayout>
+                    </LinearLayout>
+                    <TextView
+                        tools:context="vu.travelapp.fragments.UserFragment"
+                        android:layout_below="@id/profiles_head"
+                        android:background="#000"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"/>
 
 
+                </RelativeLayout>
+                <android.support.v7.widget.Toolbar
+                    android:contentInsetEnd="0dp"
+                    android:contentInsetRight="0dp"
+                    android:contentInsetStart="0dp"
+                    app:contentInsetEnd="0dp"
+                    app:contentInsetLeft="0dp"
+                    app:contentInsetRight="0dp"
+                    app:contentInsetStart="0dp"
+                    app:layout_collapseMode="pin"
+                    android:id="@+id/toolbar_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <RelativeLayout
+                            android:clickable="true"
+                            android:paddingRight="16dp"
+                            android:paddingLeft="16dp"
+                            android:id="@+id/rl_back"
+                            android:layout_centerVertical="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:id="@+id/back"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_arrow_back"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </RelativeLayout>
 
+                        <RelativeLayout
+                            android:clickable="true"
+                            android:paddingRight="16dp"
+                            android:paddingLeft="16dp"
+                            android:id="@+id/rl_setting"
+                            android:layout_alignParentEnd="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_centerVertical="true"
+                                android:id="@+id/setting"
+                                android:src="@drawable/ic_settings"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:textStyle="bold"
+                            android:layout_marginLeft="16dp"
+                            android:layout_toRightOf="@+id/rl_back"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp"
+                            android:text="Trang cá nhân"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+                </android.support.v7.widget.Toolbar>
+            </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.design.widget.AppBarLayout>
+        <include layout="@layout/content_profiles"/>
+    </LinearLayout>
 </LinearLayout>
