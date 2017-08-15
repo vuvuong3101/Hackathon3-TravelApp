@@ -69,9 +69,10 @@ public class RankFragment extends Fragment {
                     DataModel dataModel = new DataModel();
                     dataModel.setName(response.body().get(i).getUsername());
                     dataModel.setImage(response.body().get(i).getImage());
-                    dataModel.setId(response.body().get(i).getUserid());
+                    dataModel.setUserid(response.body().get(i).getUserid());
                     dataModel.setContent(response.body().get(i).getContent());
                     dataModel.setLike(response.body().get(i).getLike());
+                    dataModel.setId(response.body().get(i).get_id());
                     if (dataModel.getLike() > maxLike) {
                         maxLike = dataModel.getLike();
                         dataModelList.add(0, dataModel);
