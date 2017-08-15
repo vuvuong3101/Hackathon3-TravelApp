@@ -102,7 +102,7 @@ public class UploadFragment extends Fragment {
         uploadService.uploadPost
                 (new UploadRequestModel(profileModel.getId()
                         , profileModel.getUrlImage(), profileModel.getName()
-                        , "1/1/2017", "Đây là địa điểm", "Đây là mô tả"))
+                        , "1/1/2017", "Đây là địa điểm", "Đây là mô tả",0))
                 .enqueue(new Callback<UploadRespondModel>() {
                     @Override
                     public void onResponse(Call<UploadRespondModel> call, Response<UploadRespondModel> response) {
