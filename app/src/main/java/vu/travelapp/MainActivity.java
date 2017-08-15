@@ -26,6 +26,7 @@ import java.util.Map;
 
 import it.sephiroth.android.library.bottomnavigation.BottomNavigation;
 import vu.travelapp.fragments.HomeFragment;
+import vu.travelapp.fragments.RankFragment;
 import vu.travelapp.fragments.UploadFragment;
 import vu.travelapp.fragments.UserFragment;
 import vu.travelapp.managers.ScreenManager;
@@ -49,13 +50,16 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        bottomNavigation.setDefaultSelectedIndex(2);
+        bottomNavigation.setDefaultSelectedIndex(0);
 
         bottomNavigation.setOnMenuItemClickListener(new BottomNavigation.OnMenuItemSelectionListener() {
             @Override
             public void onMenuItemSelect(@IdRes int item, int i, boolean b) {
-                if(item == R.id.bbn_item3){
-                    ScreenManager.openFragment(getSupportFragmentManager(), new UploadFragment(),R.id.main);
+                if (item == R.id.bbn_item3) {
+                    ScreenManager.openFragment(getSupportFragmentManager(), new UploadFragment(), R.id.main);
+                }
+                if (item == R.id.bbn_item2) {
+                    ScreenManager.openFragment(getSupportFragmentManager(), new RankFragment(), R.id.main);
                 }
             }
 
@@ -69,8 +73,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    private void Init(){
+    private void Init() {
         bottomNavigation = (BottomNavigation) findViewById(R.id.bottomNavigation);
         toolbar = (Toolbar) findViewById(R.id.toolbar_home);
         user = (RelativeLayout) findViewById(R.id.profile_user);

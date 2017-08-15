@@ -72,6 +72,7 @@ public class HomeFragment extends Fragment {
                     dataModel.setImage(response.body().get(i).getImage());
                     dataModel.setId(response.body().get(i).getUserid());
                     dataModel.setContent(response.body().get(i).getContent());
+                    dataModel.setLike(response.body().get(i).getLike());
 
                     dataModelList.add(dataModel);
                     Log.d(TAG, "onResponse: Đã lấy dữ liệu từ server");
