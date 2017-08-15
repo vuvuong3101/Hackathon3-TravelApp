@@ -31,7 +31,7 @@ import vu.travelapp.networks.pullData.RetrofitFactory;
  * Created by trongphuong1011 on 8/15/2017.
  */
 
-public class RankFragment extends Fragment {
+public class RankFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = RankFragment.class.toString();
     private List<DataModel> dataModelList;
     private RecyclerView rvRankFragment;
@@ -84,7 +84,7 @@ public class RankFragment extends Fragment {
                                 dataModelList.add(j, dataModel);
                                 break;
                             }
-                            if(dataModel.getLike() < dataModelList.get(dataSize-1).getLike()){
+                            if (dataModel.getLike() < dataModelList.get(dataSize - 1).getLike()) {
                                 dataModelList.add(dataModel);
                                 break;
                             }
@@ -108,7 +108,13 @@ public class RankFragment extends Fragment {
 
         rvRankFragment.setAdapter(adapterRankFragment);
 
-
+        adapterRankFragment.setOnItemClick(this);
         Log.d(TAG, "init: Đã có dữ liệu");
+    }
+
+    @Override
+    public void onClick(View v) {
+        DataModel dataModel = (DataModel) v.getTag();
+        Log.d("home fragment: ", "" + dataModel.getLike());
     }
 }

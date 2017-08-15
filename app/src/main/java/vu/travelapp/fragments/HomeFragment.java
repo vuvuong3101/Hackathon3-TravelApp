@@ -28,7 +28,7 @@ import vu.travelapp.networks.pullData.RetrofitFactory;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = HomeFragment.class.toString();
     private List<DataModel> dataModelList;
     private RecyclerView rvHomeFragment;
@@ -93,14 +93,16 @@ public class HomeFragment extends Fragment {
 
         rvHomeFragment.setAdapter(adapterHomeFragment);
 
-
+        adapterHomeFragment.setOnItemClick(this);
 
         Log.d(TAG, "init: Đã có dữ liệu");
 
     }
 
 
-
-
-
+    @Override
+    public void onClick(View v) {
+        DataModel dataModel = (DataModel) v.getTag();
+        Log.d("home fragment: ", "" + dataModel.getLike());
+    }
 }
