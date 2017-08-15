@@ -48,5 +48,7 @@ dependencies {
     compile 'com.dinuscxj:recyclerrefreshlayout:2.0.5'
     compile group: 'com.cloudinary', name: 'cloudinary-android', version: '1.13.0'
     compile group: 'com.cloudinary', name: 'cloudinary-core', version: '1.13.0'
+    compile 'com.github.tosslife:pullloadview:1.1.0'
+
 
 }

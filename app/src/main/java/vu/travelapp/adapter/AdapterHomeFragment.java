@@ -48,7 +48,15 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
     public void onBindViewHolder(HomeModelViewHolder homeModelViewHolder, int i) {
         homeModelViewHolder.setData(this.dataModels.get(i), this.context);
     }
+    public void add(DataModel s) {
+        dataModels.add(s);
+        notifyDataSetChanged();
+    }
 
+    public void clear() {
+        dataModels.clear();
+        notifyDataSetChanged();
+    }
     @Override
     public int getItemCount() {
         return dataModels.size();

@@ -12,6 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.srx.widget.PullCallback;
+import com.srx.widget.PullToLoadView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +37,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private RecyclerView rvHomeFragment;
     private AdapterHomeFragment adapterHomeFragment;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private boolean isLoading = false;
+    private boolean isHasLoadedAll = false;
+    private int nextPage;
+    private PullToLoadView mPullToLoadView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,8 +50,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         this.init(view);
-        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refeshlayout);
-        Refesh();
+//        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refeshlayout);
+//        Refesh();
         return view;
     }
 
@@ -52,7 +59,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-//                adapterHomeFragment.notifyDataSetChanged();
+                rvHomeFragment.refreshDrawableState();
+                adapterHomeFragment.notifyDataSetChanged();
 
             }
 
@@ -86,13 +94,38 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 Log.d(TAG, String.format("onFailure: %s", t.toString()));
             }
         });
-
-        rvHomeFragment = (RecyclerView) view.findViewById(R.id.rv_data_home_fragment);
+        mPullToLoadView = (PullToLoadView) view.findViewById(R.id.rv_data_home_fragment);
+        RecyclerView rvHomeFragment = mPullToLoadView.getRecyclerView();
+//
+//        rvHomeFragment = (RecyclerView) view.findViewById(R.id.rv_data_home_fragment);
         adapterHomeFragment = new AdapterHomeFragment(dataModelList, getContext());
         rvHomeFragment.setLayoutManager(new LinearLayoutManager(getContext()));
-
         rvHomeFragment.setAdapter(adapterHomeFragment);
+        mPullToLoadView.isLoadMoreEnabled(true);
+        mPullToLoadView.setPullCallback(new PullCallback() {
+            @Override
+            public void onLoadMore() {
 
+            }
+
+            @Override
+            public void onRefresh() {
+                adapterHomeFragment.clear();
+                isHasLoadedAll = false;
+
+            }
+
+            @Override
+            public boolean isLoading() {
+                return isLoading;
+            }
+
+            @Override
+            public boolean hasLoadedAllItems() {
+                return isHasLoadedAll;
+            }
+        });
+        mPullToLoadView.initLoad();
         adapterHomeFragment.setOnItemClick(this);
 
         Log.d(TAG, "init: Đã có dữ liệu");
