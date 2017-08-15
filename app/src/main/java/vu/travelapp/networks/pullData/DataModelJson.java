@@ -7,6 +7,8 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class DataModelJson {
+    @SerializedName("_id")
+    private String _id;
     @SerializedName("userid")
     private String userid;
     @SerializedName("image")
@@ -19,6 +21,14 @@ public class DataModelJson {
     private int like;
 
     public DataModelJson() {
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public int getLike() {

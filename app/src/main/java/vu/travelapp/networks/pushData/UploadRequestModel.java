@@ -11,14 +11,24 @@ public class UploadRequestModel {
     private String timeupload;
     private String destination;
     private String content;
+    private int like;
 
-    public UploadRequestModel(String userid, String image, String username, String timeupload, String destination, String content) {
+    public UploadRequestModel(String userid, String image, String username, String timeupload, String destination, String content, int like) {
         this.userid = userid;
         this.image = image;
         this.username = username;
         this.timeupload = timeupload;
         this.destination = destination;
         this.content = content;
+        this.like = like;
+    }
+
+    public int getLike() {
+        return like;
+    }
+
+    public void setLike(int like) {
+        this.like = like;
     }
 
     public String getUserid() {
