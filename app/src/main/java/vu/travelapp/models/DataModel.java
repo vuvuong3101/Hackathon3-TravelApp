@@ -9,8 +9,17 @@ public class DataModel {
     private String image;
     private String name;
     private String content;
+    private int like;
 
     public DataModel() {
+    }
+
+    public int getLike() {
+        return like;
+    }
+
+    public void setLike(int like) {
+        this.like = like;
     }
 
     public String getId() {

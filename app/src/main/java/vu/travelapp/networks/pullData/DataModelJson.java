@@ -7,24 +7,34 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class DataModelJson {
-    @SerializedName("_id")
-    private String id;
+    @SerializedName("userid")
+    private String userid;
     @SerializedName("image")
     private String image;
     @SerializedName("username")
     private String username;
     @SerializedName("content")
     private String content;
+    @SerializedName("like")
+    private int like;
 
     public DataModelJson() {
     }
 
-    public String getId() {
-        return id;
+    public int getLike() {
+        return like;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setLike(int like) {
+        this.like = like;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
     public String getImage() {

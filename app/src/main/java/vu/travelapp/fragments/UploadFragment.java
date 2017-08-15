@@ -150,7 +150,7 @@ public class UploadFragment extends Fragment {
     }
 
     private void ThuVien() {
-        Intent intent = new Intent(Intent.ACTION_PICK);
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         startActivityForResult(intent, REQUEST_CHOOSE_PHOTO);
 

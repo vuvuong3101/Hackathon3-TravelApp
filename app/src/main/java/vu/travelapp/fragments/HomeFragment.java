@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment {
                     DataModel dataModel = new DataModel();
                     dataModel.setName(response.body().get(i).getUsername());
                     dataModel.setImage(response.body().get(i).getImage());
-                    dataModel.setId(response.body().get(i).getId());
+                    dataModel.setId(response.body().get(i).getUserid());
                     dataModel.setContent(response.body().get(i).getContent());
 
                     dataModelList.add(dataModel);

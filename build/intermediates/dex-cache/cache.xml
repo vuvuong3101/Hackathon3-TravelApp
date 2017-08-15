@@ -3,39 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="/Users/mac-vuongvu/Documents/Hackathon3-TravelApp-master/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="C:\Users\User\Documents\Hackathon3-TravelApp\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="/Users/mac-vuongvu/Documents/Hackathon3-TravelApp-master/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_389cf4497a61c4722d56b3a71ad30cb4089ebaab/classes.dex" />
+        <dex dex="C:\Users\User\Documents\Hackathon3-TravelApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_21da75a73c3bc3bb8c76aa1ed66fa87acd9597b7\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/mac-vuongvu/.gradle/caches/modules-2/files-2.1/com.cloudinary/cloudinary-core/1.13.0/c0baae14e47270d90fca9747a2d76c9e13bc73f9/cloudinary-core-1.13.0.jar"
+        jar="C:\Users\User\Documents\Hackathon3-TravelApp\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
-        sha1="c0baae14e47270d90fca9747a2d76c9e13bc73f9">
-        <dex dex="/Users/mac-vuongvu/Documents/Hackathon3-TravelApp-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/cloudinary-core-1.13.0_51c84d28924e761ad7cc9b2b1b355507ec6f6219/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/mac-vuongvu/Documents/Hackathon3-TravelApp-master/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="648575e507dfa7e1efe88e9eee22a9544681826c">
-        <dex dex="/Users/mac-vuongvu/Documents/Hackathon3-TravelApp-master/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_b187d66b91622d13414e16a203a4373ad90242e0/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/mac-vuongvu/.android/build-cache/2a61aa99d0f932cf4d835afc4b3fe230196a7eb6/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="d701d6af8b8aba5492342f052c27a94cad889c95">
-        <dex dex="/Users/mac-vuongvu/Documents/Hackathon3-TravelApp-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_00424ee4f194ee31f5c8af763d1cfae1ed22add8/classes.dex" />
+        sha1="230e6b2b8b83191a64fb8a4fd94119e5df8e6a66">
+        <dex dex="C:\Users\User\Documents\Hackathon3-TravelApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_f1a94543193f786ef8e039663ba9eb2ad0b5926c\classes.dex" />
     </item>
 
 </items>
