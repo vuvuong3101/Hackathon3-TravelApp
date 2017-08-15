@@ -1,8 +1,6 @@
 package vu.travelapp;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -14,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -31,7 +30,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -43,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = LoginActivity.class.toString();
     private static final long SPLASH_TIME_OUT = 10 ;
     CallbackManager callbackManager;
-    Button loginButton;
+    LinearLayout loginButton;
     Button btnFB;
     ProfileModel profileModel = new ProfileModel();
     ImageView imageView;
@@ -100,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void setupUI(){
         callbackManager = CallbackManager.Factory.create();
-        loginButton = (Button) findViewById(R.id.login_button);
+        loginButton = (LinearLayout) findViewById(R.id.login_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
