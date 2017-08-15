@@ -23,16 +23,24 @@ import vu.travelapp.models.DataModel;
 public class AdapterRankFragment extends RecyclerView.Adapter<AdapterRankFragment.RankModelViewHolder> {
     private List<DataModel> dataModels;
     private Context context;
+    private View.OnClickListener onClickListener;
+    View view;
+
 
     public AdapterRankFragment(List<DataModel> dataModels, Context context) {
         this.dataModels = dataModels;
         this.context = context;
     }
 
+    public void setOnItemClick(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
+
     @Override
     public RankModelViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.item_rank, viewGroup, false);
+        view.setOnClickListener(onClickListener);
         return new RankModelViewHolder(view);
     }
 
@@ -50,12 +58,11 @@ public class AdapterRankFragment extends RecyclerView.Adapter<AdapterRankFragmen
         ImageView ivImageRank;
         TextView tvLikeRank;
         TextView tvNameRank;
-        View itemView;
 
         public RankModelViewHolder(View itemView) {
             super(itemView);
-            this.itemView = itemView;
             this.init(itemView);
+            view = itemView;
         }
 
         private void init(View itemView) {
@@ -65,9 +72,12 @@ public class AdapterRankFragment extends RecyclerView.Adapter<AdapterRankFragmen
         }
 
         private void setData(DataModel data, Context context) {
-            Picasso.with(context).load(data.getImage()).resize(1280, 720).onlyScaleDown().into(ivImageRank);
-            tvLikeRank.setText(String.valueOf(data.getLike()));
-            tvNameRank.setText(data.getName());
+            if(data != null) {
+                Picasso.with(context).load(data.getImage()).resize(1280, 720).onlyScaleDown().into(ivImageRank);
+                tvLikeRank.setText(String.valueOf(data.getLike()));
+                tvNameRank.setText(data.getName());
+                view.setTag(data);
+            }
         }
     }
 }
