@@ -3,11 +3,15 @@ package vu.travelapp.fragments;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,18 +30,24 @@ import com.squareup.picasso.Picasso;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import it.sephiroth.android.library.bottomnavigation.BottomNavigation;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import vu.travelapp.R;
+import vu.travelapp.managers.ScreenManager;
 import vu.travelapp.models.ProfileModel;
 import vu.travelapp.networks.pushData.UploadRequestModel;
 import vu.travelapp.networks.pushData.UploadRespondModel;
@@ -63,7 +73,7 @@ public class UploadFragment extends Fragment {
     private String urlImage;
     //    private String destination = profileModel.getName();
 //    private String description;
-    private final String ACCESS_URL = "http://res.cloudinary.com/hanoi-university-of-science-and-technology/";
+    private final String ACCESS_URL = "http://res.cloudinary.com/hanoi-university-of-science-and-technology/image/upload/q_auto:good/";
 
     @Nullable
     @Override
@@ -94,26 +104,44 @@ public class UploadFragment extends Fragment {
         });
     }
 
-    private void postToServer() {
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://diphuot.herokuapp.com/api/").addConverterFactory(GsonConverterFactory.create())
-                .build();
-        UploadService uploadService = retrofit.create(UploadService.class);
-        uploadService.uploadPost
-                (new UploadRequestModel(profileModel.getId()
-                        , profileModel.getUrlImage(), profileModel.getName()
-                        , "1/1/2017", "Đây là địa điểm", "Đây là mô tả",0))
-                .enqueue(new Callback<UploadRespondModel>() {
-                    @Override
-                    public void onResponse(Call<UploadRespondModel> call, Response<UploadRespondModel> response) {
-                        String mess = response.body().getMessage();
-                    }
 
-                    @Override
-                    public void onFailure(Call<UploadRespondModel> call, Throwable t) {
-                        Toast.makeText(getActivity(), "No connection", Toast.LENGTH_SHORT).show();
-                    }
-                });
+    private void postToServer() {
+        Date date = new Date(); // your date
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        String timeUpload = day + "/" + month + 1 + "/" + year;
+        String destination = etDestination.getText().toString();
+        String description = etDescription.getText().toString();
+        if (destination.isEmpty() || description.isEmpty()) {
+            Toast.makeText(getActivity(), "Please enter data!", Toast.LENGTH_SHORT).show();
+        } else {
+            final Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("https://diphuot.herokuapp.com/api/").addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            UploadService uploadService = retrofit.create(UploadService.class);
+            uploadService.uploadPost
+                    (new UploadRequestModel(profileModel.getId()
+                            , profileModel.getUrlImage(), profileModel.getName()
+                            , timeUpload, destination, description, 0))
+                    .enqueue(new Callback<UploadRespondModel>() {
+                        @Override
+                        public void onResponse(Call<UploadRespondModel> call, Response<UploadRespondModel> response) {
+                            String mess = response.body().getMessage();
+                            Log.d("upload data: ", "success" + mess);
+                        }
+
+                        @Override
+                        public void onFailure(Call<UploadRespondModel> call, Throwable t) {
+                            Toast.makeText(getActivity(), "No connection", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+            BottomNavigation bottomNavigation = (BottomNavigation) getActivity().findViewById(R.id.bottomNavigation);
+            bottomNavigation.setSelectedIndex(0, false);
+            getActivity().onBackPressed();
+        }
     }
 
     private void getLinkURL(final Uri uri) {
@@ -131,8 +159,9 @@ public class UploadFragment extends Fragment {
                     cloudinary.uploader().upload(is, ObjectUtils.asMap("public_id", id));
                     cloudinary.url().generate(id + ".jpg");
                     urlImage = ACCESS_URL + id;
-                    profileModel.setUrlImage(urlImage+".jpg");
+                    profileModel.setUrlImage(urlImage + ".jpg");
                     Log.d("link: ", "" + urlImage + ".jpg");
+
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -141,7 +170,6 @@ public class UploadFragment extends Fragment {
             }
         });
         t1.start();
-
     }
 
     private void ChupHinh() {
@@ -176,7 +204,7 @@ public class UploadFragment extends Fragment {
         tvUserName = (TextView) view.findViewById(R.id.username_upload);
         etDescription = (EditText) view.findViewById(R.id.et_description);
         llMain = (LinearLayout) view.findViewById(R.id.ll_main);
-        etDescription = (EditText) view.findViewById(R.id.et_destination);
+        etDestination = (EditText) view.findViewById(R.id.et_destination);
     }
 
     @Subscribe(sticky = true)
@@ -191,14 +219,21 @@ public class UploadFragment extends Fragment {
             if (requestCode == REQUEST_CHOOSE_PHOTO) {
                 try {
                     Uri imageUri = data.getData();
+                    getLinkURL(imageUri);
                     InputStream is = getActivity().getContentResolver().openInputStream(imageUri);
                     Bitmap bitmap = BitmapFactory.decodeStream(is);
+
+//                    String path = imageUri.getPath();
+//                    ExifInterface exif = new ExifInterface(path);
+//                    int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,1);
+//                    Matrix matrix = new Matrix();
+//                    matrix.postRotate(90);
+//                    Bitmap sourcebitmap = Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(),bitmap.getHeight(),matrix,true);
                     ivUploadImage.setImageBitmap(bitmap);
-
-                    getLinkURL(imageUri);
-
                     llMain.setVisibility(View.VISIBLE);
                 } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             } else if (requestCode == REQUEST_TAKE_PHOTO) {
@@ -206,5 +241,4 @@ public class UploadFragment extends Fragment {
             }
         }
     }
-
 }

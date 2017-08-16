@@ -116,7 +116,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
 
         public void setData(final DataModel data, Context context) {
             if (data != null) {
-                Picasso.with(context).load(data.getImage()).resize(1280, 720).onlyScaleDown().into(ivItemPictureHome); //        <- chính nó đó
+                Picasso.with(context).load(data.getImage()).into(ivItemPictureHome); //        <- chính nó đó
                 tvUserName.setText(data.getName());
                 tvContent.setText(data.getContent());
                 view.setTag(data);
@@ -131,25 +131,26 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             imageHomeFragment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ScreenManager.replaceFragment(imageDetailFragment.getSupportFragmentManager(),new ImageDetailFragment(),R.id.main);
+                    ScreenManager.replaceFragment(imageDetailFragment.getSupportFragmentManager(), new ImageDetailFragment(), R.id.main);
                 }
             });
         }
+
         private void UpdateLike(DataModel data) {
-            final Retrofit retrofit = new Retrofit.Builder()
+            Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("https://diphuot.herokuapp.com/api/").addConverterFactory(GsonConverterFactory.create()).build();
             data.getId();
             UpdateService updateService = retrofit.create(UpdateService.class);
-            updateService.updatelike(new UpdateLikeRequestModel(data.getId(),data.getLike()+1)).enqueue(new Callback<UpdateLikeResponseModel>() {
+            updateService.updatelike(new UpdateLikeRequestModel(data.getId(), data.getLike() + 1)).enqueue(new Callback<UpdateLikeResponseModel>() {
                 @Override
                 public void onResponse(Call<UpdateLikeResponseModel> call, Response<UpdateLikeResponseModel> response) {
                     String message = response.body().getMessage();
-                    Log.d("update like nè: ",""+message);
+                    Log.d("update like nè: ", "" + message);
                 }
 
                 @Override
                 public void onFailure(Call<UpdateLikeResponseModel> call, Throwable t) {
-                    Log.d("có bug vỡ mồm ở update like: ",""+t);
+                    Log.d("có bug vỡ mồm ở update like: ", "" + t);
                 }
             });
         }

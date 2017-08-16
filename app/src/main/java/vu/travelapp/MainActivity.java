@@ -55,11 +55,14 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.setOnMenuItemClickListener(new BottomNavigation.OnMenuItemSelectionListener() {
             @Override
             public void onMenuItemSelect(@IdRes int item, int i, boolean b) {
-                if (item == R.id.bbn_item3) {
-                    ScreenManager.openFragment(getSupportFragmentManager(), new UploadFragment(), R.id.main);
+                if (item == R.id.bbn_item1) {
+                    ScreenManager.openFragment(getSupportFragmentManager(), new HomeFragment(), R.id.rl_content);
                 }
                 if (item == R.id.bbn_item2) {
-                    ScreenManager.openFragment(getSupportFragmentManager(), new RankFragment(), R.id.main);
+                    ScreenManager.openFragment(getSupportFragmentManager(), new RankFragment(), R.id.rl_content);
+                }
+                if (item == R.id.bbn_item3) {
+                    ScreenManager.openFragment(getSupportFragmentManager(), new UploadFragment(), R.id.rl_content);
                 }
             }
 
