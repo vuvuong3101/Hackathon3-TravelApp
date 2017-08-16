@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +34,7 @@ import vu.travelapp.networks.pullData.RetrofitFactory;
  */
 public class HomeFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = HomeFragment.class.toString();
-    private List<DataModel> dataModelList;
+    public static List<DataModel> dataModelList;
     private RecyclerView rvHomeFragment;
     private AdapterHomeFragment adapterHomeFragment;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -55,7 +57,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-               init(getView());
+                init(getView());
             }
 
         });
@@ -92,9 +94,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
         });
         rvHomeFragment = (RecyclerView) view.findViewById(R.id.rv_data_home_fragment);
-        adapterHomeFragment = new AdapterHomeFragment(dataModelList, getContext());
+        adapterHomeFragment = new AdapterHomeFragment(dataModelList, getContext(), getActivity().getSupportFragmentManager());
         rvHomeFragment.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvHomeFragment.hasFixedSize();
         rvHomeFragment.setAdapter(adapterHomeFragment);
 
     }

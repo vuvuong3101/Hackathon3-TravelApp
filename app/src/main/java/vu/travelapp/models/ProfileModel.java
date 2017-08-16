@@ -7,7 +7,6 @@ import java.net.URL;
  */
 
 public class ProfileModel {
-    private String image;
     private String name;
     private String id;
     private URL url;
@@ -31,13 +30,7 @@ public class ProfileModel {
         this.birthday = birthday;
     }
 
-    public String getImage() {
-        return image;
-    }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
 
     public String getLocation() {
         return location;
@@ -56,14 +49,6 @@ public class ProfileModel {
     }
 
     public ProfileModel() {
-    }
-
-    public String getImageURL() {
-        return image;
-    }
-
-    public void setImageURL(String image) {
-        this.image = image;
     }
 
     public String getName() {

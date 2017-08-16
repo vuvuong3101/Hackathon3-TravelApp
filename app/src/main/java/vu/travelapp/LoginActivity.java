@@ -49,7 +49,9 @@ public class LoginActivity extends AppCompatActivity {
     private AccessTokenTracker acessTokenTracker;
     private Bitmap bmp;
 
-
+    public static AccessToken getCurrentAccessTokenFacebook(){
+        return AccessToken.getCurrentAccessToken();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,10 +127,10 @@ public class LoginActivity extends AppCompatActivity {
                             profileModel.setBirthday(object.getString("birthday"));
                             profileModel.setId(object.getString("id"));
                             profileModel.setName(object.getString("name"));
-                            profileModel.setImageURL(object.getJSONObject("picture").getJSONObject("data").getString("url"));
+                            profileModel.setUrlImage(object.getJSONObject("picture").getJSONObject("data").getString("url"));
                             Log.d(TAG, "onCompleted: Đã lấy dữ liệu người dùng từ facebook" + profileModel.getLocation() + profileModel.getBirthday());
 
-                            URL url = new URL(profileModel.getImageURL());
+                            URL url = new URL(profileModel.getUrlImage());
                             profileModel.setUrl(url);
 
                             //TODO: bug nè anh Hưng, bỏ comment đi chạy là crash nhé!

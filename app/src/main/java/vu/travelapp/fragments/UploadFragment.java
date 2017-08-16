@@ -186,7 +186,7 @@ public class UploadFragment extends Fragment {
 
     private void ProcessUI() {
         tvUserName.setText(profileModel.getName());
-        Picasso.with(getContext()).load(profileModel.getImageURL()).into(circleImageView);
+        Picasso.with(getContext()).load(profileModel.getUrlImage()).into(circleImageView);
         ivclose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
