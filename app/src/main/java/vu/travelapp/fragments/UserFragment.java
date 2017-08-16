@@ -126,7 +126,7 @@ public class UserFragment extends Fragment {
     }
 
     public final void CloseandClear() {
-        //TODO: ?????
+        //TODO: 
     }
 
     @Override
