@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import vu.travelapp.R;
 import vu.travelapp.adapter.AdapterHomeFragment;
+import vu.travelapp.managers.ScreenManager;
 import vu.travelapp.models.DataModel;
 import vu.travelapp.networks.pullData.DataModelJson;
 import vu.travelapp.networks.pullData.GetAllDataModel;
@@ -34,6 +36,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private RecyclerView rvHomeFragment;
     private AdapterHomeFragment adapterHomeFragment;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private ImageView ivImageHome;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,6 +63,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void init(View view) {
+        ivImageHome = (ImageView) view.findViewById(R.id.item_image);
+
         dataModelList = new ArrayList<>();
         GetAllDataModel getAllDataModel = RetrofitFactory.getInstance().create(GetAllDataModel.class);
         getAllDataModel.getDataModels().enqueue(new Callback<List<DataModelJson>>() {

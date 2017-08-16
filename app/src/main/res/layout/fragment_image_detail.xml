@@ -2,51 +2,95 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
     android:id="@+id/main_content"
-    android:background="#fff"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     android:fitsSystemWindows="true">
-    <android.support.design.widget.AppBarLayout
-        android:background="#fff"
-        android:id="@+id/appbar_detail_food"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        app:elevation="10dp">
+        android:layout_height="match_parent">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar_detail_food"
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar_detail_food"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
-            app:titleEnabled="false">
+            android:layout_height="250dp"
+            android:background="#fff"
+            app:elevation="10dp">
 
-            <ImageView
-                android:src="@drawable/sapa"
-                android:id="@+id/header"
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar_detail_food"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:scaleType="centerCrop"
-                app:layout_collapseMode="pin" />
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+                app:titleEnabled="false">
 
-            <ImageView
-                android:background="@drawable/gradienttop"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize" />
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar_detail"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin">
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow_back"/>
-            </android.support.v7.widget.Toolbar>
+                    android:id="@+id/header"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/sapa"
+                    app:layout_collapseMode="pin" />
 
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@drawable/gradienttop" />
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_back" />
+                </android.support.v7.widget.Toolbar>
+
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/appbar_detail_food"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_destination"
+                android:layout_marginLeft="5dp"
+                android:text="Vĩnh Phúc"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:elevation="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_destination"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="30dp"
+                android:text="Vũng Tàu là thành phố thuộc tỉnh Bà Rịa - Vũng Tàu, ở vùng Đông Nam Bộ Việt Nam. Đây là trung tâm kinh tế, tài chính, văn hóa, du lịch, giao thông - vận tải và giáo dục và là một trong những trung tâm kinh tế của vùng Đông Nam Bộ. Sở hữu nhiều bãi biển đẹp và cơ sở hạ tầng được đầu tư hoàn chỉnh, Vũng Tàu là một địa điểm du lịch nổi tiếng tại miền Nam. Ngoài ra, thành phố còn là khu vực hậu cần của ngành công nghiệp dầu khí Việt Nam." />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_direction"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:elevation="10dp"
+                android:src="@drawable/ic_directions_black_24dp" />
+        </RelativeLayout>
+    </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
 

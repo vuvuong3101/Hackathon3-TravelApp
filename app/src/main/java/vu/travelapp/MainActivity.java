@@ -38,14 +38,24 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.setOnMenuItemClickListener(new BottomNavigation.OnMenuItemSelectionListener() {
             @Override
             public void onMenuItemSelect(@IdRes int item, int i, boolean b) {
+<<<<<<< HEAD
                 if (item == R.id.bbn_item3) {
                     ScreenManager.openFragment(getSupportFragmentManager(), new UploadFragment(), R.id.rl_content);
+=======
+                if (item == R.id.bbn_item1) {
+                    ScreenManager.openFragment(getSupportFragmentManager(), new HomeFragment(), R.id.rl_content);
+>>>>>>> a23fd0458f58ceea8c9a9e88bf3972615efbb14b
                 }
                 if (item == R.id.bbn_item2) {
                     ScreenManager.openFragment(getSupportFragmentManager(), new RankFragment(), R.id.rl_content);
                 }
+<<<<<<< HEAD
                 if (item == R.id.bbn_item1) {
                     ScreenManager.openFragment(getSupportFragmentManager(), new HomeFragment(), R.id.rl_content);
+=======
+                if (item == R.id.bbn_item3) {
+                    ScreenManager.openFragment(getSupportFragmentManager(), new UploadFragment(), R.id.rl_content);
+>>>>>>> a23fd0458f58ceea8c9a9e88bf3972615efbb14b
                 }
             }
 
