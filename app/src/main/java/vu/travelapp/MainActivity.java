@@ -1,28 +1,11 @@
 package vu.travelapp;
 
-import android.content.ClipData;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
-
-import com.cloudinary.Cloudinary;
-import com.cloudinary.utils.ObjectUtils;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 
 import it.sephiroth.android.library.bottomnavigation.BottomNavigation;
 import vu.travelapp.fragments.HomeFragment;
@@ -56,10 +39,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onMenuItemSelect(@IdRes int item, int i, boolean b) {
                 if (item == R.id.bbn_item3) {
-                    ScreenManager.openFragment(getSupportFragmentManager(), new UploadFragment(), R.id.main);
+                    ScreenManager.openFragment(getSupportFragmentManager(), new UploadFragment(), R.id.rl_content);
                 }
                 if (item == R.id.bbn_item2) {
-                    ScreenManager.openFragment(getSupportFragmentManager(), new RankFragment(), R.id.main);
+                    ScreenManager.openFragment(getSupportFragmentManager(), new RankFragment(), R.id.rl_content);
+                }
+                if (item == R.id.bbn_item1) {
+                    ScreenManager.openFragment(getSupportFragmentManager(), new HomeFragment(), R.id.rl_content);
                 }
             }
 

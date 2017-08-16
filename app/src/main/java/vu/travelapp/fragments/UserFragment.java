@@ -40,7 +40,7 @@ public class UserFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_user, container, false);
+        View view = inflater.inflate(R.layout.content_profiles, container, false);
 
         EventBus.getDefault().register(this);
         FindView(view);
@@ -56,7 +56,7 @@ public class UserFragment extends Fragment {
         tvName.setText(profileModel.getName());
         tvLocation.setText(b);
         Log.d(TAG, "ProcessUI: " + profileModel.getLocation());
-//        tvBirthday.setText(profileModel.getBirthday());
+        tvBirthday.setText(profileModel.getBirthday());
         Picasso.with(getContext()).load(profileModel.getImageURL()).into(avatar);
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +90,7 @@ public class UserFragment extends Fragment {
     private void FindView(View view) {
         tvName = (TextView) view.findViewById(R.id.profile_user_name);
         tvLocation = (TextView) view.findViewById(R.id.location);
-//        tvBirthday = (TextView) view.findViewById(R.id.birthday);
+        tvBirthday = (TextView) view.findViewById(R.id.birthday);
         ivBack = (RelativeLayout) view.findViewById(R.id.rl_back);
         avatar = (ImageView) view.findViewById(R.id.profile_avatar);
 //        direction = (ImageView) view.findViewById(R.id.iv_map);

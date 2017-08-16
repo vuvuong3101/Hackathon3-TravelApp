@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -22,7 +21,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import vu.travelapp.R;
 import vu.travelapp.models.DataModel;
-import vu.travelapp.networks.pushData.UploadService;
 import vu.travelapp.networks.updateData.UpdateLikeRequestModel;
 import vu.travelapp.networks.updateData.UpdateLikeResponseModel;
 import vu.travelapp.networks.updateData.UpdateService;
@@ -51,7 +49,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
     @Override
     public HomeModelViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.item_home, viewGroup, false);
+        View view = layoutInflater.inflate(R.layout.item_home_two, viewGroup, false);
         view.setOnClickListener(onClickListener);
         return new HomeModelViewHolder(view);
     }

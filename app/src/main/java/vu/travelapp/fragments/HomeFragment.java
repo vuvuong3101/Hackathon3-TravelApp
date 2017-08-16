@@ -89,6 +89,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         rvHomeFragment = (RecyclerView) view.findViewById(R.id.rv_data_home_fragment);
         adapterHomeFragment = new AdapterHomeFragment(dataModelList, getContext());
         rvHomeFragment.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvHomeFragment.hasFixedSize();
         rvHomeFragment.setAdapter(adapterHomeFragment);
 
     }
