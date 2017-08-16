@@ -1,6 +1,12 @@
 package vu.travelapp.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.SupportActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +19,8 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
 import java.util.List;
 
 import retrofit2.Call;
@@ -20,7 +28,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import vu.travelapp.MainActivity;
 import vu.travelapp.R;
+import vu.travelapp.fragments.HomeFragment;
+import vu.travelapp.fragments.ImageDetailFragment;
+import vu.travelapp.managers.ScreenManager;
 import vu.travelapp.models.DataModel;
 import vu.travelapp.networks.pushData.UploadService;
 import vu.travelapp.networks.updateData.UpdateLikeRequestModel;
@@ -82,6 +94,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
         ImageView ivLike, ivComment;
         TextView tvLike, tvComment;
         LinearLayout llLike, llComment;
+        ImageView imageHomeFragment;
 
 
         public HomeModelViewHolder(View itemView) {
@@ -98,6 +111,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             ivComment = (ImageView) itemView.findViewById(R.id.ic_comment);
             llLike = (LinearLayout) itemView.findViewById(R.id.like);
             llComment = (LinearLayout) itemView.findViewById(R.id.comment);
+            imageHomeFragment = (ImageView) itemView.findViewById(R.id.item_image);
         }
 
         public void setData(final DataModel data, Context context) {
@@ -111,6 +125,13 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 @Override
                 public void onClick(View v) {
                     UpdateLike(data);
+                }
+            });
+            final MainActivity imageDetailFragment = (MainActivity) context;
+            imageHomeFragment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ScreenManager.replaceFragment(imageDetailFragment.getSupportFragmentManager(),new ImageDetailFragment(),R.id.main);
                 }
             });
         }
