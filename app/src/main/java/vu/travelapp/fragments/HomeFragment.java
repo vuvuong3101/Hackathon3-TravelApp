@@ -77,11 +77,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     dataModel.setName(response.body().get(i).getUsername());
                     dataModel.setImage(response.body().get(i).getImage());
                     dataModel.setUserid(response.body().get(i).getUserid());
+                    dataModel.setDestination(response.body().get(i).getDestination());
                     dataModel.setContent(response.body().get(i).getContent());
                     dataModel.setLike(response.body().get(i).getLike());
                     dataModel.setId(response.body().get(i).get_id());
                     dataModelList.add(dataModel);
-                    Log.d(TAG, "onResponse: Đã lấy dữ liệu từ server");
+                    Log.d(TAG, "onResponse: Đã lấy dữ liệu từ server" + dataModel.getDestination());
                 }
                 adapterHomeFragment.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);

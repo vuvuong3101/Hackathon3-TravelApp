@@ -13,6 +13,8 @@ public class DataModelJson {
     private String userid;
     @SerializedName("image")
     private String image;
+    @SerializedName("destination")
+    private String destination;
     @SerializedName("username")
     private String username;
     @SerializedName("content")
@@ -21,6 +23,14 @@ public class DataModelJson {
     private int like;
 
     public DataModelJson() {
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
     public String get_id() {

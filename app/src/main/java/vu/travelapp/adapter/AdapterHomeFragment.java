@@ -155,6 +155,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             imageHomeFragment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    EventBus.getDefault().postSticky(data);
                     ScreenManager.replaceFragment(imageDetailFragment.getSupportFragmentManager(), new ImageDetailFragment(), R.id.main);
                 }
             });

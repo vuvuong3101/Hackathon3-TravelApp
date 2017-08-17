@@ -10,9 +10,18 @@ public class DataModel {
     private String image;
     private String name;
     private String content;
+    private String destination;
     private int like;
 
     public DataModel() {
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
     public int getLike() {
