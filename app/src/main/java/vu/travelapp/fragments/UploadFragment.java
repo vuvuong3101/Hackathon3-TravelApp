@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,16 +53,12 @@ import vu.travelapp.networks.pushData.UploadService;
 public class UploadFragment extends Fragment {
     private static final String TAG = "Trong Phuong";
     private ImageView ivUploadImage;
-    private Button btnUpload;
-    private ImageView circleImageView;
-    private TextView tvUserName;
+    private RelativeLayout close, share, rlMain;
     private EditText etDescription;
     private EditText etDestination;
-    private ImageView ivclose, ivcamera;
     private ProfileModel profileModel;
     final int REQUEST_TAKE_PHOTO = 1;
     final int REQUEST_CHOOSE_PHOTO = 2;
-    private LinearLayout llMain;
     private String urlImage;
     //    private String destination = profileModel.getName();
 //    private String description;
@@ -82,13 +79,7 @@ public class UploadFragment extends Fragment {
     }
 
     private void setEvent() {
-        ivcamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ChupHinh();
-            }
-        });
-        btnUpload.setOnClickListener(new View.OnClickListener() {
+        share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 postToServer();
@@ -116,7 +107,6 @@ public class UploadFragment extends Fragment {
                         @Override
                         public void onResponse(Call<UploadRespondModel> call, Response<UploadRespondModel> response) {
                             String mess = response.body().getMessage();
-                           Toast.makeText(getContext(), "Đã đăng thành công!", Toast.LENGTH_SHORT).show();
                             Log.d("upload data: ", "success" + mess);
                         }
 
@@ -171,9 +161,8 @@ public class UploadFragment extends Fragment {
     }
 
     private void ProcessUI() {
-        tvUserName.setText(profileModel.getName());
-        Picasso.with(getContext()).load(profileModel.getUrlImage()).into(circleImageView);
-        ivclose.setOnClickListener(new View.OnClickListener() {
+        Picasso.with(getContext()).load(profileModel.getUrlImage()).into(ivUploadImage);
+        close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getActivity().onBackPressed();
@@ -182,15 +171,12 @@ public class UploadFragment extends Fragment {
     }
 
     private void FindView(View view) {
-        ivclose = (ImageView) view.findViewById(R.id.iv_close);
+        close = (RelativeLayout) view.findViewById(R.id.close);
         ivUploadImage = (ImageView) view.findViewById(R.id.iv_upload_image);
-        btnUpload = (Button) view.findViewById(R.id.bt_upload);
-        circleImageView = (ImageView) view.findViewById(R.id.avatar_upload);
-        ivcamera = (ImageView) view.findViewById(R.id.iv_camera);
-        tvUserName = (TextView) view.findViewById(R.id.username_upload);
+        share = (RelativeLayout) view.findViewById(R.id.send);
         etDescription = (EditText) view.findViewById(R.id.et_description);
-        llMain = (LinearLayout) view.findViewById(R.id.ll_main);
         etDestination = (EditText) view.findViewById(R.id.et_destination);
+        rlMain = (RelativeLayout) view.findViewById(R.id.rl_main);
     }
 
     @Subscribe(sticky = true)
@@ -216,10 +202,8 @@ public class UploadFragment extends Fragment {
 //                    matrix.postRotate(90);
 //                    Bitmap sourcebitmap = Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(),bitmap.getHeight(),matrix,true);
                     ivUploadImage.setImageBitmap(bitmap);
-                    llMain.setVisibility(View.VISIBLE);
+                    rlMain.setVisibility(View.VISIBLE);
                 } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
                     e.printStackTrace();
                 }
             } else if (requestCode == REQUEST_TAKE_PHOTO) {
