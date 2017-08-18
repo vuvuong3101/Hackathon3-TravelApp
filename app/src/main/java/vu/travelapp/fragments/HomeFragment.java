@@ -98,7 +98,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         });
         rvHomeFragment = (RecyclerView) view.findViewById(R.id.rv_data_home_fragment);
         adapterHomeFragment = new AdapterHomeFragment(dataModelList, getContext(), getActivity().getSupportFragmentManager());
-        rvHomeFragment.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        rvHomeFragment.setLayoutManager(linearLayoutManager);
         rvHomeFragment.setAdapter(adapterHomeFragment);
 
     }

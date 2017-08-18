@@ -90,7 +90,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
         TextView tvContent, tvUserName;
         ImageView ivLike, ivComment;
         TextView tvLike, tvComment;
-        LinearLayout llLike, llComment;
+        LinearLayout llLike, llComment, content;
         ImageView imageHomeFragment;
         ImageView avatarUser;
         private ProfileModel profileModel;
@@ -112,6 +112,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             avatarUser = (ImageView) itemView.findViewById(R.id.avatar_user);
             ivLike = (ImageView) itemView.findViewById(R.id.ic_like);
             tvLike = (TextView) itemView.findViewById(R.id.text_like);
+            content = (LinearLayout) itemView.findViewById(R.id.item_content);
 
 
             avatarUser.setOnClickListener(new View.OnClickListener() {
@@ -142,37 +143,28 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
 
         }
 
-        public void setData(final DataModel data, Context context) {
-            if (data != null) {
-                Picasso.with(context).load(data.getImage()).into(ivItemPictureHome); //        <- chính nó đó
-                tvUserName.setText(data.getName());
-                tvContent.setText(data.getContent());
-                view.setTag(data);
+        public void setData(final DataModel dataModel, Context context) {
+            if (dataModel != null) {
+                Picasso.with(context).load(dataModel.getImage()).into(ivItemPictureHome); //        <- chính nó đó
+                tvUserName.setText(dataModel.getName());
+                tvContent.setText(dataModel.getContent());
+                view.setTag(dataModel);
                 Picasso.with(context).load("https://graph.facebook.com/" + dataModels.get(getAdapterPosition()).getUserid() + "/picture?type=large").into(avatarUser);
             }
             llLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    UpdateLike(data);
+                    UpdateLike(dataModel);
                 }
             });
             final MainActivity imageDetailFragment = (MainActivity) context;
-            imageHomeFragment.setOnClickListener(new View.OnClickListener() {
+            content.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    EventBus.getDefault().postSticky(data);
+                    EventBus.getDefault().postSticky(dataModel);
                     ScreenManager.replaceFragment2(imageDetailFragment.getSupportFragmentManager(), new ImageDetailFragment(), R.id.main);
                 }
             });
-
-            tvContent.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    EventBus.getDefault().postSticky(data);
-                    ScreenManager.replaceFragment2(imageDetailFragment.getSupportFragmentManager(), new ImageDetailFragment(), R.id.main);
-                }
-            });
-
         }
 
         private void UpdateLike(DataModel data) {

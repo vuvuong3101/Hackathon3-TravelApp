@@ -4,7 +4,6 @@
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff">
     android:background="#fff"
     android:clickable="true">
 
@@ -57,42 +56,47 @@
 
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
-
-        <RelativeLayout
+        <android.support.v4.widget.NestedScrollView
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/appbar_detail_food"
-            android:layout_marginTop="5dp">
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/appbar_detail_food"
+                android:layout_marginTop="5dp">
 
-            <TextView
-                android:id="@+id/tv_destination"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="Vĩnh Phúc"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:elevation="5dp"/>
+                <TextView
+                    android:id="@+id/tv_destination"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="Vĩnh Phúc"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:elevation="5dp"/>
 
-            <TextView
-                android:id="@+id/tv_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="30dp"
-                android:text="Vũng Tàu là thành phố thuộc tỉnh Bà Rịa - Vũng Tàu, ở vùng Đông Nam Bộ Việt Nam. Đây là trung tâm kinh tế, tài chính, văn hóa, du lịch, giao thông - vận tải và giáo dục và là một trong những trung tâm kinh tế của vùng Đông Nam Bộ. Sở hữu nhiều bãi biển đẹp và cơ sở hạ tầng được đầu tư hoàn chỉnh, Vũng Tàu là một địa điểm du lịch nổi tiếng tại miền Nam. Ngoài ra, thành phố còn là khu vực hậu cần của ngành công nghiệp dầu khí Việt Nam." />
+                <TextView
+                    android:id="@+id/tv_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="30dp"
+                    android:text="Vũng Tàu là thành phố thuộc tỉnh Bà Rịa - Vũng Tàu, ở vùng Đông Nam Bộ Việt Nam. Đây là trung tâm kinh tế, tài chính, văn hóa, du lịch, giao thông - vận tải và giáo dục và là một trong những trung tâm kinh tế của vùng Đông Nam Bộ. Sở hữu nhiều bãi biển đẹp và cơ sở hạ tầng được đầu tư hoàn chỉnh, Vũng Tàu là một địa điểm du lịch nổi tiếng tại miền Nam. Ngoài ra, thành phố còn là khu vực hậu cần của ngành công nghiệp dầu khí Việt Nam." />
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab_direction"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="10dp"
-                android:elevation="10dp"
-                android:src="@drawable/ic_directions_black_24dp" />
-        </RelativeLayout>
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab_direction"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="10dp"
+                    android:elevation="10dp"
+                    android:src="@drawable/ic_directions_black_24dp" />
+            </RelativeLayout>
+        </android.support.v4.widget.NestedScrollView>
+
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
 
