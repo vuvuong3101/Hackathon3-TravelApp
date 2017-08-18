@@ -3,6 +3,8 @@ package vu.travelapp.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,8 +15,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +23,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import vu.travelapp.R;
 import vu.travelapp.adapter.AdapterHomeFragment;
-import vu.travelapp.managers.ScreenManager;
 import vu.travelapp.models.DataModel;
 import vu.travelapp.networks.pullData.DataModelJson;
 import vu.travelapp.networks.pullData.GetAllDataModel;
@@ -46,7 +45,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         Log.d(TAG, "onCreateView: Đã khởi tạo Home Fragment");
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.addToBackStack("HomeFragment");
+        fragmentTransaction.commit();
         this.init(view);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refreshlayout);
         Refesh();

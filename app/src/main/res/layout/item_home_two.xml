@@ -24,7 +24,7 @@
                     android:id="@+id/avatar_user"
                     android:layout_weight="0"
                     app:siBorderWidth="2dp"
-                    app:siBorderColor="#80075f"
+                    app:siBorderColor="#dedede"
                     android:layout_marginRight="6dp"
                     android:layout_marginLeft="6dp"
                     android:layout_width="40dp"
@@ -44,7 +44,7 @@
                         android:id="@+id/user_name"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="#2b2b2b"
                         android:text="Admin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -170,14 +170,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="6dp"
-                        android:src="@drawable/ic_chat" />
+                        android:src="@drawable/ic_timeline" />
 
                     <TextView
                         android:textSize="14sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
-                        android:text="Bình luận"
+                        android:text="Xem vị trí"
                         android:textAlignment="center"
                         android:textColor="#878787" />
                 </LinearLayout>

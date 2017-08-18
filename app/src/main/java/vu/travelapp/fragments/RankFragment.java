@@ -12,15 +12,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import vu.travelapp.R;
-import vu.travelapp.adapter.AdapterHomeFragment;
 import vu.travelapp.adapter.AdapterRankFragment;
 import vu.travelapp.models.DataModel;
 import vu.travelapp.networks.pullData.DataModelJson;
@@ -47,6 +44,7 @@ public class RankFragment extends Fragment implements View.OnClickListener {
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refeshlayout_rank);
         Refresh();
         return view;
+
     }
 
     private void Refresh() {
@@ -57,7 +55,6 @@ public class RankFragment extends Fragment implements View.OnClickListener {
             }
         });
     }
-
     private void init(View view) {
         dataModelList = new ArrayList<>();
         GetAllDataModel getAllDataModel = RetrofitFactory.getInstance().create(GetAllDataModel.class);
@@ -117,4 +114,5 @@ public class RankFragment extends Fragment implements View.OnClickListener {
         DataModel dataModel = (DataModel) v.getTag();
         Log.d("home fragment: ", "" + dataModel.getLike());
     }
+
 }

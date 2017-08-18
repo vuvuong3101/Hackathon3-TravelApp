@@ -32,12 +32,10 @@ public class MainActivity extends AppCompatActivity {
     private ProfileModel profileModel;
     private SpaceNavigationView spaceNavigationView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Init();
         user.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,4 +111,15 @@ public class MainActivity extends AppCompatActivity {
 
         request.executeAsync();
     }
+
+    @Override
+    public void onBackPressed() {
+        spaceNavigationView.changeCurrentItem(0);
+        super.onBackPressed();
+
+    }
+
+
+
+
 }

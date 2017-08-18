@@ -124,18 +124,18 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 }
             });
 
-//            tvUserName.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    profileModel = new ProfileModel();
-//                    profileModel.setName(dataModels.get(getAdapterPosition()).getName());
-//                    profileModel.setId(dataModels.get(getAdapterPosition()).getUserid());
-//                    profileModel.setUrlImage("https://graph.facebook.com/" + profileModel.getId() + "/picture?type=large");
-//                    EventBus.getDefault().postSticky(profileModel);
-//                    ScreenManager.replaceFragment2(fragmentManager, new UserFragment(), R.id.main);
-//
-//                }
-//            });
+            tvUserName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    profileModel = new ProfileModel();
+                    profileModel.setName(dataModels.get(getAdapterPosition()).getName());
+                    profileModel.setId(dataModels.get(getAdapterPosition()).getUserid());
+                    profileModel.setUrlImage("https://graph.facebook.com/" + profileModel.getId() + "/picture?type=large");
+                    EventBus.getDefault().postSticky(profileModel);
+                    ScreenManager.replaceFragment2(fragmentManager, new UserFragment(), R.id.main);
+
+                }
+            });
         }
 
         public void setData(final DataModel data, Context context) {
