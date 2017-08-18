@@ -15,6 +15,8 @@ import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -87,7 +89,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
 
     public class HomeModelViewHolder extends RecyclerView.ViewHolder {
         ImageView ivItemPictureHome;
-        TextView tvContent, tvUserName;
+        TextView tvContent, tvUserName, tvTime;
         ImageView ivLike, ivComment;
         TextView tvLike, tvComment;
         LinearLayout llLike, llComment, content;
@@ -113,7 +115,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             ivLike = (ImageView) itemView.findViewById(R.id.ic_like);
             tvLike = (TextView) itemView.findViewById(R.id.text_like);
             content = (LinearLayout) itemView.findViewById(R.id.item_content);
-
+            tvTime = (TextView) itemView.findViewById(R.id.time);
 
             avatarUser.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -144,10 +146,14 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
         }
 
         public void setData(final DataModel dataModel, Context context) {
+            // get thời gian hiện tại:
+            String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+            ////
             if (dataModel != null) {
                 Picasso.with(context).load(dataModel.getImage()).into(ivItemPictureHome); //        <- chính nó đó
                 tvUserName.setText(dataModel.getName());
                 tvContent.setText(dataModel.getContent());
+                tvTime.setText(currentDateTimeString);
                 view.setTag(dataModel);
                 Picasso.with(context).load("https://graph.facebook.com/" + dataModels.get(getAdapterPosition()).getUserid() + "/picture?type=large").into(avatarUser);
             }
