@@ -1,13 +1,7 @@
 package vu.travelapp.adapter;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.SupportActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,14 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.io.FileDescriptor;
-import java.io.PrintWriter;
 import java.util.List;
 
 import retrofit2.Call;
@@ -33,13 +24,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import vu.travelapp.MainActivity;
 import vu.travelapp.R;
-import vu.travelapp.fragments.HomeFragment;
 import vu.travelapp.fragments.ImageDetailFragment;
 import vu.travelapp.fragments.UserFragment;
 import vu.travelapp.managers.ScreenManager;
 import vu.travelapp.models.DataModel;
 import vu.travelapp.models.ProfileModel;
-import vu.travelapp.networks.pushData.UploadService;
 import vu.travelapp.networks.updateData.UpdateLikeRequestModel;
 import vu.travelapp.networks.updateData.UpdateLikeResponseModel;
 import vu.travelapp.networks.updateData.UpdateService;
@@ -71,7 +60,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
     @Override
     public HomeModelViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.item_home, viewGroup, false);
+        View view = layoutInflater.inflate(R.layout.item_home_two, viewGroup, false);
         view.setOnClickListener(onClickListener);
         return new HomeModelViewHolder(view);
     }
@@ -103,7 +92,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
         TextView tvLike, tvComment;
         LinearLayout llLike, llComment;
         ImageView imageHomeFragment;
-        FloatingActionButton avatarUser;
+        ImageView avatarUser;
         private ProfileModel profileModel;
 
         public HomeModelViewHolder(View itemView) {
@@ -114,14 +103,13 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
 
         private void init(View itemView) {
             ivItemPictureHome = (ImageView) itemView.findViewById(R.id.item_image);
-            tvContent = (TextView) itemView.findViewById(R.id.time);
+            tvContent = (TextView) itemView.findViewById(R.id.tv_content);
             tvUserName = (TextView) itemView.findViewById(R.id.user_name);
-            ivLike = (ImageView) itemView.findViewById(R.id.ic_like);
-            ivComment = (ImageView) itemView.findViewById(R.id.ic_comment);
             llLike = (LinearLayout) itemView.findViewById(R.id.like);
-            llComment = (LinearLayout) itemView.findViewById(R.id.comment);
+            llComment = (LinearLayout) itemView.findViewById(R.id.chat);
             imageHomeFragment = (ImageView) itemView.findViewById(R.id.item_image);
-            avatarUser = (FloatingActionButton) itemView.findViewById(R.id.avatar_user);
+            avatarUser = (ImageView) itemView.findViewById(R.id.avatar_user);
+
 
             avatarUser.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -131,10 +119,23 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                     profileModel.setId(dataModels.get(getAdapterPosition()).getUserid());
                     profileModel.setUrlImage("https://graph.facebook.com/" + profileModel.getId() + "/picture?type=large");
                     EventBus.getDefault().postSticky(profileModel);
-                    ScreenManager.replaceFragment(fragmentManager, new UserFragment(), R.id.main);
+                    ScreenManager.replaceFragment2(fragmentManager, new UserFragment(), R.id.main);
                     Log.d(TAG, String.format("onClick: %s, %s, %s", profileModel.getName(), profileModel.getId(), profileModel.getUrlImage()));
                 }
             });
+
+//            tvUserName.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    profileModel = new ProfileModel();
+//                    profileModel.setName(dataModels.get(getAdapterPosition()).getName());
+//                    profileModel.setId(dataModels.get(getAdapterPosition()).getUserid());
+//                    profileModel.setUrlImage("https://graph.facebook.com/" + profileModel.getId() + "/picture?type=large");
+//                    EventBus.getDefault().postSticky(profileModel);
+//                    ScreenManager.replaceFragment2(fragmentManager, new UserFragment(), R.id.main);
+//
+//                }
+//            });
         }
 
         public void setData(final DataModel data, Context context) {
@@ -175,7 +176,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
 
                 @Override
                 public void onFailure(Call<UpdateLikeResponseModel> call, Throwable t) {
-                    Log.d("có bug vỡ mồm ở update like: ", "" + t);
+                    Log.d(TAG, "Bug update like >>>>>> =))))) ");
                 }
             });
         }

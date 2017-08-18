@@ -50,6 +50,7 @@ dependencies {
     compile group: 'com.cloudinary', name: 'cloudinary-core', version: '1.13.0'
     compile 'com.github.tosslife:pullloadview:1.1.0'
     compile 'com.makeramen:roundedimageview:2.3.0'
+    compile 'com.github.armcha:SpaceNavigationView:1.6.0'
 
 
 }

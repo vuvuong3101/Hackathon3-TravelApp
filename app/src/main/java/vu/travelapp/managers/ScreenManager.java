@@ -26,7 +26,6 @@ public class ScreenManager {
     }
     public static void replaceFragment2(FragmentManager fragmentManager, Fragment fragment, int layoutID) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.anim_right, R.anim.anim_left);
         fragmentTransaction.replace(layoutID, fragment);
         fragmentTransaction.addToBackStack(fragment.getClass().getSimpleName());
         fragmentTransaction.commit();

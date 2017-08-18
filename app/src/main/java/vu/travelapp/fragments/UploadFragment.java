@@ -3,15 +3,11 @@ package vu.travelapp.fragments;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,8 +26,6 @@ import com.squareup.picasso.Picasso;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,14 +34,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import it.sephiroth.android.library.bottomnavigation.BottomNavigation;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import vu.travelapp.R;
-import vu.travelapp.managers.ScreenManager;
 import vu.travelapp.models.ProfileModel;
 import vu.travelapp.networks.pushData.UploadRequestModel;
 import vu.travelapp.networks.pushData.UploadRespondModel;
@@ -138,8 +130,7 @@ public class UploadFragment extends Fragment {
                             Toast.makeText(getActivity(), "No connection", Toast.LENGTH_SHORT).show();
                         }
                     });
-            BottomNavigation bottomNavigation = (BottomNavigation) getActivity().findViewById(R.id.bottomNavigation);
-            bottomNavigation.setSelectedIndex(0, false);
+
             getActivity().onBackPressed();
         }
     }

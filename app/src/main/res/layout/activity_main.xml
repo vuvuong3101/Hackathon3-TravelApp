@@ -86,18 +86,21 @@
             <include
                 layout="@layout/fragment_home"/>
         </RelativeLayout>
-    <it.sephiroth.android.library.bottomnavigation.BottomNavigation
-        android:elevation="10dp"
-        android:background="@drawable/stroketop"
-        app:theme="@style/Theme.AppCompat.NoActionBar"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/bottomNavigation"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_gravity="bottom"
-        app:bbn_entries="@menu/bottombar_menu"
-        app:bbn_scrollEnabled="true"
-        app:bbn_badgeProvider="@string/bbn_badgeProvider"
-        app:layout_behavior="@string/bbn_phone_view_behavior" />
-        </RelativeLayout>
+        <com.luseen.spacenavigation.SpaceNavigationView
+            android:layout_alignParentBottom="true"
+            android:id="@+id/space"
+            app:inactive_centre_button_icon_color="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            app:active_item_color="@color/colorAccent"
+            app:centre_button_color="@color/colorAccent"
+            app:inactive_item_color="#fa949494"
+            app:active_centre_button_icon_color="@color/colorPrimary"
+            app:space_background_color="@color/colorPrimary"
+            app:centre_button_icon="@drawable/ic_plus"
+            app:space_item_icon_size="@dimen/space_item_icon_default_size"
+            app:space_item_icon_only_size="@dimen/space_item_icon_only_size"
+            app:space_item_text_size="@dimen/space_item_text_default_size" />
+    </RelativeLayout>
 </FrameLayout>
