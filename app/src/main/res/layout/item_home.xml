@@ -128,7 +128,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="6dp"
-                                android:src="@drawable/ic_like" />
+                                android:src="@drawable/ic_like"
+                                android:alpha="100"/>
 
                             <TextView
                                 android:id="@+id/text_like"

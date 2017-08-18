@@ -64,7 +64,10 @@ public class UserFragment extends Fragment {
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 93ea472967294a7ae8beb0650051666e97b2ba46
                 getActivity().onBackPressed();
             }
         });

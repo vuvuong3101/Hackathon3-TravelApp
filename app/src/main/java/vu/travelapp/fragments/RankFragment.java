@@ -51,7 +51,7 @@ public class RankFragment extends Fragment implements View.OnClickListener {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-//                adapterHomeFragment.notifyDataSetChanged();
+                init(getView());
             }
         });
     }
@@ -90,6 +90,7 @@ public class RankFragment extends Fragment implements View.OnClickListener {
                     Log.d(TAG, "onResponse: Đã lấy dữ liệu cho Rank Fragment!!!!!");
                 }
                 adapterRankFragment.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
