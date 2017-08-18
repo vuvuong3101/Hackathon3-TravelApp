@@ -94,6 +94,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
         ImageView imageHomeFragment;
         ImageView avatarUser;
         private ProfileModel profileModel;
+        boolean like = false;
 
         public HomeModelViewHolder(View itemView) {
             super(itemView);
@@ -109,6 +110,8 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             llComment = (LinearLayout) itemView.findViewById(R.id.chat);
             imageHomeFragment = (ImageView) itemView.findViewById(R.id.item_image);
             avatarUser = (ImageView) itemView.findViewById(R.id.avatar_user);
+            ivLike = (ImageView) itemView.findViewById(R.id.ic_like);
+            tvLike = (TextView) itemView.findViewById(R.id.text_like);
 
 
             avatarUser.setOnClickListener(new View.OnClickListener() {
@@ -123,19 +126,6 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                     Log.d(TAG, String.format("onClick: %s, %s, %s", profileModel.getName(), profileModel.getId(), profileModel.getUrlImage()));
                 }
             });
-
-//            tvUserName.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    profileModel = new ProfileModel();
-//                    profileModel.setName(dataModels.get(getAdapterPosition()).getName());
-//                    profileModel.setId(dataModels.get(getAdapterPosition()).getUserid());
-//                    profileModel.setUrlImage("https://graph.facebook.com/" + profileModel.getId() + "/picture?type=large");
-//                    EventBus.getDefault().postSticky(profileModel);
-//                    ScreenManager.replaceFragment2(fragmentManager, new UserFragment(), R.id.main);
-//
-//                }
-//            });
         }
 
         public void setData(final DataModel data, Context context) {
@@ -167,18 +157,35 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                     .baseUrl("https://diphuot.herokuapp.com/api/").addConverterFactory(GsonConverterFactory.create()).build();
             data.getId();
             UpdateService updateService = retrofit.create(UpdateService.class);
-            updateService.updatelike(new UpdateLikeRequestModel(data.getId(), data.getLike() + 1)).enqueue(new Callback<UpdateLikeResponseModel>() {
-                @Override
-                public void onResponse(Call<UpdateLikeResponseModel> call, Response<UpdateLikeResponseModel> response) {
-                    String message = response.body().getMessage();
-                    Log.d("update like nè: ", "" + message);
-                }
+            if (like == false) {
+                ivLike.setAlpha(255);
+                updateService.updatelike(new UpdateLikeRequestModel(data.getId(), data.getLike() + 1)).enqueue(new Callback<UpdateLikeResponseModel>() {
+                    @Override
+                    public void onResponse(Call<UpdateLikeResponseModel> call, Response<UpdateLikeResponseModel> response) {
+                        String message = response.body().getMessage();
+                        Log.d("ấn like: ", "" + message);
+                    }
 
-                @Override
-                public void onFailure(Call<UpdateLikeResponseModel> call, Throwable t) {
-                    Log.d(TAG, "Bug update like >>>>>> =))))) ");
-                }
-            });
+                    @Override
+                    public void onFailure(Call<UpdateLikeResponseModel> call, Throwable t) {
+                    }
+                });
+                like = true;
+            } else {
+                ivLike.setAlpha(100);
+                updateService.updatelike(new UpdateLikeRequestModel(data.getId(), data.getLike())).enqueue(new Callback<UpdateLikeResponseModel>() {
+                    @Override
+                    public void onResponse(Call<UpdateLikeResponseModel> call, Response<UpdateLikeResponseModel> response) {
+                        String message = response.body().getMessage();
+                        Log.d("bỏ like: ", "" + message);
+                    }
+
+                    @Override
+                    public void onFailure(Call<UpdateLikeResponseModel> call, Throwable t) {
+                    }
+                });
+                like = false;
+            }
         }
     }
 }
