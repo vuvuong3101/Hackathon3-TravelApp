@@ -8,7 +8,7 @@
     <android.support.v7.widget.CardView
         android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
-        android:layout_height="440dp">
+        android:layout_height="465dp">
 
         <LinearLayout
             android:orientation="vertical"
@@ -80,6 +80,18 @@
                     app:siRadius="0dp">
                 </com.github.siyamed.shapeimageview.RoundedImageView>
             </RelativeLayout>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="SApa "
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:ellipsize="end"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/colorAccent"
+                android:maxLines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
             <TextView
                 android:layout_margin="10dp"
                 android:gravity="left"

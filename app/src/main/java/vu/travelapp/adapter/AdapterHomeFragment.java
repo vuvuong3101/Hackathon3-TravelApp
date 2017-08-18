@@ -126,7 +126,6 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                     Log.d(TAG, String.format("onClick: %s, %s, %s", profileModel.getName(), profileModel.getId(), profileModel.getUrlImage()));
                 }
             });
-<<<<<<< HEAD
 
             tvUserName.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -140,8 +139,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
 
                 }
             });
-=======
->>>>>>> 93ea472967294a7ae8beb0650051666e97b2ba46
+
         }
 
         public void setData(final DataModel data, Context context) {
@@ -163,9 +161,18 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 @Override
                 public void onClick(View v) {
                     EventBus.getDefault().postSticky(data);
-                    ScreenManager.replaceFragment(imageDetailFragment.getSupportFragmentManager(), new ImageDetailFragment(), R.id.main);
+                    ScreenManager.replaceFragment2(imageDetailFragment.getSupportFragmentManager(), new ImageDetailFragment(), R.id.main);
                 }
             });
+
+            tvContent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EventBus.getDefault().postSticky(data);
+                    ScreenManager.replaceFragment2(imageDetailFragment.getSupportFragmentManager(), new ImageDetailFragment(), R.id.main);
+                }
+            });
+
         }
 
         private void UpdateLike(DataModel data) {

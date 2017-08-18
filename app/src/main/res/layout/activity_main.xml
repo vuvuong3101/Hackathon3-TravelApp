@@ -94,7 +94,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="bottom"
             app:active_item_color="@color/colorAccent"
-            app:centre_button_color="#fd353535"
+            app:centre_button_color="#151515"
             app:inactive_item_color="#fa949494"
             app:active_centre_button_icon_color="@color/colorPrimary"
             app:space_background_color="@color/colorPrimary"
