@@ -29,7 +29,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Calendar;
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -98,13 +98,7 @@ public class UploadFragment extends Fragment {
 
 
     private void postToServer() {
-        Date date = new Date(); // your date
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-        String timeUpload = day + "/" + month + 1 + "/" + year;
+        String timeUpload = DateFormat.getDateTimeInstance().format(new Date());
         String destination = etDestination.getText().toString();
         String description = etDescription.getText().toString();
         if (destination.isEmpty() || description.isEmpty()) {
@@ -122,6 +116,7 @@ public class UploadFragment extends Fragment {
                         @Override
                         public void onResponse(Call<UploadRespondModel> call, Response<UploadRespondModel> response) {
                             String mess = response.body().getMessage();
+                           Toast.makeText(getContext(), "Đã đăng thành công!", Toast.LENGTH_SHORT).show();
                             Log.d("upload data: ", "success" + mess);
                         }
 

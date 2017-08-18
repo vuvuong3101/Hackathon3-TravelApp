@@ -11,9 +11,18 @@ public class DataModel {
     private String name;
     private String content;
     private String destination;
+    private String timeUpload;
     private int like;
 
     public DataModel() {
+    }
+
+    public String getTimeUpload() {
+        return timeUpload;
+    }
+
+    public void setTimeUpload(String timeUpload) {
+        this.timeUpload = timeUpload;
     }
 
     public String getDestination() {

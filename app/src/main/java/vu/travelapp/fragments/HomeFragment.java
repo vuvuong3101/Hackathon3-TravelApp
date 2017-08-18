@@ -76,6 +76,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onResponse(Call<List<DataModelJson>> call, Response<List<DataModelJson>> response) {
                 for (int i = 0; i < response.body().size(); i++) {
                     DataModel dataModel = new DataModel();
+                    dataModel.setTimeUpload(response.body().get(i).getTimeupload());
                     dataModel.setName(response.body().get(i).getUsername());
                     dataModel.setImage(response.body().get(i).getImage());
                     dataModel.setUserid(response.body().get(i).getUserid());

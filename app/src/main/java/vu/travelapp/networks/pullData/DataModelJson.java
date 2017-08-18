@@ -21,6 +21,16 @@ public class DataModelJson {
     private String content;
     @SerializedName("like")
     private int like;
+    @SerializedName("timeupload")
+    private String timeupload;
+
+    public String getTimeupload() {
+        return timeupload;
+    }
+
+    public void setTimeupload(String timeupload) {
+        this.timeupload = timeupload;
+    }
 
     public DataModelJson() {
     }
