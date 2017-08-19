@@ -4,6 +4,9 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +22,19 @@ import vu.travelapp.R;
  * Created by mac-vuongvu on 8/11/17.
  */
 
+<<<<<<< HEAD
 public class SettingFragment  extends android.support.v4.app.Fragment{
     private RelativeLayout rlLogout;
     private RelativeLayout rlInfo;
     private RelativeLayout rlBack;
 
+=======
+public class SettingFragment extends android.support.v4.app.Fragment {
+    private RelativeLayout rlLogout;
+    private RelativeLayout rlInfo;
+    private RelativeLayout rlBack;
+    private String TAG = SettingFragment.class.toString();
+>>>>>>> 3c5984e4374f52cbd7249f8b65be44a07263bf9d
 
     @Nullable
     @Override
@@ -42,6 +53,14 @@ public class SettingFragment  extends android.support.v4.app.Fragment{
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), LoginActivity.class);
                 startActivity(intent);
+<<<<<<< HEAD
+=======
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                for (int i = 0; i < fm.getBackStackEntryCount(); i++){
+                  //  Log.d(TAG, String.format("onClick: %s", fm.getBackStackEntryCount()));
+                    fm.popBackStack();
+                }
+>>>>>>> 3c5984e4374f52cbd7249f8b65be44a07263bf9d
                 LoginManager.getInstance().logOut();
                 Toast.makeText(getContext(), "Đã đăng xuất !", Toast.LENGTH_LONG).show();
                 getActivity().onBackPressed();

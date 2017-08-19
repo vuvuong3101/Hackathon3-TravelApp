@@ -25,12 +25,13 @@ import vu.travelapp.managers.ScreenManager;
 import vu.travelapp.models.ProfileModel;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static String id_me;
     private static final String TAG = MainActivity.class.toString();
     private Toolbar toolbar;
     private RelativeLayout user;
     private ProfileModel profileModel;
     private SpaceNavigationView spaceNavigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCentreButtonClick() {
                 ScreenManager.replaceFragment2(getSupportFragmentManager(), new UploadFragment(),R.id.main);
-
             }
 
             @Override
@@ -68,11 +68,7 @@ public class MainActivity extends AppCompatActivity {
                     ScreenManager.openFragment(getSupportFragmentManager(), new HomeFragment(), R.id.rl_content);
                 }else if (itemIndex ==3) {
                     ScreenManager.openFragment(getSupportFragmentManager(), new HomeFragment(), R.id.rl_content);
-
                 }
-
-
-
             }
 
             @Override
@@ -99,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             profileModel = new ProfileModel();
                             profileModel.setId(object.getString("id"));
+                            id_me = profileModel.getId();
                             profileModel.setName(object.getString("name"));
                             profileModel.setUrlImage("https://graph.facebook.com/"+ object.getString("id") +"/picture?type=large");
                             EventBus.getDefault().postSticky(profileModel);
@@ -108,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, String.format("onCompleted: %s, %s, %s", profileModel.getName(), profileModel.getId(), profileModel.getUrlImage()));
                     }
                 });
-
         request.executeAsync();
     }
 

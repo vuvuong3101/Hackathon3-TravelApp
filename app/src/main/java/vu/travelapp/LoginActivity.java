@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
@@ -40,35 +41,31 @@ import vu.travelapp.models.ProfileModel;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = LoginActivity.class.toString();
-    private static final long SPLASH_TIME_OUT = 10 ;
+    private static final long SPLASH_TIME_OUT = 10;
     CallbackManager callbackManager;
     LinearLayout loginButton;
     Button btnFB;
     ProfileModel profileModel = new ProfileModel();
     ImageView imageView;
-    private AccessTokenTracker acessTokenTracker;
-    private Bitmap bmp;
+     AccessTokenTracker acessTokenTracker;
 
-    public static AccessToken getCurrentAccessTokenFacebook(){
+    public static AccessToken getCurrentAccessTokenFacebook() {
         return AccessToken.getCurrentAccessToken();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-//
         acessTokenTracker = new AccessTokenTracker() {
             @Override
             protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken newAccessToken) {
-                updateWithToken(newAccessToken);
+                //updateWithToken(newAccessToken);
+                onClickSign();
+                Log.d(TAG, "onCurrentAccessTokenChanged: đã đăng nhập lại với facebook");
             }
         };
-
-
         updateWithToken(AccessToken.getCurrentAccessToken());
-
-//        //====================
         // lấy ra keyhash
         try {
             PackageInfo info = getPackageManager().getPackageInfo(
@@ -82,39 +79,32 @@ public class LoginActivity extends AppCompatActivity {
         } catch (PackageManager.NameNotFoundException e) {
 
         } catch (NoSuchAlgorithmException e) {
-
         }
-        ////==================
         this.setupUI();
-
         this.onClickSign();
     }
-// auto login
+
+    // auto login
     private void updateWithToken(AccessToken currentAccessToken) {
-
         if (currentAccessToken != null) {
-            LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("public_profile", "email", "user_birthday", "user_hometown") );
-
+            LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("public_profile", "email", "user_birthday", "user_hometown"));
         }
     }
 
-
-    private void setupUI(){
+    private void setupUI() {
         callbackManager = CallbackManager.Factory.create();
         loginButton = (LinearLayout) findViewById(R.id.login_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 view.startAnimation(AnimationUtils.loadAnimation(getBaseContext(), R.anim.clickanimation));
-                LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("public_profile", "email", "user_birthday", "user_hometown") );
+                LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("public_profile", "email", "user_birthday", "user_hometown"));
             }
         });
 //        loginButton.setReadPermissions(Arrays.asList("public_profile", "email", "user_birthday", "user_hometown"));
-
     }
 
-
-    private void onClickSign(){
+    private void onClickSign() {
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {         //TODO: set data khi đăng nhập vào facebook và chuyển activity
             @Override
             public void onSuccess(LoginResult loginResult) {
@@ -128,7 +118,6 @@ public class LoginActivity extends AppCompatActivity {
                             profileModel.setId(object.getString("id"));
                             profileModel.setName(object.getString("name"));
                             profileModel.setUrlImage(object.getJSONObject("picture").getJSONObject("data").getString("url"));
-                            Log.d(TAG, "onCompleted: Đã lấy dữ liệu người dùng từ facebook" + profileModel.getLocation() + profileModel.getBirthday());
 
                             URL url = new URL(profileModel.getUrlImage());
                             profileModel.setUrl(url);
@@ -141,10 +130,11 @@ public class LoginActivity extends AppCompatActivity {
 //                            SharedPreferences.Editor editor = sharedPreferences.edit();
 //                            editor.putString("idfacebook",profileModel.getId());
 //                            editor.commit();
-                            //
+
                             EventBus.getDefault().postSticky(profileModel); //Chuyển dữ liệu profile sang Home Screen Activity
-                            Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent myIntent = new Intent(LoginActivity.this, SplashActivity.class);
                             startActivity(myIntent);
+                            Log.d(TAG, "onCompleted: Đã lấy dữ liệu người dùng từ facebook" + profileModel.getLocation() + profileModel.getBirthday());
                         } catch (JSONException | IOException e) {
                             e.printStackTrace();
                         }
@@ -174,9 +164,4 @@ public class LoginActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);                  //TODO:Gọi lại hàm request để đổ dữ liệu
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
-
-
-
-
-
 }
