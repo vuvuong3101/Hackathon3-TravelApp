@@ -20,14 +20,15 @@
             android:name=".MainActivity"
             android:launchMode="singleInstance" />
         <activity android:name=".LoginActivity">
+<<<<<<< HEAD
 
         </activity>
         <activity android:name=".Intro">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+=======
+>>>>>>> 0ec51a4b6c913d2666761869e22a28f169291785
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -66,7 +67,16 @@
         <activity
             android:name=".Maps.MapsActivity"
             android:label="@string/title_activity_maps" />
+<<<<<<< HEAD
 
+=======
+        <activity android:name=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+>>>>>>> 0ec51a4b6c913d2666761869e22a28f169291785
     </application>
 
 </manifest>
