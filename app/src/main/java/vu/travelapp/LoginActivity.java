@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
@@ -132,7 +130,7 @@ public class LoginActivity extends AppCompatActivity {
 //                            editor.commit();
 
                             EventBus.getDefault().postSticky(profileModel); //Chuyển dữ liệu profile sang Home Screen Activity
-                            Intent myIntent = new Intent(LoginActivity.this, SplashActivity.class);
+                            Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(myIntent);
                             Log.d(TAG, "onCompleted: Đã lấy dữ liệu người dùng từ facebook" + profileModel.getLocation() + profileModel.getBirthday());
                         } catch (JSONException | IOException e) {

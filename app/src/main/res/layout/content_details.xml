@@ -1,0 +1,17 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nestedScroolView"
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/fragment_image_detail">
+
+   <android.support.v4.view.ViewPager
+       android:background="@color/colorPrimary"
+       android:id="@+id/vp_details"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+   </android.support.v4.view.ViewPager>
+</android.support.v4.widget.NestedScrollView>
