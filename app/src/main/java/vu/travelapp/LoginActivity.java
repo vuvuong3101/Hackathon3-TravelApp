@@ -57,15 +57,18 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         acessTokenTracker = new AccessTokenTracker() {
             @Override
             protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken newAccessToken) {
-                //updateWithToken(newAccessToken);
-                onClickSign();
-                Log.d(TAG, "onCurrentAccessTokenChanged: đã đăng nhập lại với facebook");
+                updateWithToken(newAccessToken);
+                //onClickSign();
+                Log.d(TAG, String.format("onCurrentAccessTokenChanged: đã đăng nhập lại với facebook\n%s\n%s", oldAccessToken, newAccessToken));
             }
         };
+
         updateWithToken(AccessToken.getCurrentAccessToken());
+
         // lấy ra keyhash
         try {
             PackageInfo info = getPackageManager().getPackageInfo(
@@ -82,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         this.setupUI();
         this.onClickSign();
+        Log.d(TAG, "onCreate: Đã khởi tạo Login Activity");
     }
 
     // auto login
