@@ -7,22 +7,8 @@
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
-<<<<<<< HEAD
-        sha1="418cf7b3760cc01566f3a6544bce3f00bbe2d4cc">
+        sha1="9fa2fad635caf7508520c9f6156cd667b01f493e">
         <dex dex="/Users/mac-vuongvu/Documents/Hackathon3-TravelApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_099899db2884625a89d8d627d75527a7ad727acc/classes.dex" />
-=======
-        sha1="3bae56a438ffc976cf2616ab22d5ed4074f821cb">
-        <dex dex="C:\Users\ADMIN\Documents\Hackathon3-TravelApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_a99543d645a4174561c43b9bb84f4586716b0c7d\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\ADMIN\Documents\Hackathon3-TravelApp\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="C:\Users\ADMIN\Documents\Hackathon3-TravelApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_248b939d9b3210416e1d76a0c4eb4c46753c8d65\classes.dex" />
->>>>>>> 0ec51a4b6c913d2666761869e22a28f169291785
     </item>
 
 </items>

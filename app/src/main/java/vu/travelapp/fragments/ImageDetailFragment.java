@@ -17,8 +17,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import vu.travelapp.R;
-import vu.travelapp.fragments.viewpager.FragmentComment;
-import vu.travelapp.fragments.viewpager.FragmentContentDetail;
+
 import vu.travelapp.models.DataModel;
 
 public class ImageDetailFragment extends Fragment {
@@ -58,8 +57,7 @@ public class ImageDetailFragment extends Fragment {
 //        tvDestination.setText(dataModel.getDestination());
 //        tvContent.setText(dataModel.getContent());
 //        Picasso.with(getContext()).load(dataModel.getImage()).into(imageHeader);
-        setupViewPager(viewPager);
-        tabLayout.setupWithViewPager(viewPager);
+
     }
 
     @Subscribe(sticky = true)
@@ -77,10 +75,5 @@ public class ImageDetailFragment extends Fragment {
         tabLayout  = (TabLayout) view.findViewById(R.id.tablayout);
 //        tvContent = (TextView) view.findViewById(R.id.tv_content);
     }
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
-        adapter.addFragment(new FragmentContentDetail(), "Thông tin");
-        adapter.addFragment(new FragmentComment(), "Bình ");
-        viewPager.setAdapter(adapter);
-    }
+
 }

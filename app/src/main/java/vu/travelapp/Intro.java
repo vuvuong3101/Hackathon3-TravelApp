@@ -49,6 +49,8 @@ public class Intro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        this.setupUI();
+        this.onClickSign();
         if (currentAccessToken == null){
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -59,7 +61,7 @@ public class Intro extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
-            }, 2500);
+            }, 500);
 
         }else {
             updateWithToken(currentAccessToken);
@@ -72,9 +74,7 @@ public class Intro extends AppCompatActivity {
                 Log.d(TAG, "onCurrentAccessTokenChanged: đã đăng nhập lại với facebook");
             }
         };
-        updateWithToken(currentAccessToken);
-        this.setupUI();
-        this.onClickSign();
+
     }
 
     // auto login
