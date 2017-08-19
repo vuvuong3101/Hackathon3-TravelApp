@@ -43,6 +43,7 @@ public class UserFragment extends Fragment {
     String a, b, location;
     protected RecyclerView rvPostProfile;
     protected List<DataModel> listPosted;
+    private AdapterPostedProfileFragment adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,11 +85,8 @@ public class UserFragment extends Fragment {
         ivBack = (RelativeLayout) view.findViewById(R.id.rl_back);
         avatar = (ImageView) view.findViewById(R.id.profile_avatar);
         ivSetting = (RelativeLayout) view.findViewById(R.id.rl_setting);
-        this.loadPostedPicture(view);
-    }
 
-    private void loadPostedPicture(View view) {
-        AdapterPostedProfileFragment adapter = new AdapterPostedProfileFragment(getContext(), listPosted);
+        adapter = new AdapterPostedProfileFragment(getContext(), listPosted);
         rvPostProfile = (RecyclerView) view.findViewById(R.id.rv_posted_profile_fragment);
         rvPostProfile.setAdapter(adapter);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3, LinearLayoutManager.VERTICAL, false);
@@ -100,6 +98,11 @@ public class UserFragment extends Fragment {
         });
         rvPostProfile.setLayoutManager(gridLayoutManager);
 
+        this.loadPostedPicture();
+    }
+
+    private void loadPostedPicture() {
+        this.cleardata();
         for (int i = 0; i < HomeFragment.dataModelList.size(); i++){
             if (profileModel.getId().equals(HomeFragment.dataModelList.get(i).getUserid())){
                 DataModel data = new DataModel();
@@ -109,15 +112,22 @@ public class UserFragment extends Fragment {
             adapter.notifyDataSetChanged();
         }
     }
+    private void cleardata(){
+       listPosted.clear();
+    }
 
     @Subscribe(sticky = true)
     public void onReceivedProfileModel(ProfileModel profileModel) {
-        this.profileModel = profileModel;
-      if (profileModel != null) {
-          tvName.setText(profileModel.getName());
-          Picasso.with(getContext()).load(profileModel.getUrlImage()).into(avatar);
-          Log.d(TAG, "onReceivedProfileModel: Đã đổ dữ liệu vào profile Fragment");
-      }
+        try {
+            this.profileModel = profileModel;
+            tvName.setText(profileModel.getName());
+            Picasso.with(getContext()).load(profileModel.getUrlImage()).into(avatar);
+            Log.d(TAG, "onReceivedProfileModel: Đã đổ dữ liệu vào profile Fragment");
+
+            this.loadPostedPicture();
+        }catch (Exception e){
+            Log.d(TAG, "onReceivedProfileModel: "+e.toString());
+        }
     }
 
     public final void CloseandClear() {

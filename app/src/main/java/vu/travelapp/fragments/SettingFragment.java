@@ -47,7 +47,7 @@ public class SettingFragment extends android.support.v4.app.Fragment {
                 startActivity(intent);
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 for (int i = 0; i < fm.getBackStackEntryCount(); i++){
-                    Log.d(TAG, String.format("onClick: %s", fm.getBackStackEntryCount()));
+                  //  Log.d(TAG, String.format("onClick: %s", fm.getBackStackEntryCount()));
                     fm.popBackStack();
                 }
                 LoginManager.getInstance().logOut();
