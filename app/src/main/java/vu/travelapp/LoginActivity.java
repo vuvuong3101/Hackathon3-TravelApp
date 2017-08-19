@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btnFB;
     ProfileModel profileModel = new ProfileModel();
     ImageView imageView;
-    private AccessTokenTracker acessTokenTracker;
+     AccessTokenTracker acessTokenTracker;
 
     public static AccessToken getCurrentAccessTokenFacebook() {
         return AccessToken.getCurrentAccessToken();
@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         acessTokenTracker = new AccessTokenTracker() {
             @Override
             protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken newAccessToken) {
-             //   updateWithToken(newAccessToken);
+                //updateWithToken(newAccessToken);
                 onClickSign();
                 Log.d(TAG, "onCurrentAccessTokenChanged: đã đăng nhập lại với facebook");
             }
@@ -132,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
 //                            editor.commit();
 
                             EventBus.getDefault().postSticky(profileModel); //Chuyển dữ liệu profile sang Home Screen Activity
-                            Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent myIntent = new Intent(LoginActivity.this, SplashActivity.class);
                             startActivity(myIntent);
                             Log.d(TAG, "onCompleted: Đã lấy dữ liệu người dùng từ facebook" + profileModel.getLocation() + profileModel.getBirthday());
                         } catch (JSONException | IOException e) {
