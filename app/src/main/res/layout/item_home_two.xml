@@ -87,6 +87,7 @@
                     </com.github.siyamed.shapeimageview.RoundedImageView>
                 </RelativeLayout>
                 <TextView
+                    android:id="@+id/tv_destination_home"
                     android:layout_marginTop="10dp"
                     android:text="SApa "
                     android:layout_marginRight="10dp"

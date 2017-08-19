@@ -28,6 +28,7 @@ import java.util.List;
 import vu.travelapp.LoginActivity;
 import vu.travelapp.R;
 import vu.travelapp.adapter.AdapterPostedProfileFragment;
+import vu.travelapp.managers.ScreenManager;
 import vu.travelapp.models.DataModel;
 import vu.travelapp.models.ProfileModel;
 
@@ -64,19 +65,13 @@ public class UserFragment extends Fragment {
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 getActivity().onBackPressed();
             }
         });
         ivSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), LoginActivity.class);
-                startActivity(intent);
-                LoginManager.getInstance().logOut();
-                Toast.makeText(getContext(), "Đã đăng xuất !", Toast.LENGTH_LONG).show();
-                getActivity().onBackPressed();
-
+                ScreenManager.openFragment(getActivity().getSupportFragmentManager(), new SettingFragment(),R.id.main);
             }
         });
         Log.d(TAG, "ProcessUI: " + profileModel.getLocation());
