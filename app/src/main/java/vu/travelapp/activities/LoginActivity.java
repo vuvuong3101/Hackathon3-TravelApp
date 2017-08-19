@@ -1,4 +1,4 @@
-package vu.travelapp;
+package vu.travelapp.activities;
 
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -35,6 +35,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
+import vu.travelapp.R;
 import vu.travelapp.models.ProfileModel;
 
 public class LoginActivity extends AppCompatActivity {

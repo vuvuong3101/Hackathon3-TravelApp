@@ -28,6 +28,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 
+import vu.travelapp.activities.LoginActivity;
+import vu.travelapp.activities.MainActivity;
 import vu.travelapp.models.ProfileModel;
 
 public class Intro extends AppCompatActivity {

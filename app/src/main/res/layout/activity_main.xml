@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/main"
     android:background="@color/colorPrimary"
-    tools:context="vu.travelapp.MainActivity">
+    tools:context="vu.travelapp.activities.MainActivity">
     <RelativeLayout
         android:id="@+id/main_content_home"
         android:layout_width="match_parent"

@@ -1,5 +1,6 @@
-package vu.travelapp;
+package vu.travelapp.activities;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +18,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import vu.travelapp.R;
 import vu.travelapp.fragments.HomeFragment;
 import vu.travelapp.fragments.RankFragment;
 import vu.travelapp.fragments.UploadFragment;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout user;
     private ProfileModel profileModel;
     private SpaceNavigationView spaceNavigationView;
+    private Context context;
 
 
     @Override

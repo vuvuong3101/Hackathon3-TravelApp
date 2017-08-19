@@ -12,16 +12,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
@@ -55,13 +58,14 @@ public class UploadFragment extends Fragment {
     private ImageView ivUploadImage;
     private RelativeLayout close, share, rlMain;
     private EditText etDescription;
-    private EditText etDestination;
+    private TextView tvDestination;
     private ProfileModel profileModel;
     final int REQUEST_TAKE_PHOTO = 1;
     final int REQUEST_CHOOSE_PHOTO = 2;
     private String urlImage;
-    //    private String destination = profileModel.getName();
-//    private String description;
+    int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
+    private String myDestination;
+    
     private final String ACCESS_URL = "http://res.cloudinary.com/hanoi-university-of-science-and-technology/image/upload/q_auto:good/";
 
     @Nullable
@@ -70,9 +74,7 @@ public class UploadFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_upload_image, container, false);
         EventBus.getDefault().register(this);
         FindView(view);
-
         ThuVien();
-
         setEvent();
         ProcessUI();
         return view;
@@ -85,12 +87,27 @@ public class UploadFragment extends Fragment {
                 postToServer();
             }
         });
+        tvDestination.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent intent =
+                            new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY)
+                                    .build(getActivity());
+                    startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
+                } catch (GooglePlayServicesRepairableException e) {
+                    Log.d("buggggggggggg", " 1");
+                } catch (GooglePlayServicesNotAvailableException e) {
+                    Log.d("buggggggggggg", " 1");
+                }
+            }
+        });
     }
 
 
     private void postToServer() {
         String timeUpload = DateFormat.getDateTimeInstance().format(new Date());
-        String destination = etDestination.getText().toString();
+        String destination = tvDestination.getText().toString();
         String description = etDescription.getText().toString();
         if (destination.isEmpty() || description.isEmpty()) {
             Toast.makeText(getActivity(), "Please enter data!", Toast.LENGTH_SHORT).show();
@@ -119,6 +136,7 @@ public class UploadFragment extends Fragment {
             getActivity().onBackPressed();
         }
     }
+
 
     private void getLinkURL(final Uri uri) {
         Thread t1 = new Thread(new Runnable() {
@@ -175,7 +193,7 @@ public class UploadFragment extends Fragment {
         ivUploadImage = (ImageView) view.findViewById(R.id.iv_upload_image);
         share = (RelativeLayout) view.findViewById(R.id.send);
         etDescription = (EditText) view.findViewById(R.id.et_description);
-        etDestination = (EditText) view.findViewById(R.id.et_destination);
+        tvDestination = (TextView) view.findViewById(R.id.tv_destination);
         rlMain = (RelativeLayout) view.findViewById(R.id.rl_main);
     }
 
@@ -187,6 +205,21 @@ public class UploadFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
+            if (resultCode == getActivity().RESULT_OK) {
+                Place place = PlaceAutocomplete.getPlace(getActivity(), data);
+                myDestination = (String) place.getName();
+                tvDestination.setText(myDestination);
+                Log.i("hoho", "Place: " + myDestination);
+            } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
+                Status status = PlaceAutocomplete.getStatus(getActivity(), data);
+                // TODO: Handle the error.
+                Log.i("hoho", status.getStatusMessage());
+
+            } else if (resultCode == getActivity().RESULT_CANCELED) {
+                // The user canceled the operation.
+            }
+        }
         if (resultCode == getActivity().RESULT_OK) {
             if (requestCode == REQUEST_CHOOSE_PHOTO) {
                 try {
@@ -194,7 +227,6 @@ public class UploadFragment extends Fragment {
                     getLinkURL(imageUri);
                     InputStream is = getActivity().getContentResolver().openInputStream(imageUri);
                     Bitmap bitmap = BitmapFactory.decodeStream(is);
-
 //                    String path = imageUri.getPath();
 //                    ExifInterface exif = new ExifInterface(path);
 //                    int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,1);

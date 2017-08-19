@@ -91,13 +91,13 @@
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp">
 
-        <EditText
-            android:id="@+id/et_destination"
+        <TextView
+            android:id="@+id/tv_destination"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="30dp"
             android:background="@drawable/styletext"
             android:drawableLeft="@drawable/edit_location"
-            android:hint="Địa Điểm"
+            android:hint="  Chọn Vị Trí"
             android:padding="5dp"
             android:textStyle="bold" />
 
@@ -105,7 +105,7 @@
             android:id="@+id/cardview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/et_destination"
+            android:layout_below="@+id/tv_destination"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"

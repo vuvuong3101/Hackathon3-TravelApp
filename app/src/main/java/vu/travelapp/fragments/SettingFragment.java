@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
 
-import vu.travelapp.LoginActivity;
+import vu.travelapp.activities.LoginActivity;
 import vu.travelapp.R;
 
 /**

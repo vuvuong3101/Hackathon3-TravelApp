@@ -1,4 +1,4 @@
-package vu.travelapp;
+package vu.travelapp.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -13,6 +13,8 @@ import com.facebook.AccessTokenTracker;
 import com.facebook.login.LoginManager;
 
 import java.util.Arrays;
+
+import vu.travelapp.R;
 
 public class SplashActivity extends AppCompatActivity {
     private String TAG = SplashActivity.class.toString();
