@@ -56,5 +56,8 @@ dependencies {
     compile 'com.codemybrainsout.placesearchdialog:placesearch:1.0.1'
     compile files("libs/commons-lang3-3.1.jar")
     compile files("libs/guava-14.0.1.jar")
+    compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    compile 'com.jakewharton.rxbinding2:rxbinding-appcompat-v7:2.0.0'
+    compile 'com.github.pwittchen:reactivenetwork-rx2:0.11.0'
     testCompile 'junit:junit:4.12'
 }

@@ -125,15 +125,6 @@ public class LoginActivity extends AppCompatActivity {
                             URL url = new URL(profileModel.getUrlImage());
                             profileModel.setUrl(url);
 
-                            //TODO: bug nè anh Hưng, bỏ comment đi chạy là crash nhé!
-//                            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-//                            profileModel.setBitmap(bmp);
-
-//                            SharedPreferences sharedPreferences = getSharedPreferences("TravelAppId", Context.MODE_PRIVATE);
-//                            SharedPreferences.Editor editor = sharedPreferences.edit();
-//                            editor.putString("idfacebook",profileModel.getId());
-//                            editor.commit();
-
                             EventBus.getDefault().postSticky(profileModel); //Chuyển dữ liệu profile sang Home Screen Activity
                             Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(myIntent);
