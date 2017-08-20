@@ -2,6 +2,8 @@ package vu.travelapp.networks.pullData;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by ADMIN on 8/11/2017.
  */
@@ -23,9 +25,19 @@ public class DataModelJson {
     private int like;
     @SerializedName("timeupload")
     private String timeupload;
+    @SerializedName("comment")
+    private List<CommentJSONModel> comment;
 
     public String getTimeupload() {
         return timeupload;
+    }
+
+    public List<CommentJSONModel> getComment() {
+        return comment;
+    }
+
+    public void setComment(List<CommentJSONModel> comment) {
+        this.comment = comment;
     }
 
     public void setTimeupload(String timeupload) {

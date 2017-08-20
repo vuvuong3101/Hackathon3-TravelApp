@@ -19,6 +19,7 @@ import org.greenrobot.eventbus.Subscribe;
 import vu.travelapp.R;
 
 import vu.travelapp.models.DataModel;
+import vu.travelapp.networks.pullData.CommentJSONModel;
 
 public class ImageDetailFragment extends Fragment {
     private FloatingActionButton fabDirection;
@@ -48,6 +49,14 @@ public class ImageDetailFragment extends Fragment {
 //                startActivity(intent);
 //            }
 //        });
+        imageHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for(CommentJSONModel commentJSONModel: dataModel.getComment()){
+                    Log.d("","adapter home nhé!: "+ commentJSONModel.getName()+"   "+commentJSONModel.getSentence());
+                }
+            }
+        });
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +78,7 @@ public class ImageDetailFragment extends Fragment {
     private void init(View view) {
 //        fabDirection = (FloatingActionButton) view.findViewById(R.id.fab_direction);
         iv_back = (RelativeLayout) view.findViewById(R.id.rl_back);
-//        imageHeader = (ImageView) view.findViewById(R.id.header);
+        imageHeader = (ImageView) view.findViewById(R.id.header);
 //        tvDestination = (TextView) view.findViewById(R.id.tv_destination);
         viewPager = (ViewPager) view.findViewById(R.id.vp_details);
         tabLayout  = (TabLayout) view.findViewById(R.id.tablayout);

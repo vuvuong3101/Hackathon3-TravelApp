@@ -65,7 +65,7 @@ public class UploadFragment extends Fragment {
     private String urlImage;
     int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
     private String myDestination;
-    
+
     private final String ACCESS_URL = "http://res.cloudinary.com/hanoi-university-of-science-and-technology/image/upload/q_auto:good/";
 
     @Nullable

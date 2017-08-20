@@ -4,7 +4,7 @@
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:clickable="true">
 
     <!--<include layout="@layout/content_detail_food" />-->
     <include layout="@layout/content_details"/>

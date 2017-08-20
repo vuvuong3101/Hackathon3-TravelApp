@@ -1,5 +1,9 @@
 package vu.travelapp.models;
 
+import java.util.List;
+
+import vu.travelapp.networks.pullData.CommentJSONModel;
+
 /**
  * Created by ADMIN on 8/11/2017.
  */
@@ -13,8 +17,16 @@ public class DataModel {
     private String destination;
     private String timeUpload;
     private int like;
-
+    private List<CommentJSONModel> comment;
     public DataModel() {
+    }
+
+    public List<CommentJSONModel> getComment() {
+        return comment;
+    }
+
+    public void setComment(List<CommentJSONModel> comment) {
+        this.comment = comment;
     }
 
     public String getTimeUpload() {

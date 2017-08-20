@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -31,6 +32,7 @@ import vu.travelapp.fragments.UserFragment;
 import vu.travelapp.managers.ScreenManager;
 import vu.travelapp.models.DataModel;
 import vu.travelapp.models.ProfileModel;
+import vu.travelapp.networks.pullData.CommentJSONModel;
 import vu.travelapp.networks.updateData.UpdateLikeRequestModel;
 import vu.travelapp.networks.updateData.UpdateLikeResponseModel;
 import vu.travelapp.networks.updateData.UpdateService;
@@ -98,6 +100,8 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
         ImageView avatarUser;
         private ProfileModel profileModel;
         boolean like = false;
+        TextView tvName, tvSentence;
+        RelativeLayout rlComment;
 
         public HomeModelViewHolder(View itemView) {
             super(itemView);
@@ -118,6 +122,12 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             content = (LinearLayout) itemView.findViewById(R.id.item_content);
             tvTime = (TextView) itemView.findViewById(R.id.time);
             tvDestination = (TextView) itemView.findViewById(R.id.tv_destination_home);
+            //set comment
+            tvName = (TextView) itemView.findViewById(R.id.name);
+            tvSentence = (TextView) itemView.findViewById(R.id.sentence);
+            rlComment = (RelativeLayout) itemView.findViewById(R.id.rl_comment);
+
+
             avatarUser.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -157,6 +167,19 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 tvTime.setText(dataModel.getTimeUpload());
                 view.setTag(dataModel);
                 tvDestination.setText(dataModel.getDestination());
+                if(dataModel.getComment().size() != 0){
+
+                    Log.d("size", " " +dataModel.getComment().size() +" destination:" + dataModel.getDestination()
+                            + " getname:" +dataModel.getComment().get(0).getName() + dataModel.getComment().get(0).getSentence());
+                    tvName.setText(dataModel.getComment().get(0).getName());
+                    tvSentence.setText(dataModel.getComment().get(0).getSentence());
+                } else {
+                    tvName.setText("Chưa có comment");
+                    tvSentence.setText("Chưa có");
+                    Log.d(""," Con này chưa có comment nhé!");
+                }
+
+
                 Picasso.with(context).load("https://graph.facebook.com/" + dataModels.get(getAdapterPosition()).getUserid() + "/picture?type=large").into(avatarUser);
             }
             llLike.setOnClickListener(new View.OnClickListener() {

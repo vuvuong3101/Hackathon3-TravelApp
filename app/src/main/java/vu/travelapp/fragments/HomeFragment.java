@@ -24,6 +24,7 @@ import retrofit2.Response;
 import vu.travelapp.R;
 import vu.travelapp.adapter.AdapterHomeFragment;
 import vu.travelapp.models.DataModel;
+import vu.travelapp.networks.pullData.CommentJSONModel;
 import vu.travelapp.networks.pullData.DataModelJson;
 import vu.travelapp.networks.pullData.GetAllDataModel;
 import vu.travelapp.networks.pullData.RetrofitFactory;
@@ -84,6 +85,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     dataModel.setContent(response.body().get(i).getContent());
                     dataModel.setLike(response.body().get(i).getLike());
                     dataModel.setId(response.body().get(i).get_id());
+                    List<CommentJSONModel> commentJSONModels = new ArrayList<>();
+                    for(CommentJSONModel commentJSONModel: response.body().get(i).getComment()){
+                        commentJSONModels.add(commentJSONModel);
+                        Log.d("","comment: "+ commentJSONModel.getName()+ "   "+commentJSONModel.getSentence());
+                    }
+                    dataModel.setComment(commentJSONModels);
                     dataModelList.add(dataModel);
                     Log.d(TAG, "onResponse: Đã lấy dữ liệu từ server" + dataModel.getDestination());
                 }
