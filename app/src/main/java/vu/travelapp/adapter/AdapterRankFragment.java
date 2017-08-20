@@ -73,7 +73,7 @@ public class AdapterRankFragment extends RecyclerView.Adapter<AdapterRankFragmen
 
         private void setData(DataModel data, Context context) {
             if(data != null) {
-                Picasso.with(context).load(data.getImage()).resize(1280, 720).onlyScaleDown().into(ivImageRank);
+                Picasso.with(context).load(data.getImage()).into(ivImageRank);
                 tvLikeRank.setText(String.valueOf(data.getLike()));
                 tvNameRank.setText(data.getName());
                 view.setTag(data);
