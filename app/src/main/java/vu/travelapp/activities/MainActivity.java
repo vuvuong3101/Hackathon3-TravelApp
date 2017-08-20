@@ -46,6 +46,7 @@ import retrofit2.Response;
 import vu.travelapp.R;
 import vu.travelapp.fragments.HomeFragment;
 import vu.travelapp.fragments.RankFragment;
+import vu.travelapp.fragments.SearchFragment;
 import vu.travelapp.fragments.UploadFragment;
 import vu.travelapp.fragments.UserFragment;
 import vu.travelapp.managers.ScreenManager;
@@ -121,11 +122,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onItemReselected(int itemIndex, String itemName) {
-
+               
             }
         });
     }
+
     private List<DataModel> dataModelList;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //TODO phần Search
@@ -144,40 +147,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void accept(final CharSequence charSequence) throws Exception {
                 Log.d(TAG, "accept: " + charSequence);
-
-                dataModelList = new ArrayList<>();
-                GetAllDataModel getAllDataModel = RetrofitFactory.getInstance().create(GetAllDataModel.class);
-                getAllDataModel.getDataModels().enqueue(new Callback<List<DataModelJson>>() {
-                    @Override
-                    public void onResponse(Call<List<DataModelJson>> call, Response<List<DataModelJson>> response) {
-                        List<Integer> ratioList = new ArrayList<>();
-                        for (int i = 0; i < response.body().size(); i++) {
-                            DataModel dataModel = new DataModel();
-                            dataModel.setName(response.body().get(i).getUsername());
-                            dataModel.setImage(response.body().get(i).getImage());
-                            dataModel.setUserid(response.body().get(i).getUserid());
-                            dataModel.setDestination(response.body().get(i).getDestination());
-                            dataModel.setContent(response.body().get(i).getContent());
-                            dataModel.setLike(response.body().get(i).getLike());
-                            dataModel.setId(response.body().get(i).get_id());
-                            Log.d(TAG, "Lấy dữ liệu " + response.body().get(i).getDestination());
-                            int ratio = FuzzyMatch.getRatio((String) charSequence, response.body().get(i).getDestination(), false);
-                            Log.d("ratio ",":" + ratio);
-                            ratioList.add(ratio);
-                        }
-                        for (int j = 0; j < ratioList.size(); j ++) {
-                            if (Collections.max(ratioList) ==  ratioList.get(j)) {
-                               //Todo chưa có layout
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<DataModelJson>> call, Throwable t) {
-                        Toast.makeText(MainActivity.this, "Không kết nối", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, String.format("onFailure: %s", t.toString()));
-                    }
-                });
+                EventBus.getDefault().postSticky(charSequence);
+                ScreenManager.openFragment(getSupportFragmentManager(), new SearchFragment(), R.id.rl_content);
             }
         });
         return true;
