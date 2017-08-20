@@ -167,16 +167,15 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 tvTime.setText(dataModel.getTimeUpload());
                 view.setTag(dataModel);
                 tvDestination.setText(dataModel.getDestination());
-                if(dataModel.getComment().size() != 0){
-
-                    Log.d("size", " " +dataModel.getComment().size() +" destination:" + dataModel.getDestination()
-                            + " getname:" +dataModel.getComment().get(0).getName() + dataModel.getComment().get(0).getSentence());
-                    tvName.setText(dataModel.getComment().get(0).getName());
-                    tvSentence.setText(dataModel.getComment().get(0).getSentence());
+                if (dataModel.getComment().size() != 0) {
+                    for (int i = 0; i < dataModel.getComment().size(); i++) {
+                        tvName.setText(dataModel.getComment().get(i).getName());
+                        tvSentence.setText(dataModel.getComment().get(i).getSentence());
+                    }
                 } else {
                     tvName.setText("Chưa có comment");
                     tvSentence.setText("Chưa có");
-                    Log.d(""," Con này chưa có comment nhé!");
+                    Log.d("", " Con này chưa có comment nhé!");
                 }
 
 

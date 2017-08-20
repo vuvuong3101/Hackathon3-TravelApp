@@ -54,5 +54,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-location:10.2.0'
     compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
     compile 'com.codemybrainsout.placesearchdialog:placesearch:1.0.1'
+    compile files("libs/commons-lang3-3.1.jar")
+    compile files("libs/guava-14.0.1.jar")
     testCompile 'junit:junit:4.12'
 }
