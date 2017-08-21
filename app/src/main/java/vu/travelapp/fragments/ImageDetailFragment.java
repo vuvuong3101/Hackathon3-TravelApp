@@ -1,5 +1,6 @@
 package vu.travelapp.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -13,18 +14,20 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import vu.travelapp.Maps.MapsActivity;
 import vu.travelapp.R;
-
 import vu.travelapp.models.DataModel;
 import vu.travelapp.networks.pullData.CommentJSONModel;
 
 public class ImageDetailFragment extends Fragment {
     private FloatingActionButton fabDirection;
     private DataModel dataModel;
-    private ImageView ivBack , imageHeader;
+    private ImageView imageHeader;
     private TextView tvDestination, tvContent;
     private ViewPager viewPager;
     private TabLayout tabLayout;
@@ -37,24 +40,28 @@ public class ImageDetailFragment extends Fragment {
 
         init(view);
         process();
+
+
+
         return view;
     }
 
     private void process() {
-//        fabDirection.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                EventBus.getDefault().postSticky(dataModel);
-//                Intent intent = new Intent(getActivity(),MapsActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        fabDirection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().postSticky(dataModel);
+                Intent intent = new Intent(getActivity(),MapsActivity.class);
+                startActivity(intent);
+            }
+        });
         imageHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 for(CommentJSONModel commentJSONModel: dataModel.getComment()){
                     Log.d("","adapter home nhé!: "+ commentJSONModel.getName()+"   "+commentJSONModel.getSentence());
                 }
+
             }
         });
         iv_back.setOnClickListener(new View.OnClickListener() {
@@ -64,8 +71,8 @@ public class ImageDetailFragment extends Fragment {
             }
         });
 //        tvDestination.setText(dataModel.getDestination());
-//        tvContent.setText(dataModel.getContent());
-//        Picasso.with(getContext()).load(dataModel.getImage()).into(imageHeader);
+        tvContent.setText(dataModel.getContent());
+        Picasso.with(getContext()).load(dataModel.getImage()).into(imageHeader);
 
     }
 
@@ -76,13 +83,13 @@ public class ImageDetailFragment extends Fragment {
     }
 
     private void init(View view) {
-//        fabDirection = (FloatingActionButton) view.findViewById(R.id.fab_direction);
-        iv_back = (RelativeLayout) view.findViewById(R.id.rl_back);
+        fabDirection = (FloatingActionButton) view.findViewById(R.id.iv_location);
+        iv_back = (RelativeLayout) view.findViewById(R.id.back_detals);
         imageHeader = (ImageView) view.findViewById(R.id.header);
 //        tvDestination = (TextView) view.findViewById(R.id.tv_destination);
-        viewPager = (ViewPager) view.findViewById(R.id.vp_details);
-        tabLayout  = (TabLayout) view.findViewById(R.id.tablayout);
-//        tvContent = (TextView) view.findViewById(R.id.tv_content);
+        tvContent = (TextView) view.findViewById(R.id.tv_content);
     }
+
+
 
 }

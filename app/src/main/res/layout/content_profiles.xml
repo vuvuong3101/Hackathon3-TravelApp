@@ -116,7 +116,7 @@
                     android:layout_height="match_parent">
 
                     <RelativeLayout
-                        android:id="@+id/rl_back"
+                        android:id="@+id/rl_backUser"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_centerVertical="true"
@@ -154,7 +154,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="16dp"
-                        android:layout_toRightOf="@+id/rl_back"
+                        android:layout_toRightOf="@+id/rl_backUser"
                         android:text="Trang cá nhân"
                         android:textColor="@color/colorAccent"
                         android:textSize="16sp"

@@ -17,8 +17,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -61,7 +59,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     String destination;
     DataModel dataModel;
     boolean moveCamera = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +80,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     double longtitude = location.getLongitude();
                     double latitude = location.getLatitude();
                     LatLng latLng = new LatLng(latitude, longtitude);
+
                     Log.d("longtitude: " + longtitude, " latitude: " + latitude);
                     Geocoder geocoder = new Geocoder(getApplicationContext());
                     try {
@@ -91,7 +89,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         myLocation += addressList.get(0).getCountryName();
                         mMap.addMarker(new MarkerOptions().position(latLng).title(myLocation));
                         if (moveCamera == false) {
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10.2f));
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16f));
                             moveCamera = true;
                         }
                     } catch (IOException e) {
@@ -129,7 +127,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         myLocation += addressList.get(0).getCountryName();
                         mMap.addMarker(new MarkerOptions().position(latLng).title(myLocation));
                         if (moveCamera == false) {
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10.2f));
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16f));
                             moveCamera = true;
                         }
                     } catch (IOException e) {
@@ -176,6 +174,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+
     }
 
     @Override
@@ -271,7 +270,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             PolylineOptions polylineOptions = new PolylineOptions().
                     geodesic(true).
-                    color(Color.RED).
+                    color(Color.parseColor("#FF29AFF2")).
                     width(8);
 
             for (int i = 0; i < route.points.size(); i++)

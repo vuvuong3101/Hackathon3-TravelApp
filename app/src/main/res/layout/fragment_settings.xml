@@ -58,54 +58,56 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@id/toolbar_setting"
-        android:background="@color/bb_darkBackgroundColor" />
-    <RelativeLayout
-        android:id="@+id/rl_logout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/view"
-        android:layout_marginTop="20dp">
-        <ImageView
-            android:id="@+id/iv_logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logout_icon"
-            android:layout_marginLeft="10dp"/>
-        <TextView
-            android:layout_toRightOf="@id/iv_logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="LOG OUT"
-            android:layout_marginLeft="10dp"
-            android:textStyle="bold"
-            android:layout_centerVertical="true"/>
-    </RelativeLayout>
-    <View
-        android:layout_marginTop="10dp"
-        android:id="@+id/view2"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_below="@id/rl_logout"
-        android:background="@color/bb_darkBackgroundColor" />
+        android:background="#bababa" />
+
+
     <RelativeLayout
         android:id="@+id/rl_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/view2"
+        android:layout_below="@+id/view"
         android:layout_marginTop="20dp">
+
         <ImageView
             android:id="@+id/iv_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/info_icon"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/info_icon" />
+
         <TextView
-            android:layout_toRightOf="@id/iv_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="About me"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:textStyle="bold"
-            android:layout_centerVertical="true"/>
+            android:layout_toRightOf="@id/iv_info"
+            android:text="Phiên bản ứng dụng"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_info"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/iv_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/logout_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/iv_logout"
+            android:text="Đăng xuất"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold" />
     </RelativeLayout>
 </RelativeLayout>

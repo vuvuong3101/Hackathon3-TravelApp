@@ -1,6 +1,5 @@
 package vu.travelapp.activities;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -9,10 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.GraphRequest;
@@ -22,27 +18,19 @@ import com.jakewharton.rxbinding2.support.v7.widget.RxSearchView;
 import com.luseen.spacenavigation.SpaceItem;
 import com.luseen.spacenavigation.SpaceNavigationView;
 import com.luseen.spacenavigation.SpaceOnClickListener;
-import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import vu.travelapp.R;
 import vu.travelapp.fragments.HomeFragment;
 import vu.travelapp.fragments.RankFragment;
@@ -52,10 +40,6 @@ import vu.travelapp.fragments.UserFragment;
 import vu.travelapp.managers.ScreenManager;
 import vu.travelapp.models.DataModel;
 import vu.travelapp.models.ProfileModel;
-import vu.travelapp.networks.pullData.DataModelJson;
-import vu.travelapp.networks.pullData.GetAllDataModel;
-import vu.travelapp.networks.pullData.RetrofitFactory;
-import vu.travelapp.utils.FuzzyMatch;
 
 public class MainActivity extends AppCompatActivity {
     public static String id_me;
@@ -70,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
+
         //hàm check internet RX
         ReactiveNetwork.observeInternetConnectivity()
                 .subscribeOn(Schedulers.io())
@@ -137,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         SearchView searchView = (SearchView) menuItem.getActionView();
 
         RxSearchView.queryTextChanges(searchView)
-                .debounce(500, TimeUnit.MILLISECONDS)
+                .debounce(250, TimeUnit.MILLISECONDS)
                 .filter(new Predicate<CharSequence>() {
                     @Override
                     public boolean test(@NonNull CharSequence charSequence) throws Exception {

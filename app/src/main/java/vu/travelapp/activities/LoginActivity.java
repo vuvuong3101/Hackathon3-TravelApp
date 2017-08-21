@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btnFB;
     ProfileModel profileModel = new ProfileModel();
     ImageView imageView;
-     AccessTokenTracker acessTokenTracker;
+    AccessTokenTracker acessTokenTracker;
 
     public static AccessToken getCurrentAccessTokenFacebook() {
         return AccessToken.getCurrentAccessToken();
@@ -56,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
         acessTokenTracker = new AccessTokenTracker() {
             @Override
@@ -127,6 +128,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             EventBus.getDefault().postSticky(profileModel); //Chuyển dữ liệu profile sang Home Screen Activity
                             Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
+                            overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
                             startActivity(myIntent);
                             Log.d(TAG, "onCompleted: Đã lấy dữ liệu người dùng từ facebook" + profileModel.getLocation() + profileModel.getBirthday());
                         } catch (JSONException | IOException e) {
@@ -149,6 +151,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onError(FacebookException error) {
                 Toast.makeText(getBaseContext(), "Đăng nhập thất bại, kiểm tra kết nối !", Toast.LENGTH_LONG).show();
                 Log.d(TAG, "onError: " + " Cant login FB ");
+                onBackPressed();
             }
         });
     }
@@ -157,5 +160,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);                  //TODO:Gọi lại hàm request để đổ dữ liệu
         callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
     }
 }

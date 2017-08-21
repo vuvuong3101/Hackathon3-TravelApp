@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -21,7 +20,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import vu.travelapp.R;
-import vu.travelapp.activities.MainActivity;
 import vu.travelapp.adapter.AdapterSearchFragment;
 import vu.travelapp.models.DataModel;
 import vu.travelapp.networks.pullData.DataModelJson;
@@ -71,8 +69,8 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
                         dataModelList.add(0, dataModel);
                         Log.d("Max ratio: ", "" + maxRatio);
                     } else{
-                        dataModelList.add(dataModel);
-                        Log.d("dataModel", ": "+dataModel.getDestination());
+//                        dataModelList.add(dataModel);
+//                        Log.d("dataModel", ": "+dataModel.getDestination());
                     }
                 }
                 Log.d(" Kết quả",":  "+dataModelList.get(0).getDestination());

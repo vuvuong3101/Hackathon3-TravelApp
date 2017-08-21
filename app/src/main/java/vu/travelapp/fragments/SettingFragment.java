@@ -11,9 +11,10 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
+import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 
-import vu.travelapp.activities.LoginActivity;
 import vu.travelapp.R;
+import vu.travelapp.activities.LoginActivity;
 
 /**
  * Created by mac-vuongvu on 8/11/17.
@@ -24,6 +25,7 @@ public class SettingFragment  extends android.support.v4.app.Fragment{
     private RelativeLayout rlInfo;
     private RelativeLayout rlBack;
     private String TAG = SettingFragment.class.toString();
+    private NiftyDialogBuilder dialog;
 
     @Nullable
     @Override
@@ -32,7 +34,6 @@ public class SettingFragment  extends android.support.v4.app.Fragment{
 
         init(view);
         process();
-
         return view;
     }
 
@@ -49,7 +50,7 @@ public class SettingFragment  extends android.support.v4.app.Fragment{
                 }
                 LoginManager.getInstance().logOut();
                 Toast.makeText(getContext(), "Đã đăng xuất !", Toast.LENGTH_LONG).show();
-                getActivity().onBackPressed();
+//                getActivity().onBackPressed();
             }
         });
         rlInfo.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +63,6 @@ public class SettingFragment  extends android.support.v4.app.Fragment{
             @Override
             public void onClick(View v) {
                 getActivity().onBackPressed();
-
             }
         });
     }

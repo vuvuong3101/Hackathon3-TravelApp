@@ -25,14 +25,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import vu.travelapp.activities.MainActivity;
 import vu.travelapp.R;
+import vu.travelapp.activities.MainActivity;
 import vu.travelapp.fragments.ImageDetailFragment;
 import vu.travelapp.fragments.UserFragment;
 import vu.travelapp.managers.ScreenManager;
 import vu.travelapp.models.DataModel;
 import vu.travelapp.models.ProfileModel;
-import vu.travelapp.networks.pullData.CommentJSONModel;
 import vu.travelapp.networks.updateData.UpdateLikeRequestModel;
 import vu.travelapp.networks.updateData.UpdateLikeResponseModel;
 import vu.travelapp.networks.updateData.UpdateService;
@@ -91,7 +90,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
 
     public class HomeModelViewHolder extends RecyclerView.ViewHolder {
         ImageView ivItemPictureHome;
-        TextView tvContent, tvUserName, tvTime;
+        TextView tvContent, tvUserName, tvTime, tv_like;
         ImageView ivLike, ivComment;
         TextView tvLike, tvComment;
         TextView tvDestination;
@@ -122,11 +121,12 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             content = (LinearLayout) itemView.findViewById(R.id.item_content);
             tvTime = (TextView) itemView.findViewById(R.id.time);
             tvDestination = (TextView) itemView.findViewById(R.id.tv_destination_home);
+            tv_like = (TextView) itemView.findViewById(R.id.text_like);
             //set comment
-            tvName = (TextView) itemView.findViewById(R.id.name);
-            tvSentence = (TextView) itemView.findViewById(R.id.sentence);
-            rlComment = (RelativeLayout) itemView.findViewById(R.id.rl_comment);
-
+//            tvName = (TextView) itemView.findViewById(R.id.name);
+//            tvSentence = (TextView) itemView.findViewById(R.id.sentence);
+//            rlComment = (RelativeLayout) itemView.findViewById(R.id.rl_comment);
+//
 
             avatarUser.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -167,18 +167,18 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 tvTime.setText(dataModel.getTimeUpload());
                 view.setTag(dataModel);
                 tvDestination.setText(dataModel.getDestination());
-                if (dataModel.getComment().size() != 0) {
-                    for (int i = 0; i < dataModel.getComment().size(); i++) {
-                        tvName.setText(dataModel.getComment().get(i).getName());
-                        tvSentence.setText(dataModel.getComment().get(i).getSentence());
-                    }
-                } else {
-                    tvName.setText("Chưa có comment");
-                    tvSentence.setText("Chưa có");
-                    Log.d("", " Con này chưa có comment nhé!");
-                }
-
-
+//                if (dataModel.getComment().size() != 0) {
+//                    for (int i = 0; i < dataModel.getComment().size(); i++) {
+//                        tvName.setText(dataModel.getComment().get(i).getName());
+//                        tvSentence.setText(dataModel.getComment().get(i).getSentence());
+//                    }
+//                } else {
+//                    tvName.setText("Chưa có comment");
+//                    tvSentence.setText("Chưa có");
+//                    Log.d("", " Con này chưa có comment nhé!");
+//                }
+//
+//
                 Picasso.with(context).load("https://graph.facebook.com/" + dataModels.get(getAdapterPosition()).getUserid() + "/picture?type=large").into(avatarUser);
             }
             llLike.setOnClickListener(new View.OnClickListener() {
@@ -203,7 +203,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             data.getId();
             UpdateService updateService = retrofit.create(UpdateService.class);
             if (like == false) {
-                ivLike.setAlpha(255);
+                ivLike.setImageResource(R.drawable.ic_like_selected);
                 updateService.updatelike(new UpdateLikeRequestModel(data.getId(), data.getLike() + 1)).enqueue(new Callback<UpdateLikeResponseModel>() {
                     @Override
                     public void onResponse(Call<UpdateLikeResponseModel> call, Response<UpdateLikeResponseModel> response) {
@@ -217,7 +217,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 });
                 like = true;
             } else {
-                ivLike.setAlpha(100);
+                ivLike.setImageResource(R.drawable.ic_like);
                 updateService.updatelike(new UpdateLikeRequestModel(data.getId(), data.getLike())).enqueue(new Callback<UpdateLikeResponseModel>() {
                     @Override
                     public void onResponse(Call<UpdateLikeResponseModel> call, Response<UpdateLikeResponseModel> response) {

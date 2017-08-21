@@ -47,8 +47,15 @@ public class UserFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_user, container, false);
         EventBus.getDefault().register(this);
         FindView(view);
-        ProcessUI();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        ProcessUI();
+
     }
 
     private void ProcessUI() {
@@ -62,13 +69,14 @@ public class UserFragment extends Fragment {
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().onBackPressed();
+                Log.d(TAG, "backsetting " + "ok ok");
+               getActivity().getSupportFragmentManager().popBackStackImmediate();
             }
         });
         ivSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ScreenManager.openFragment(getActivity().getSupportFragmentManager(), new SettingFragment(),R.id.main);
+                ScreenManager.replaceFragment2(getActivity().getSupportFragmentManager(), new SettingFragment(),R.id.main);
             }
         });
         Log.d(TAG, "ProcessUI: " + profileModel.getLocation());

@@ -1,5 +1,6 @@
 package vu.travelapp.managers;
 
+import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -21,9 +22,9 @@ public class ScreenManager {
     }
     public static void replaceFragment(FragmentManager fragmentManager, Fragment fragment, int layoutID) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.addToBackStack(fragment.getClass().getSimpleName());
         fragmentTransaction.setCustomAnimations(R.anim.anim_left, R.anim.anim_right);
         fragmentTransaction.replace(layoutID, fragment);
-        fragmentTransaction.addToBackStack(fragment.getClass().getSimpleName());
         Log.d(TAG, "replaceFragment: " + fragment.getClass().getSimpleName());
         fragmentTransaction.commit();
     }
@@ -33,5 +34,16 @@ public class ScreenManager {
         fragmentTransaction.addToBackStack(fragment.getClass().getSimpleName());
         fragmentTransaction.commit();
     }
-
+    public static void replaceFragmentRtoL(FragmentManager fragmentManager, Fragment fragment, int layoutID) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.anim_right, R.anim.anim_left);
+        fragmentTransaction.replace(layoutID, fragment);
+        fragmentTransaction.addToBackStack(fragment.getClass().getSimpleName());
+        Log.d(TAG, "replaceFragment: " + fragment.getClass().getSimpleName());
+        fragmentTransaction.commit();
+    }
+    public static  void fadeAnimation(Activity a)
+    {
+        a.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
 }
