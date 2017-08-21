@@ -27,6 +27,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import vu.travelapp.R;
 import vu.travelapp.activities.MainActivity;
+import vu.travelapp.fragments.CommentFragment;
 import vu.travelapp.fragments.ImageDetailFragment;
 import vu.travelapp.fragments.UserFragment;
 import vu.travelapp.managers.ScreenManager;
@@ -91,16 +92,15 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
     public class HomeModelViewHolder extends RecyclerView.ViewHolder {
         ImageView ivItemPictureHome;
         TextView tvContent, tvUserName, tvTime, tv_like;
-        ImageView ivLike, ivComment;
-        TextView tvLike, tvComment;
+        ImageView ivLike;
+        TextView tvLike;
         TextView tvDestination;
         LinearLayout llLike, llComment, content;
         ImageView imageHomeFragment;
         ImageView avatarUser;
         private ProfileModel profileModel;
         boolean like = false;
-        TextView tvName, tvSentence;
-        RelativeLayout rlComment;
+        LinearLayout llChat;
 
         public HomeModelViewHolder(View itemView) {
             super(itemView);
@@ -122,11 +122,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             tvTime = (TextView) itemView.findViewById(R.id.time);
             tvDestination = (TextView) itemView.findViewById(R.id.tv_destination_home);
             tv_like = (TextView) itemView.findViewById(R.id.text_like);
-            //set comment
-//            tvName = (TextView) itemView.findViewById(R.id.name);
-//            tvSentence = (TextView) itemView.findViewById(R.id.sentence);
-//            rlComment = (RelativeLayout) itemView.findViewById(R.id.rl_comment);
-//
+            llChat = (LinearLayout) itemView.findViewById(R.id.chat);
 
             avatarUser.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -154,6 +150,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 }
             });
 
+
         }
 
         public void setData(final DataModel dataModel, Context context) {
@@ -167,20 +164,17 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 tvTime.setText(dataModel.getTimeUpload());
                 view.setTag(dataModel);
                 tvDestination.setText(dataModel.getDestination());
-//                if (dataModel.getComment().size() != 0) {
-//                    for (int i = 0; i < dataModel.getComment().size(); i++) {
-//                        tvName.setText(dataModel.getComment().get(i).getName());
-//                        tvSentence.setText(dataModel.getComment().get(i).getSentence());
-//                    }
-//                } else {
-//                    tvName.setText("Chưa có comment");
-//                    tvSentence.setText("Chưa có");
-//                    Log.d("", " Con này chưa có comment nhé!");
-//                }
-//
-//
                 Picasso.with(context).load("https://graph.facebook.com/" + dataModels.get(getAdapterPosition()).getUserid() + "/picture?type=large").into(avatarUser);
             }
+
+            llChat.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EventBus.getDefault().postSticky(dataModel);
+                    ScreenManager.replaceFragment2(fragmentManager,new CommentFragment(),R.id.main);
+                }
+            });
+
             llLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

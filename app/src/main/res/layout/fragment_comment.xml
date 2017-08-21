@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="vu.travelapp.fragments.CommentFragment">
+    tools:context="vu.travelapp.fragments.CommentFragment"
+    android:clickable="true">
     <android.support.design.widget.AppBarLayout
         android:id="@id/appbar"
         android:layout_width="match_parent"
@@ -52,22 +53,16 @@
             </RelativeLayout>
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
-    <android.support.v7.widget.RecyclerView
-        android:layout_above="@id/et_comment"
-        android:layout_below="@id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    </android.support.v7.widget.RecyclerView>
     <RelativeLayout
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:id="@+id/et_comment"
+        android:id="@+id/rl_comment"
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <EditText
             android:layout_centerVertical="true"
-            android:id="@id/comment"
+            android:id="@+id/et_comment"
             android:layout_marginEnd="100dp"
             android:imeOptions="actionSend"
             android:layout_width="match_parent"
@@ -85,13 +80,22 @@
         <Button
             android:layout_centerVertical="true"
             android:background="#02aacf"
-            android:id="@+id/send_commnet"
-            android:text="SEnd"
+            android:id="@+id/bt_send_commnet"
+            android:text="Send"
             android:textColor="@color/colorPrimary"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true" />
     </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_comment"
+        android:layout_above="@id/rl_comment"
+        android:layout_below="@id/appbar"
+        android:background="#e9e9e9"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

@@ -1,6 +1,8 @@
 package vu.travelapp.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -122,7 +124,12 @@ public class LoginActivity extends AppCompatActivity {
                             profileModel.setId(object.getString("id"));
                             profileModel.setName(object.getString("name"));
                             profileModel.setUrlImage(object.getJSONObject("picture").getJSONObject("data").getString("url"));
-
+//                            SharedPreferences sharedPreferences = getSharedPreferences("datauser", Context.MODE_PRIVATE);
+//                            SharedPreferences.Editor editor = sharedPreferences.edit();
+//                            editor.putString("name",object.getString("name"));
+//                            editor.putString("id",object.getString("id"));
+//                            editor.putString("urlimage",object.getJSONObject("picture").getJSONObject("data").getString("url"));
+//                            editor.apply();
                             URL url = new URL(profileModel.getUrlImage());
                             profileModel.setUrl(url);
 
