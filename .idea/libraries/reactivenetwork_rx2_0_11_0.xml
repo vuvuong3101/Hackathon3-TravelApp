@@ -1,8 +1,13 @@
 <component name="libraryTable">
   <library name="reactivenetwork-rx2-0.11.0">
     <CLASSES>
+<<<<<<< HEAD
       <root url="jar://$USER_HOME$/.android/build-cache/c9c4e89376b5292fabaa1df33b75bb35d7eb1486/output/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.android/build-cache/c9c4e89376b5292fabaa1df33b75bb35d7eb1486/output/res" />
+=======
+      <root url="file://$USER_HOME$/.android/build-cache/82f4e3328d4cbb5a6d08dc7532f7f01093b2f743/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/82f4e3328d4cbb5a6d08dc7532f7f01093b2f743/output/jars/classes.jar!/" />
+>>>>>>> 0ce0fe79fa67e29e648bf9748cd64c704d9abce8
     </CLASSES>
     <JAVADOC />
     <SOURCES>
