@@ -1,6 +1,8 @@
 package vu.travelapp.adapter;
 
 import android.content.Context;
+import android.net.Uri;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,7 +13,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareDialog;
 import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
@@ -28,6 +34,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import vu.travelapp.R;
 import vu.travelapp.activities.MainActivity;
 import vu.travelapp.fragments.CommentFragment;
+import vu.travelapp.fragments.HomeFragment;
 import vu.travelapp.fragments.ImageDetailFragment;
 import vu.travelapp.fragments.UserFragment;
 import vu.travelapp.managers.ScreenManager;
@@ -50,11 +57,15 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
     private View.OnClickListener onClickListener;
     protected View view;
     private FragmentManager fragmentManager;
+    Fragment fragment;
+    ShareDialog shareDialog;
 
-    public AdapterHomeFragment(List<DataModel> dataModels, Context context, FragmentManager fragmentManager) {
+    public AdapterHomeFragment(List<DataModel> dataModels, Context context, FragmentManager fragmentManager, Fragment fragment) {
         this.dataModels = dataModels;
         this.context = context;
         this.fragmentManager = fragmentManager;
+        this.fragment = fragment;
+        shareDialog = new ShareDialog(fragment);
     }
 
     public void setOnItemClick(View.OnClickListener onClickListener) {
@@ -95,7 +106,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
         ImageView ivLike;
         TextView tvLike;
         TextView tvDestination;
-        LinearLayout llLike, llComment, content;
+        LinearLayout llLike, llComment, content, llShareFaceBook;
         ImageView imageHomeFragment;
         ImageView avatarUser;
         private ProfileModel profileModel;
@@ -123,6 +134,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             tvDestination = (TextView) itemView.findViewById(R.id.tv_destination_home);
             tv_like = (TextView) itemView.findViewById(R.id.text_like);
             llChat = (LinearLayout) itemView.findViewById(R.id.chat);
+            llShareFaceBook = (LinearLayout) itemView.findViewById(R.id.share_facebook);
 
             avatarUser.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -153,7 +165,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
 
         }
 
-        public void setData(final DataModel dataModel, Context context) {
+        public void setData(final DataModel dataModel, final Context context) {
             // get thời gian hiện tại:
             String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
             ////
@@ -171,7 +183,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 @Override
                 public void onClick(View v) {
                     EventBus.getDefault().postSticky(dataModel);
-                    ScreenManager.replaceFragment2(fragmentManager,new CommentFragment(),R.id.main);
+                    ScreenManager.replaceFragment2(fragmentManager, new CommentFragment(), R.id.main);
                 }
             });
 
@@ -179,6 +191,22 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 @Override
                 public void onClick(View v) {
                     UpdateLike(dataModel);
+                }
+            });
+
+            llShareFaceBook.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, "Click share facebook", Toast.LENGTH_SHORT).show();
+                    //TODO: Share facebook
+                    Uri uriImage = Uri.parse(dataModel.getImage().toString());
+                    SharePhoto photo = new SharePhoto.Builder()
+                            .setImageUrl(uriImage)
+                            .build();
+                    SharePhotoContent content = new SharePhotoContent.Builder()
+                            .addPhoto(photo)
+                            .build();
+                    shareDialog.show(content);
                 }
             });
             final MainActivity imageDetailFragment = (MainActivity) context;

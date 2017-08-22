@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:windowSoftInputMode="stateVisible|adjustResize"
         android:allowBackup="true"
         android:hardwareAccelerated="false"
         android:icon="@drawable/iconapp"
@@ -16,7 +15,8 @@
         android:largeHeap="true"
         android:roundIcon="@drawable/iconapp"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:windowSoftInputMode="stateVisible|adjustResize">
         <activity
             android:name=".activities.MainActivity"
             android:launchMode="singleInstance" />
@@ -24,15 +24,9 @@
         <activity android:name=".Intro">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
-
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -60,9 +54,15 @@
         <!-- <meta-data android:name="CLOUDINARY_URL" android:value="cloudinary://265947211736866:hSeTC462QKOMlpVqWI8f_DVeqDs@hanoi-university-of-science-and-technology"/> -->
 
         <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider146171499298377"
+            android:exported="true" />
         <activity
             android:name=".Maps.MapsActivity"
             android:label="@string/title_activity_maps" />
