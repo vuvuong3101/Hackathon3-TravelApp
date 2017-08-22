@@ -1,6 +1,5 @@
 package vu.travelapp.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -60,7 +59,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
         acessTokenTracker = new AccessTokenTracker() {
             @Override

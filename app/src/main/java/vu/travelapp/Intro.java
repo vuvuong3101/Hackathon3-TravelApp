@@ -51,7 +51,6 @@ public class Intro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         this.setupUI();
         this.onClickSign();
         if (currentAccessToken == null){
@@ -65,7 +64,7 @@ public class Intro extends AppCompatActivity {
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                     finish();
                 }
-            }, 500);
+            }, 0);
 
         }else {
             updateWithToken(currentAccessToken);

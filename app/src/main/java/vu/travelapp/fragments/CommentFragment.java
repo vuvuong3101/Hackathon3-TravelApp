@@ -1,9 +1,10 @@
 package vu.travelapp.fragments;
 
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,8 +13,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
@@ -29,7 +32,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import vu.travelapp.R;
 import vu.travelapp.adapter.AdapterCommentFragment;
-import vu.travelapp.adapter.AdapterRankFragment;
 import vu.travelapp.models.DataModel;
 import vu.travelapp.networks.comment.CommentService;
 import vu.travelapp.networks.comment.RequestCommentJSON;
@@ -39,7 +41,6 @@ import vu.travelapp.networks.pullData.CommentJSONModel;
 import vu.travelapp.networks.pullData.DataModelJson;
 import vu.travelapp.networks.pullData.GetAllDataModel;
 import vu.travelapp.networks.pullData.RetrofitFactory;
-import vu.travelapp.networks.pushData.UploadService;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -55,7 +56,15 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
     private List<DataModel> dataModelList;
     private SwipeRefreshLayout swipeRefreshLayout;
     private String name;
+    private RelativeLayout back;
+    private TextInputEditText inputText;
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        process();
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,7 +76,6 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
         name = sharedPreferences.getString("name","");
         Log.d("share preferences: ","" + name);
         init(view);
-        process();
         refresh();
         return view;
     }
@@ -76,7 +84,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                init(getView());
+                pullData();
             }
         });
     }
@@ -85,29 +93,42 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
         btSendComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pullData();
+                hideSoftKeyboard(getActivity());
+                adapterCommentFragment.notifyDataSetChanged();
                 if(etComment.getText()==null){
                     Toast.makeText(getActivity(),"Chưa có comment nào!",Toast.LENGTH_SHORT).show();
-                }
-                final comment comment = new comment(name,String.valueOf(etComment.getText()));
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("https://diphuot.herokuapp.com/api/").addConverterFactory(GsonConverterFactory.create())
-                        .build();
-                CommentService commentService = retrofit.create(CommentService.class);
-                commentService.commentService(new RequestCommentJSON(datamodel.getId(), comment)).enqueue(new Callback<ResponseCommentJSON>() {
-                    @Override
-                    public void onResponse(Call<ResponseCommentJSON> call, Response<ResponseCommentJSON> response) {
-                        String mess = response.body().getMessage();
-                        Log.d("upload data: ", "success" + mess);
-                        pullData();
-                    }
+                }else {
+                    final comment comment = new comment(name, String.valueOf(etComment.getText()));
+                    etComment.setText("");
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl("https://diphuot.herokuapp.com/api/").addConverterFactory(GsonConverterFactory.create())
+                            .build();
+                    CommentService commentService = retrofit.create(CommentService.class);
+                    commentService.commentService(new RequestCommentJSON(datamodel.getId(), comment)).enqueue(new Callback<ResponseCommentJSON>() {
+                        @Override
+                        public void onResponse(Call<ResponseCommentJSON> call, Response<ResponseCommentJSON> response) {
+                            String mess = response.body().getMessage();
+                            Log.d("upload data: ", "success" + mess);
+                            pullData();
+                        }
 
-                    @Override
-                    public void onFailure(Call<ResponseCommentJSON> call, Throwable t) {
-                        Log.d("error: ",""+t);
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<ResponseCommentJSON> call, Throwable t) {
+                            Log.d("error: ", "" + t);
+                        }
+                    });
+                }
             }
         });
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) activity.getSystemService(
+                        Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(
+                activity.getCurrentFocus().getWindowToken(), 0);
     }
 
     private void pullData() {
@@ -137,6 +158,15 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
     }
 
     private void init(View view) {
+        back = (RelativeLayout) view.findViewById(R.id.rl_back_comment);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideSoftKeyboard(getActivity());
+
+                getActivity().onBackPressed();
+            }
+        });
         rvComment = (RecyclerView) view.findViewById(R.id.rv_comment);
         adapterCommentFragment = new AdapterCommentFragment
                 (datamodel.getComment(), getContext(), getActivity().getSupportFragmentManager());

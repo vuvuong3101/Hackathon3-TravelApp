@@ -6,15 +6,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import vu.travelapp.R;
-import vu.travelapp.models.DataModel;
 import vu.travelapp.networks.pullData.CommentJSONModel;
 
 /**
@@ -65,8 +61,8 @@ public class AdapterCommentFragment extends RecyclerView.Adapter<AdapterCommentF
         }
 
         private void init(View itemView) {
-            tvName = (TextView) itemView.findViewById(R.id.tv_name);
-            tvSentence = (TextView) itemView.findViewById(R.id.tv_sentence);
+            tvName = (TextView) itemView.findViewById(R.id.user_name_comment);
+            tvSentence = (TextView) itemView.findViewById(R.id.tv_comments);
         }
 
         private void setData(CommentJSONModel data, Context context) {
