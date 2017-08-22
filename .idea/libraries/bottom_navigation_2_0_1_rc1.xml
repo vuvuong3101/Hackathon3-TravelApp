@@ -1,13 +1,8 @@
 <component name="libraryTable">
   <library name="bottom-navigation-2.0.1-rc1">
     <CLASSES>
-<<<<<<< HEAD
       <root url="jar://$USER_HOME$/.android/build-cache/6f1f60e9039aa1cc3f3173498dd7f2891982426f/output/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.android/build-cache/6f1f60e9039aa1cc3f3173498dd7f2891982426f/output/res" />
-=======
-      <root url="file://$USER_HOME$/.android/build-cache/c53bcd23c0b593cd29b4d585f2c87e3ba82b5c62/output/res" />
-      <root url="jar://$USER_HOME$/.android/build-cache/c53bcd23c0b593cd29b4d585f2c87e3ba82b5c62/output/jars/classes.jar!/" />
->>>>>>> 0ce0fe79fa67e29e648bf9748cd64c704d9abce8
     </CLASSES>
     <JAVADOC />
     <SOURCES />

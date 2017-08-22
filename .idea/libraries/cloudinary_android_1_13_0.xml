@@ -1,13 +1,8 @@
 <component name="libraryTable">
   <library name="cloudinary-android-1.13.0">
     <CLASSES>
-<<<<<<< HEAD
       <root url="jar://$USER_HOME$/.android/build-cache/2a61aa99d0f932cf4d835afc4b3fe230196a7eb6/output/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.android/build-cache/2a61aa99d0f932cf4d835afc4b3fe230196a7eb6/output/res" />
-=======
-      <root url="jar://$USER_HOME$/.android/build-cache/4dd30cf0e0789ecddd55277d9e4b7a63575c6279/output/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.android/build-cache/4dd30cf0e0789ecddd55277d9e4b7a63575c6279/output/res" />
->>>>>>> 0ce0fe79fa67e29e648bf9748cd64c704d9abce8
     </CLASSES>
     <JAVADOC />
     <SOURCES>
