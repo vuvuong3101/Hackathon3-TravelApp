@@ -26,7 +26,7 @@
             <ImageView
                 app:layout_collapseMode="parallax"
                 android:scaleType="centerCrop"
-                android:src="@drawable/userbg"
+                android:src="@drawable/backgroundaaa"
                 android:layout_width="match_parent"
                 android:layout_height="250dp" />
             <ImageView
@@ -59,14 +59,14 @@
                         android:layout_centerInParent="true"
                         android:layout_marginBottom="6dp"
                         android:src="@drawable/girl"
-                        android:layout_width="80dp"
+                        android:layout_width="95dp"
                         android:layout_height="80dp" />
                     <TextView
                         android:id="@+id/profile_user_name"
                         android:textColor="#000000"
                         android:textStyle="bold"
                         android:textSize="16sp"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="18dp"
                         android:layout_centerHorizontal="true"
                         android:text="MayYan Gordle"
                         android:layout_below="@+id/profile_avatar"
@@ -151,7 +151,7 @@
             <LinearLayout
                 android:paddingLeft="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="10dp"
                 android:orientation="vertical"
                 android:id="@+id/table_user"
                 android:layout_width="wrap_content"
@@ -171,7 +171,7 @@
             </LinearLayout>
             <android.support.v7.widget.RecyclerView
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="6dp"
+                android:layout_marginRight="0dp"
                 android:layout_below="@+id/table_user"
                 android:background="#fff"
                 android:id="@+id/rv_posted_profile_fragment"
