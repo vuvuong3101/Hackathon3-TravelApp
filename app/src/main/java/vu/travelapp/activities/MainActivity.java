@@ -1,5 +1,6 @@
 package vu.travelapp.activities;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.RelativeLayout;
 
 import com.facebook.GraphRequest;
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout user;
     private ProfileModel profileModel;
     private SpaceNavigationView spaceNavigationView;
+    private SearchView searchView;
 
 
     @Override
@@ -134,6 +137,14 @@ public class MainActivity extends AppCompatActivity {
                 ScreenManager.openFragment(getSupportFragmentManager(), new SearchFragment(), R.id.rl_content);
             }
         });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                ScreenManager.openFragment(getSupportFragmentManager(), new SearchFragment(), R.id.rl_content);
+                return true;
+            }
+        });
         return true;
     }
 
@@ -170,8 +181,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         spaceNavigationView.changeCurrentItem(0);
+        hideSoftKeyboard(this);
         super.onBackPressed();
 
+
+    }
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) activity.getSystemService(
+                        Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(
+                activity.getCurrentFocus().getWindowToken(), 0);
     }
 
 

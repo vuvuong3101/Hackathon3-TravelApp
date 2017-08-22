@@ -7,7 +7,7 @@
     android:background="@color/colorPrimary"
     android:clickable="true"
     android:orientation="vertical"
-    android:visibility="invisible">
+    android:visibility="visible">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"

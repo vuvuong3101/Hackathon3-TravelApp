@@ -61,7 +61,6 @@ public class Intro extends AppCompatActivity {
                     Intent intent = new Intent(Intro.this, LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
-                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                     finish();
                 }
             }, 0);
@@ -137,8 +136,6 @@ public class Intro extends AppCompatActivity {
                             Log.d(TAG, "onCompleted: Đã lấy dữ liệu người dùng từ facebook" + profileModel.getLocation() + profileModel.getBirthday());
                             Intent intent = new Intent(Intro.this, MainActivity.class);
                             startActivity(intent);
-                            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
                         } catch (JSONException | IOException e) {
                             e.printStackTrace();
                         }

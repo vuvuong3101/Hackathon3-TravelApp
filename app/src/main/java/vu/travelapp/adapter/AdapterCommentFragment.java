@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 import vu.travelapp.R;
@@ -23,6 +25,11 @@ public class AdapterCommentFragment extends RecyclerView.Adapter<AdapterCommentF
     private View.OnClickListener onClickListener;
     View view;
     private FragmentManager fragmentManager;
+    private int countCM;
+
+    public int getCountCM() {
+        return countCM;
+    }
 
     public AdapterCommentFragment(List<CommentJSONModel> commentJSONModelList, Context context, FragmentManager fragmentManager) {
         this.commentJSONModelList = commentJSONModelList;
@@ -35,6 +42,7 @@ public class AdapterCommentFragment extends RecyclerView.Adapter<AdapterCommentF
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.item_comment, viewGroup, false);
         view.setOnClickListener(onClickListener);
+        EventBus.getDefault().postSticky(commentJSONModelList);
         return new AdapterCommentFragment.CommentModelViewHolder(view);
     }
 
@@ -49,7 +57,7 @@ public class AdapterCommentFragment extends RecyclerView.Adapter<AdapterCommentF
 
     @Override
     public int getItemCount() {
-        return commentJSONModelList.size();
+        return countCM = commentJSONModelList.size();
     }
 
     public class CommentModelViewHolder extends RecyclerView.ViewHolder {

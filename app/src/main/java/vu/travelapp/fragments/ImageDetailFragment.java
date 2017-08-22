@@ -1,5 +1,6 @@
 package vu.travelapp.fragments;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -32,6 +33,7 @@ public class ImageDetailFragment extends Fragment {
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private RelativeLayout iv_back;
+    private Dialog dialog;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

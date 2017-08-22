@@ -134,7 +134,6 @@ public class LoginActivity extends AppCompatActivity {
 
                             EventBus.getDefault().postSticky(profileModel); //Chuyển dữ liệu profile sang Home Screen Activity
                             Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
-                            overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
                             startActivity(myIntent);
                             Log.d(TAG, "onCompleted: Đã lấy dữ liệu người dùng từ facebook" + profileModel.getLocation() + profileModel.getBirthday());
                         } catch (JSONException | IOException e) {

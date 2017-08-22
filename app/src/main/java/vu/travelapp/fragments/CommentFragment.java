@@ -62,8 +62,8 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
+        refresh();
         process();
-
     }
 
     @Override
@@ -76,7 +76,6 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
         name = sharedPreferences.getString("name","");
         Log.d("share preferences: ","" + name);
         init(view);
-        refresh();
         return view;
     }
 
@@ -84,6 +83,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                adapterCommentFragment.notifyDataSetChanged();
                 pullData();
             }
         });
@@ -170,7 +170,10 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
         rvComment = (RecyclerView) view.findViewById(R.id.rv_comment);
         adapterCommentFragment = new AdapterCommentFragment
                 (datamodel.getComment(), getContext(), getActivity().getSupportFragmentManager());
-        rvComment.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        rvComment.setLayoutManager(linearLayoutManager);
         rvComment.setAdapter(adapterCommentFragment);
         etComment = (EditText) view.findViewById(R.id.et_comment);
         btSendComment = (Button) view.findViewById(R.id.bt_send_commnet);

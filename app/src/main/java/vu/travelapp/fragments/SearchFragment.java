@@ -45,7 +45,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         init(view);
         return view;
     }
-
+    
     private void init(View view) {
         rvSearch = (RecyclerView) view.findViewById(R.id.rv_search);
         dataModelList = new ArrayList<>();

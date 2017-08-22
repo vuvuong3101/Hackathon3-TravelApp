@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,12 +33,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import vu.travelapp.R;
 import vu.travelapp.activities.MainActivity;
 import vu.travelapp.fragments.CommentFragment;
-import vu.travelapp.fragments.HomeFragment;
 import vu.travelapp.fragments.ImageDetailFragment;
 import vu.travelapp.fragments.UserFragment;
 import vu.travelapp.managers.ScreenManager;
 import vu.travelapp.models.DataModel;
 import vu.travelapp.models.ProfileModel;
+import vu.travelapp.networks.pullData.CommentJSONModel;
 import vu.travelapp.networks.updateData.UpdateLikeRequestModel;
 import vu.travelapp.networks.updateData.UpdateLikeResponseModel;
 import vu.travelapp.networks.updateData.UpdateService;
@@ -59,6 +58,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
     private FragmentManager fragmentManager;
     Fragment fragment;
     ShareDialog shareDialog;
+    private CommentJSONModel commentJSONModel;
 
     public AdapterHomeFragment(List<DataModel> dataModels, Context context, FragmentManager fragmentManager, Fragment fragment) {
         this.dataModels = dataModels;
@@ -104,7 +104,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
         ImageView ivItemPictureHome;
         TextView tvContent, tvUserName, tvTime, tv_like;
         ImageView ivLike;
-        TextView tvLike;
+        TextView tvLike, tv_comment;
         TextView tvDestination;
         LinearLayout llLike, llComment, content, llShareFaceBook;
         ImageView imageHomeFragment;
@@ -112,27 +112,29 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
         private ProfileModel profileModel;
         boolean like = false;
         LinearLayout llChat;
-
+        AdapterCommentFragment adapterCommentFragment;
         public HomeModelViewHolder(View itemView) {
             super(itemView);
             this.init(itemView);
             view = itemView;
         }
 
+
+
+
         private void init(View itemView) {
             ivItemPictureHome = (ImageView) itemView.findViewById(R.id.item_image);
             tvContent = (TextView) itemView.findViewById(R.id.tv_content);
             tvUserName = (TextView) itemView.findViewById(R.id.user_name);
             llLike = (LinearLayout) itemView.findViewById(R.id.like);
+            tv_comment = (TextView) itemView.findViewById(R.id.count_comment);
             llComment = (LinearLayout) itemView.findViewById(R.id.chat);
             imageHomeFragment = (ImageView) itemView.findViewById(R.id.item_image);
             avatarUser = (ImageView) itemView.findViewById(R.id.avatar_user);
             ivLike = (ImageView) itemView.findViewById(R.id.ic_like);
-            tvLike = (TextView) itemView.findViewById(R.id.text_like);
             content = (LinearLayout) itemView.findViewById(R.id.item_content);
             tvTime = (TextView) itemView.findViewById(R.id.time);
             tvDestination = (TextView) itemView.findViewById(R.id.tv_destination_home);
-            tv_like = (TextView) itemView.findViewById(R.id.text_like);
             llChat = (LinearLayout) itemView.findViewById(R.id.chat);
             llShareFaceBook = (LinearLayout) itemView.findViewById(R.id.share_facebook);
 

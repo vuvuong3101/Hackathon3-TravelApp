@@ -28,7 +28,7 @@
     </item>
     <item>
         <shape>
-            <corners android:radius="0dp" />
+            <corners android:radius="1dp" />
             <solid android:color="@android:color/transparent" />
             <stroke
                 android:width="0dp"
