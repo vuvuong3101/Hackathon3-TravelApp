@@ -165,6 +165,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void sendRequest() {
         try {
+            Log.d("mylocation: ",""+ myLocation);
             new DirectionFinder(this, myLocation, destination).execute();
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
