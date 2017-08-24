@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="placesearch-1.0.1">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.android/build-cache/c153af24fbab5dfd97de7ea4c3ed845a7bd3a581/output/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.android/build-cache/c153af24fbab5dfd97de7ea4c3ed845a7bd3a581/output/res" />
+      <root url="file://$USER_HOME$/.android/build-cache/2464e4a3e43c187ff5d6e11bcbb1aac78e7db591/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/2464e4a3e43c187ff5d6e11bcbb1aac78e7db591/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1054125796702",
+    "firebase_url": "https://hackathon3-travelapp.firebaseio.com",
+    "project_id": "hackathon3-travelapp",
+    "storage_bucket": "hackathon3-travelapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054125796702:android:014d7336767100dd",
+        "android_client_info": {
+          "package_name": "vu.travelapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054125796702-k43u6r6scs227fmcaiq0c2epeamae9m2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vu.travelapp",
+            "certificate_hash": "f36c224c0893260a1b29e2920919487e86f10e68"
+          }
+        },
+        {
+          "client_id": "1054125796702-ju99506vksk6keelhf4cjdhll8ukaupe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcOEKQZS9mDnDGewhlinL6u0QVjSXCabg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1054125796702-ju99506vksk6keelhf4cjdhll8ukaupe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

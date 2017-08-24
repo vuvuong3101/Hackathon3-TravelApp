@@ -15,6 +15,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
@@ -41,11 +44,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private AdapterHomeFragment adapterHomeFragment;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ImageView ivImageHome;
+    private DatabaseReference databaseReference;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.addToBackStack("HomeFragment");
