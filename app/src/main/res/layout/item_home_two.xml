@@ -144,7 +144,8 @@
                         android:layout_margin="6dp"
                         android:src="@drawable/ic_like" />
                     <TextView
-                        android:text="45"
+                        android:id="@+id/tv_like"
+                        android:text="0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
@@ -168,7 +169,7 @@
                         android:src="@drawable/ic_chat" />
                     <TextView
                         android:id="@+id/count_comment"
-                        android:text="23 "
+                        android:text="0 "
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>

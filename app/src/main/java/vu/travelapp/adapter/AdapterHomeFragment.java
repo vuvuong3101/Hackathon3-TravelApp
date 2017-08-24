@@ -131,6 +131,8 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             llComment = (LinearLayout) itemView.findViewById(R.id.chat);
             imageHomeFragment = (ImageView) itemView.findViewById(R.id.item_image);
             avatarUser = (ImageView) itemView.findViewById(R.id.avatar_user);
+            tv_like = (TextView) itemView.findViewById(R.id.tv_like);
+            tv_comment = (TextView) itemView.findViewById(R.id.count_comment );
             ivLike = (ImageView) itemView.findViewById(R.id.ic_like);
             content = (LinearLayout) itemView.findViewById(R.id.item_content);
             tvTime = (TextView) itemView.findViewById(R.id.time);
@@ -176,6 +178,9 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 tvUserName.setText(dataModel.getName());
                 tvContent.setText(dataModel.getContent());
                 tvTime.setText(dataModel.getTimeUpload());
+                tv_like.setText(String.valueOf(dataModel.getLike()));
+                tv_comment.setText(String.valueOf(dataModel.getComment().size()));
+
                 view.setTag(dataModel);
                 tvDestination.setText(dataModel.getDestination());
                 Picasso.with(context).load("https://graph.facebook.com/" + dataModels.get(getAdapterPosition()).getUserid() + "/picture?type=large").into(avatarUser);

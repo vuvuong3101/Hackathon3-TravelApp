@@ -7,6 +7,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +24,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import vu.travelapp.Maps.MapsActivity;
 import vu.travelapp.R;
+import vu.travelapp.adapter.AdapterCommentFragment;
 import vu.travelapp.models.DataModel;
 import vu.travelapp.networks.pullData.CommentJSONModel;
 
@@ -29,11 +32,13 @@ public class ImageDetailFragment extends Fragment {
     private FloatingActionButton fabDirection;
     private DataModel dataModel;
     private ImageView imageHeader;
-    private TextView tvDestination, tvContent;
+    private TextView tvDestination, tvContent, tvLike,tvComment;
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private RelativeLayout iv_back;
     private Dialog dialog;
+    RecyclerView recyclerView;
+    AdapterCommentFragment adapterCommentFragment;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,6 +80,16 @@ public class ImageDetailFragment extends Fragment {
 //        tvDestination.setText(dataModel.getDestination());
         tvContent.setText(dataModel.getContent());
         Picasso.with(getContext()).load(dataModel.getImage()).into(imageHeader);
+        tvLike.setText(String.valueOf(dataModel.getLike()));
+        tvComment.setText(String.valueOf(dataModel.getComment().size()));
+
+        adapterCommentFragment = new AdapterCommentFragment
+                (dataModel.getComment(), getContext(), getActivity().getSupportFragmentManager());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(adapterCommentFragment);
 
     }
 
@@ -85,6 +100,9 @@ public class ImageDetailFragment extends Fragment {
     }
 
     private void init(View view) {
+        tvLike = (TextView) view.findViewById(R.id.count_like);
+        tvComment = (TextView) view.findViewById(R.id.count_comment_detail);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rv_comment_detail);
         fabDirection = (FloatingActionButton) view.findViewById(R.id.iv_location);
         iv_back = (RelativeLayout) view.findViewById(R.id.back_detals);
         imageHeader = (ImageView) view.findViewById(R.id.header);

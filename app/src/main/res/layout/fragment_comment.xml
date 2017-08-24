@@ -66,7 +66,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <RelativeLayout
-        android:background="#e6e6e6"
+        android:background="#ffffff"
         android:gravity="center_vertical"
         android:layout_centerVertical="true"
         android:id="@+id/rl_comment"
@@ -116,7 +116,7 @@
             android:id="@+id/rv_comment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#efefef">
+            android:background="#ffffff">
 
         </android.support.v7.widget.RecyclerView>
     </android.support.v4.widget.SwipeRefreshLayout>

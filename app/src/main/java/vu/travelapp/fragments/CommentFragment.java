@@ -93,6 +93,13 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
         btSendComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                rvComment.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Call smooth scroll
+                        rvComment.smoothScrollToPosition(Integer.valueOf(datamodel.getComment().size()));
+                    }
+                });
                 pullData();
                 hideSoftKeyboard(getActivity());
                 adapterCommentFragment.notifyDataSetChanged();
