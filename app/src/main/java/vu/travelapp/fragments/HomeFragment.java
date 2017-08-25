@@ -15,8 +15,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -29,6 +32,7 @@ import retrofit2.Response;
 import vu.travelapp.R;
 import vu.travelapp.adapter.AdapterHomeFragment;
 import vu.travelapp.models.DataModel;
+import vu.travelapp.networks.comment.comment;
 import vu.travelapp.networks.pullData.CommentJSONModel;
 import vu.travelapp.networks.pullData.DataModelJson;
 import vu.travelapp.networks.pullData.GetAllDataModel;
@@ -45,6 +49,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private SwipeRefreshLayout swipeRefreshLayout;
     private ImageView ivImageHome;
     private DatabaseReference databaseReference;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,7 +86,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onResponse(Call<List<DataModelJson>> call, Response<List<DataModelJson>> response) {
                 for (int i = 0; i < response.body().size(); i++) {
-                    DataModel dataModel = new DataModel();
+                    final DataModel dataModel = new DataModel();
                     dataModel.setTimeUpload(response.body().get(i).getTimeupload());
                     dataModel.setName(response.body().get(i).getUsername());
                     dataModel.setImage(response.body().get(i).getImage());
@@ -90,14 +95,26 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     dataModel.setContent(response.body().get(i).getContent());
                     dataModel.setLike(response.body().get(i).getLike());
                     dataModel.setId(response.body().get(i).get_id());
-                    List<CommentJSONModel> commentJSONModels = new ArrayList<>();
-                    for(CommentJSONModel commentJSONModel: response.body().get(i).getComment()){
-                        commentJSONModels.add(commentJSONModel);
-                        Log.d("","comment: "+ commentJSONModel.getName()+ "   "+commentJSONModel.getSentence());
-                    }
+                    databaseReference = database.getReference(response.body().get(i).get_id());
+                    final List<CommentJSONModel> commentJSONModels = new ArrayList<CommentJSONModel>();
+                    databaseReference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for(DataSnapshot commentSnapshot : dataSnapshot.getChildren()){
+                                comment comment = (comment) commentSnapshot.getValue(comment.class);
+                                CommentJSONModel commentJSONModel = new CommentJSONModel("","","");
+                                commentJSONModels.add(commentJSONModel);
+                            }
+                            Log.d("size: ",""+commentJSONModels.size());
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
                     dataModel.setComment(commentJSONModels);
                     dataModelList.add(dataModel);
-                    Log.d(TAG, "onResponse: Đã lấy dữ liệu từ server" + dataModel.getDestination());
                 }
                 adapterHomeFragment.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
@@ -106,7 +123,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onFailure(Call<List<DataModelJson>> call, Throwable t) {
                 Toast.makeText(getContext(), "Không kết nối", Toast.LENGTH_SHORT).show();
-                Log.d(TAG, String.format("onFailure: %s", t.toString()));
             }
         });
         rvHomeFragment = (RecyclerView) view.findViewById(R.id.rv_data_home_fragment);
@@ -116,6 +132,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         linearLayoutManager.setStackFromEnd(true);
         rvHomeFragment.setLayoutManager(linearLayoutManager);
         rvHomeFragment.setAdapter(adapterHomeFragment);
+
+    }
+
+    private void pullComment(){
 
     }
 

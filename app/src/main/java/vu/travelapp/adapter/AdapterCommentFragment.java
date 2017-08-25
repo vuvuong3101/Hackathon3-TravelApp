@@ -6,10 +6,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+<<<<<<< HEAD
 import com.github.curioustechizen.ago.RelativeTimeTextView;
 import com.github.siyamed.shapeimageview.CircularImageView;
+=======
+import com.squareup.picasso.Picasso;
+>>>>>>> 628acd0e42764862ba7e1000543e2a42d8039a09
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -34,6 +39,7 @@ public class AdapterCommentFragment extends RecyclerView.Adapter<AdapterCommentF
     private FragmentManager fragmentManager;
     CircularImageView avt_user;
     private int countCM;
+    private ImageView avatar;
 
     public int getCountCM() {
         return countCM;
@@ -82,6 +88,7 @@ public class AdapterCommentFragment extends RecyclerView.Adapter<AdapterCommentF
             avt_user = (CircularImageView) itemView.findViewById(R.id.avt_user_comment);
             tvName = (TextView) itemView.findViewById(R.id.user_name_comment);
             tvSentence = (TextView) itemView.findViewById(R.id.tv_comments);
+            avatar = (ImageView) itemView.findViewById(R.id.avt_user_comment);
         }
 
         private void setData(CommentJSONModel data, Context context) {
@@ -89,7 +96,11 @@ public class AdapterCommentFragment extends RecyclerView.Adapter<AdapterCommentF
 
                 tvName.setText(data.getName());
                 tvSentence.setText(data.getSentence());
+<<<<<<< HEAD
 
+=======
+                Picasso.with(context).load(data.getUrlImage()).into(avatar);
+>>>>>>> 628acd0e42764862ba7e1000543e2a42d8039a09
             }
         }
     }
