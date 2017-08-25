@@ -11,7 +11,7 @@
         android:paddingRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <com.github.siyamed.shapeimageview.CircularImageView
+        <ImageView
             android:layout_marginTop="2dp"
             android:src="@drawable/girl"
             android:id="@+id/avt_user_comment"

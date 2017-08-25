@@ -63,7 +63,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
     private Button btSendComment;
     private List<DataModel> dataModelList;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private String name;
+    private String name, urlImage;
     private RelativeLayout back;
     private TextInputEditText inputText;
     private DatabaseReference databaseReference;
@@ -85,6 +85,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference(datamodel.getId());
         name = sharedPreferences.getString("name","");
+        urlImage = sharedPreferences.getString("urlImage","");
         Log.d("share preferences: ","" + name);
         init(view);
         return view;
@@ -103,7 +104,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
         btSendComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final comment comment = new comment(name, String.valueOf(etComment.getText()));
+                final comment comment = new comment(name, String.valueOf(etComment.getText()), urlImage);
                 Log.d("comment: ","" + etComment.getText().toString());
                 rvComment.post(new Runnable() {
                     @Override
@@ -181,7 +182,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
                 commentJSONModels.clear();
                 for(DataSnapshot commentSnapshot : dataSnapshot.getChildren()){
                     comment comment = (comment) commentSnapshot.getValue(comment.class);
-                    CommentJSONModel commentJSONModel = new CommentJSONModel(comment.getName(),comment.getSentence());
+                    CommentJSONModel commentJSONModel = new CommentJSONModel(comment.getName(),comment.getSentence(), comment.getUrlImage());
                     Log.d("comment model 2"," đây rồi: "+ comment.getName()+" "+comment.getSentence());
                     commentJSONModels.add(commentJSONModel);
                 }

@@ -7,13 +7,23 @@ package vu.travelapp.networks.comment;
 public class comment {
     private String name;
     private String sentence;
+    private String urlImage;
 
     public comment() {
     }
 
-    public comment(String name, String sentence) {
+    public comment(String name, String sentence, String urlImage) {
         this.name = name;
         this.sentence = sentence;
+        this.urlImage = urlImage;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 
     public String getName() {
