@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -31,10 +32,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import vu.travelapp.R;
 import vu.travelapp.adapter.AdapterCommentFragment;
 import vu.travelapp.models.DataModel;
+import vu.travelapp.networks.RetrofitFactory;
 import vu.travelapp.networks.comment.comment;
+import vu.travelapp.networks.notifications_service.NotificationJSON;
+import vu.travelapp.networks.notifications_service.NotificationRequestJSON;
+import vu.travelapp.networks.notifications_service.NotificationResponse;
+import vu.travelapp.networks.notifications_service.PushNotificationService;
 import vu.travelapp.networks.pullData.CommentJSONModel;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -54,7 +63,10 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
     private RelativeLayout back;
     private TextInputEditText inputText;
     private DatabaseReference databaseReference;
+
+    private FirebaseMessaging firebaseMessaging;
     List<CommentJSONModel> commentJSONModels = new ArrayList<CommentJSONModel>();
+    private static final String TAG = CommentFragment.class.toString();
 
     @Override
     public void onResume() {
@@ -73,10 +85,10 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
         databaseReference = database.getReference(datamodel.getId());
         name = sharedPreferences.getString("name", "");
         String id = sharedPreferences.getString("id", "");
-        Log.d("share preferences: ", "" + name+ id);
-        name = sharedPreferences.getString("name","");
-        urlImage = sharedPreferences.getString("urlImage","");
-        Log.d("share preferences: ","" + name);
+        Log.d("share preferences: ", "" + name + id);
+        name = sharedPreferences.getString("name", "");
+        urlImage = sharedPreferences.getString("urlImage", "");
+        Log.d("share preferences: ", "" + name);
         init(view);
         return view;
     }
@@ -96,7 +108,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 final comment comment = new comment(name, String.valueOf(etComment.getText()), urlImage);
-                Log.d("comment: ","" + etComment.getText().toString());
+                Log.d("comment: ", "" + etComment.getText().toString());
                 rvComment.post(new Runnable() {
                     @Override
                     public void run() {
@@ -105,12 +117,35 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
                             Log.d("succesful ", "comment");
                             etComment.setText("");
                             rvComment.smoothScrollToPosition(Integer.valueOf(datamodel.getComment().size()));
-                        }else {
+                            postNotifications();
+                            /*******************PUSH NOTIFICATION*********************/
+                            NotificationJSON notificationJSON = new NotificationJSON();
+                            notificationJSON.setBody(String.format("Bạn %s giấu tên đã bình luận vào ảnh!", comment.getName()));
+                            notificationJSON.setTitle("Thông báo");
+                            NotificationRequestJSON notificationRequestJSON = new NotificationRequestJSON();
+                            notificationRequestJSON.setNotification(notificationJSON);
+                            notificationRequestJSON.setTo("hung");
+
+                            RetrofitFactory retrofitFactory = RetrofitFactory.getInstance();
+                            retrofitFactory.create(PushNotificationService.class).pushNotificationService(notificationRequestJSON).enqueue(new Callback<NotificationResponse>() {
+                                @Override
+                                public void onResponse(Call<NotificationResponse> call, Response<NotificationResponse> response) {
+                                    Log.d(TAG, String.format("onResponse: Đã gửi notification %s", response.body().getMessage_id()));
+                                }
+
+                                @Override
+                                public void onFailure(Call<NotificationResponse> call, Throwable t) {
+                                    Log.d(TAG, String.format("onFailure: Lỗi chết người %s", t.toString()));
+                                }
+                            });
+                            /******************************************************************/
+                        } else {
                         }
                     }
                 });
                 pullData();
                 hideSoftKeyboard(getActivity());
+
                 adapterCommentFragment.notifyDataSetChanged();
 //                if(etComment.getText()==null){
 //                    Toast.makeText(getActivity(),"Chưa có comment nào!",Toast.LENGTH_SHORT).show();
@@ -176,11 +211,12 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
                 commentJSONModels.clear();
                 for (DataSnapshot commentSnapshot : dataSnapshot.getChildren()) {
                     comment comment = (comment) commentSnapshot.getValue(comment.class);
-                    CommentJSONModel commentJSONModel = new CommentJSONModel(comment.getName(),comment.getSentence(), comment.getUrlImage());
-                    Log.d("comment model 2"," đây rồi: "+ comment.getName()+" "+comment.getSentence());
+                    CommentJSONModel commentJSONModel = new CommentJSONModel(comment.getName(), comment.getSentence(), comment.getUrlImage());
+                    Log.d("comment model 2", " đây rồi: " + comment.getName() + " " + comment.getSentence());
                     commentJSONModels.add(commentJSONModel);
                 }
                 datamodel.setComment(commentJSONModels);
+
                 Log.d("chạy vào đây", " có hay không?" + datamodel.getComment().size());
                 adapterCommentFragment.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
@@ -222,6 +258,13 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
         this.datamodel = datamodel;
     }
 
+    private void postNotifications() {
+        if (firebaseMessaging == null) {
+            firebaseMessaging = FirebaseMessaging.getInstance();
+            firebaseMessaging.subscribeToTopic(datamodel.getId());
+            Log.d(TAG, String.format("postNotifications: Đã đăng kí user vào topic: %s", datamodel.getId()));
+        }
+    }
 
     @Override
     public void onClick(View v) {

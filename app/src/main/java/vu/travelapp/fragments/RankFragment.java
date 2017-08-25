@@ -22,7 +22,7 @@ import vu.travelapp.adapter.AdapterRankFragment;
 import vu.travelapp.models.DataModel;
 import vu.travelapp.networks.pullData.DataModelJson;
 import vu.travelapp.networks.pullData.GetAllDataModel;
-import vu.travelapp.networks.pullData.RetrofitFactory;
+import vu.travelapp.networks.RetrofitFactory;
 
 /**
  * Created by trongphuong1011 on 8/15/2017.

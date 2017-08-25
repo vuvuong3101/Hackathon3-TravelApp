@@ -24,7 +24,7 @@ import vu.travelapp.adapter.AdapterSearchFragment;
 import vu.travelapp.models.DataModel;
 import vu.travelapp.networks.pullData.DataModelJson;
 import vu.travelapp.networks.pullData.GetAllDataModel;
-import vu.travelapp.networks.pullData.RetrofitFactory;
+import vu.travelapp.networks.RetrofitFactory;
 import vu.travelapp.utils.FuzzyMatch;
 
 /**

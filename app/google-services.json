@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1054125796702-6t5b37ravcvvh1vvgq2tpivfebuvc7in.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vu.travelapp",
+            "certificate_hash": "67af7401e986fcb20b52c64cda95de0361588105"
+          }
+        },
+        {
           "client_id": "1054125796702-k43u6r6scs227fmcaiq0c2epeamae9m2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
