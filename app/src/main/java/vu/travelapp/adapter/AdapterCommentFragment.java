@@ -9,12 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-<<<<<<< HEAD
 import com.github.curioustechizen.ago.RelativeTimeTextView;
 import com.github.siyamed.shapeimageview.CircularImageView;
-=======
 import com.squareup.picasso.Picasso;
->>>>>>> 628acd0e42764862ba7e1000543e2a42d8039a09
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -85,7 +82,6 @@ public class AdapterCommentFragment extends RecyclerView.Adapter<AdapterCommentF
 
         private void init(View itemView) {
             tvTimeCm = (RelativeTimeTextView) itemView.findViewById(R.id.time_comment);
-            avt_user = (CircularImageView) itemView.findViewById(R.id.avt_user_comment);
             tvName = (TextView) itemView.findViewById(R.id.user_name_comment);
             tvSentence = (TextView) itemView.findViewById(R.id.tv_comments);
             avatar = (ImageView) itemView.findViewById(R.id.avt_user_comment);
@@ -96,11 +92,8 @@ public class AdapterCommentFragment extends RecyclerView.Adapter<AdapterCommentF
 
                 tvName.setText(data.getName());
                 tvSentence.setText(data.getSentence());
-<<<<<<< HEAD
 
-=======
                 Picasso.with(context).load(data.getUrlImage()).into(avatar);
->>>>>>> 628acd0e42764862ba7e1000543e2a42d8039a09
             }
         }
     }
