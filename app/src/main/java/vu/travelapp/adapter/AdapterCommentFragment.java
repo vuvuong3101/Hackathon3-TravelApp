@@ -8,11 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.github.curioustechizen.ago.RelativeTimeTextView;
+import com.github.siyamed.shapeimageview.CircularImageView;
+
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
 import vu.travelapp.R;
+import vu.travelapp.models.DataModel;
+import vu.travelapp.models.ProfileModel;
 import vu.travelapp.networks.pullData.CommentJSONModel;
 
 /**
@@ -22,9 +27,12 @@ import vu.travelapp.networks.pullData.CommentJSONModel;
 public class AdapterCommentFragment extends RecyclerView.Adapter<AdapterCommentFragment.CommentModelViewHolder> {
     private List<CommentJSONModel> commentJSONModelList;
     private Context context;
+    private ProfileModel profileModel;
+    private List<DataModel> dataModels;
     private View.OnClickListener onClickListener;
     View view;
     private FragmentManager fragmentManager;
+    CircularImageView avt_user;
     private int countCM;
 
     public int getCountCM() {
@@ -62,6 +70,7 @@ public class AdapterCommentFragment extends RecyclerView.Adapter<AdapterCommentF
 
     public class CommentModelViewHolder extends RecyclerView.ViewHolder {
         private TextView tvName, tvSentence;
+        private RelativeTimeTextView tvTimeCm;
         public CommentModelViewHolder(View itemView) {
             super(itemView);
             this.init(itemView);
@@ -69,14 +78,18 @@ public class AdapterCommentFragment extends RecyclerView.Adapter<AdapterCommentF
         }
 
         private void init(View itemView) {
+            tvTimeCm = (RelativeTimeTextView) itemView.findViewById(R.id.time_comment);
+            avt_user = (CircularImageView) itemView.findViewById(R.id.avt_user_comment);
             tvName = (TextView) itemView.findViewById(R.id.user_name_comment);
             tvSentence = (TextView) itemView.findViewById(R.id.tv_comments);
         }
 
         private void setData(CommentJSONModel data, Context context) {
             if (data != null) {
+
                 tvName.setText(data.getName());
                 tvSentence.setText(data.getSentence());
+
             }
         }
     }

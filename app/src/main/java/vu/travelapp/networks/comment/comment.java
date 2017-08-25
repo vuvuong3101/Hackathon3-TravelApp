@@ -8,12 +8,12 @@ public class comment {
     private String name;
     private String sentence;
 
-    public comment() {
-    }
-
     public comment(String name, String sentence) {
         this.name = name;
         this.sentence = sentence;
+    }
+
+    public comment() {
     }
 
     public String getName() {

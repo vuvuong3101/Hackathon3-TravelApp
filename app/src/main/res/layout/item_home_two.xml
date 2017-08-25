@@ -7,7 +7,10 @@
 
     <android.support.v7.widget.CardView
         app:cardCornerRadius="6dp"
-        android:layout_margin="6dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="6dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -33,7 +36,7 @@
                     android:src="@drawable/user"/>
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_weight="6.5"
+                    android:layout_weight="7.0"
                     android:gravity="center_vertical"
                     android:layout_marginRight="6dp"
                     android:layout_marginLeft="6dp"
@@ -77,12 +80,13 @@
                 android:layout_height="wrap_content">
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="250dp">
+                    android:layout_height="wrap_content">
                     <com.github.siyamed.shapeimageview.RoundedImageView
                         android:id="@+id/item_image"
                         android:layout_width="match_parent"
-                        android:layout_height="250dp"
+                        android:layout_height="wrap_content"
                         android:layout_margin="0dp"
+                        android:maxHeight="800dp"
                         android:src="@drawable/sapa"
                         app:siRadius="0dp">
                     </com.github.siyamed.shapeimageview.RoundedImageView>

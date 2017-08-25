@@ -8,6 +8,7 @@ public class CommentJSONModel {
     private String name;
     private String sentence;
 
+
     public CommentJSONModel(String name, String sentence) {
         this.name = name;
         this.sentence = sentence;

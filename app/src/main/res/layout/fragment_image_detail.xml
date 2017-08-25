@@ -36,11 +36,7 @@
                 android:background="@drawable/gradient_thumbail"
                 android:layout_width="match_parent"
                 android:layout_height="55dp" />
-            <ImageView
-                android:layout_gravity="bottom"
-                android:background="@drawable/gradienttop1"
-                android:layout_width="match_parent"
-                android:layout_height="55dp" />
+
             <android.support.v7.widget.Toolbar
                 app:contentInsetEnd="0dp"
                 app:contentInsetLeft="0dp"

@@ -4,7 +4,6 @@ package vu.travelapp.fragments;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -18,7 +17,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,25 +28,14 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Query;
 import vu.travelapp.R;
 import vu.travelapp.adapter.AdapterCommentFragment;
 import vu.travelapp.models.DataModel;
-import vu.travelapp.networks.comment.CommentService;
-import vu.travelapp.networks.comment.RequestCommentJSON;
-import vu.travelapp.networks.comment.ResponseCommentJSON;
 import vu.travelapp.networks.comment.comment;
 import vu.travelapp.networks.pullData.CommentJSONModel;
-import vu.travelapp.networks.pullData.DataModelJson;
-import vu.travelapp.networks.pullData.GetAllDataModel;
-import vu.travelapp.networks.pullData.RetrofitFactory;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -84,8 +71,9 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("datauser", MODE_PRIVATE);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference(datamodel.getId());
-        name = sharedPreferences.getString("name","");
-        Log.d("share preferences: ","" + name);
+        name = sharedPreferences.getString("name", "");
+        String id = sharedPreferences.getString("id", "");
+        Log.d("share preferences: ", "" + name+ id);
         init(view);
         return view;
     }
@@ -100,18 +88,22 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
     }
 
     private void process() {
+        final long timeComment = new Date().getTime();
         btSendComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final comment comment = new comment(name, String.valueOf(etComment.getText()));
-                Log.d("comment: ","" + etComment.getText().toString());
+                Log.d("comment: ", "" + etComment.getText().toString()+ timeComment);
                 rvComment.post(new Runnable() {
                     @Override
                     public void run() {
-                        databaseReference.push().setValue(comment);
-                        Log.d("succesful ","comment");
-                        etComment.setText("");
-                        rvComment.smoothScrollToPosition(Integer.valueOf(datamodel.getComment().size()));
+                        if (!comment.equals("")) {
+                            databaseReference.push().setValue(comment);
+                            Log.d("succesful ", "comment");
+                            etComment.setText("");
+                            rvComment.smoothScrollToPosition(Integer.valueOf(datamodel.getComment().size()));
+                        }else {
+                        }
                     }
                 });
                 pullData();
@@ -179,10 +171,10 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 commentJSONModels.clear();
-                for(DataSnapshot commentSnapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot commentSnapshot : dataSnapshot.getChildren()) {
                     comment comment = (comment) commentSnapshot.getValue(comment.class);
-                    CommentJSONModel commentJSONModel = new CommentJSONModel(comment.getName(),comment.getSentence());
-                    Log.d("comment model 2"," đây rồi: "+ comment.getName()+" "+comment.getSentence());
+                    CommentJSONModel commentJSONModel = new CommentJSONModel(comment.getName(), comment.getSentence());
+                    Log.d("comment model 2", " đây rồi: " + comment.getName() + " " + comment.getSentence());
                     commentJSONModels.add(commentJSONModel);
                 }
                 datamodel.setComment(commentJSONModels);

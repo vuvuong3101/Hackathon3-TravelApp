@@ -89,6 +89,7 @@ public class ImageDetailFragment extends Fragment {
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
+        adapterCommentFragment.notifyDataSetChanged();
         recyclerView.setAdapter(adapterCommentFragment);
 
     }
