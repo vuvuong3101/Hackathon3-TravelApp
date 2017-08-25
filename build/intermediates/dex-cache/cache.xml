@@ -3,6 +3,15 @@
 
     <item
         is-multidex="true"
+        jar="C:\Users\ADMIN\Documents\Hackathon3-FinalApp-TravelApp\app\libs\commons-lang3-3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="905075e6c80f206bbe6cf1e809d2caa69f420c76">
+        <dex dex="C:\Users\ADMIN\Documents\Hackathon3-FinalApp-TravelApp\app\build\intermediates\transforms\dex\debug\folders\1000\2\commons-lang3-3.1_850ceeec772e8f4040e94e1245697342c826aeae\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\ADMIN\Documents\Hackathon3-FinalApp-TravelApp\app\libs\guava-14.0.1.jar"
         jumboMode="true"
         optimize="true"
@@ -21,29 +30,11 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\ADMIN\Documents\Hackathon3-FinalApp-TravelApp\app\libs\commons-lang3-3.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="905075e6c80f206bbe6cf1e809d2caa69f420c76">
-        <dex dex="C:\Users\ADMIN\Documents\Hackathon3-FinalApp-TravelApp\app\build\intermediates\transforms\dex\debug\folders\1000\2\commons-lang3-3.1_850ceeec772e8f4040e94e1245697342c826aeae\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\ADMIN\.android\build-cache\1478d1bc1117acea18094e566694a2f420867af4\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="c3602395f624dcee44c338a32d8c8779b94b0d7c">
-        <dex dex="C:\Users\ADMIN\Documents\Hackathon3-FinalApp-TravelApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ccc30178f7b7492602910adbadca20ac36a59c60\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\ADMIN\Documents\Hackathon3-FinalApp-TravelApp\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
-        sha1="4b772d07558316a86380ae8d60c6162273152648">
+        sha1="5bfaaed06ccde475e2304f1475053c4020b4125b">
         <dex dex="C:\Users\ADMIN\Documents\Hackathon3-FinalApp-TravelApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_e28f8ed55072ba15e115208e309edf39cd681e49\classes.dex" />
     </item>
 
