@@ -233,6 +233,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             UpdateService updateService = retrofit.create(UpdateService.class);
             if (like == false) {
                 ivLike.setImageResource(R.drawable.ic_like_selected);
+                tv_like.setText(String.valueOf(data.getLike()+1));
                 updateService.updatelike(new UpdateLikeRequestModel(data.getId(), data.getLike() + 1)).enqueue(new Callback<UpdateLikeResponseModel>() {
                     @Override
                     public void onResponse(Call<UpdateLikeResponseModel> call, Response<UpdateLikeResponseModel> response) {
@@ -247,6 +248,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 like = true;
             } else {
                 ivLike.setImageResource(R.drawable.ic_like);
+                tv_like.setText(String.valueOf(data.getLike()));
                 updateService.updatelike(new UpdateLikeRequestModel(data.getId(), data.getLike())).enqueue(new Callback<UpdateLikeResponseModel>() {
                     @Override
                     public void onResponse(Call<UpdateLikeResponseModel> call, Response<UpdateLikeResponseModel> response) {
