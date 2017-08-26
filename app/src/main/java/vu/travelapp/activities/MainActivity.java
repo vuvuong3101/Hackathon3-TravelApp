@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
                     public void accept(Boolean aBoolean) throws Exception {
                     }
                 });
-
         Init();
         progress();
 
@@ -108,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onItemReselected(int itemIndex, String itemName) {
-               
+
             }
         });
     }
@@ -178,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     public static void hideSoftKeyboard(Activity activity) {
         InputMethodManager inputMethodManager =
                 (InputMethodManager) activity.getSystemService(

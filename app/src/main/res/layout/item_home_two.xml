@@ -52,12 +52,37 @@
                         android:text="Admin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
-                    <TextView
-                        android:id="@+id/time"
-                        android:textSize="12sp"
-                        android:text="Đăng lúc : 17/08/2017"
+                    <RelativeLayout
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:id="@+id/public_icon"
+                            android:src="@drawable/ic_public"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="3dp"
+                            android:layout_toRightOf="@+id/public_icon"
+                            android:textSize="12sp"
+                            android:id="@+id/tv_1"
+                            android:text="Đăng lúc: "
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="1dp"
+                            android:layout_toRightOf="@+id/tv_1"
+                            android:id="@+id/time"
+                            android:textSize="12sp"
+                            android:text="17/08/2017"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+
                 </LinearLayout>
                 <ImageView
                     android:padding="10dp"
@@ -86,7 +111,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="0dp"
-                        android:maxHeight="800dp"
+                        android:minHeight="180dp"
+                        android:maxHeight="400dp"
                         android:src="@drawable/sapa"
                         app:siRadius="0dp">
                     </com.github.siyamed.shapeimageview.RoundedImageView>
@@ -105,7 +131,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="6dp"
                     android:gravity="left"
                     android:id="@+id/tv_content"
                     android:layout_width="match_parent"
@@ -148,6 +177,8 @@
                         android:layout_margin="6dp"
                         android:src="@drawable/ic_like" />
                     <TextView
+                        android:textStyle="bold"
+                        android:textColor="#b7000000"
                         android:id="@+id/tv_like"
                         android:text="0"
                         android:layout_width="wrap_content"
@@ -165,13 +196,17 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_marginTop="2dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="3dp"
                         android:id="@+id/ic_comment"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="6dp"
                         android:src="@drawable/ic_chat" />
                     <TextView
+                        android:layout_gravity="center_vertical"
+                        android:textStyle="bold"
+                        android:textColor="#b7000000"
                         android:id="@+id/count_comment"
                         android:text="0 "
                         android:layout_width="wrap_content"
@@ -194,6 +229,8 @@
                         android:layout_margin="6dp"
                         android:src="@drawable/ic_share_white_24dp" />
                     <TextView
+                        android:textStyle="bold"
+                        android:textColor="#b7000000"
                         android:text="Share "
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -216,6 +253,8 @@
                         android:layout_margin="6dp"
                         android:src="@drawable/ic_map" />
                     <TextView
+                        android:textStyle="bold"
+                        android:textColor="#b7000000"
                         android:text="Bản đồ"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -226,30 +265,5 @@
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
-    <!--<RelativeLayout-->
-        <!--android:id="@+id/rl_comment"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="50dp">-->
-        <!--<TextView-->
-            <!--android:id="@+id/name"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentLeft="true"-->
-            <!--android:text="Tên"-->
-            <!--android:textSize="20sp"/>-->
-        <!--<TextView-->
-            <!--android:id="@+id/chamcham"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text=" : "-->
-            <!--android:textSize="20sp"-->
-            <!--android:layout_toRightOf="@id/name"/>-->
-        <!--<TextView-->
-            <!--android:id="@+id/sentence"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Comment"-->
-            <!--android:layout_toRightOf="@id/chamcham"-->
-            <!--android:textSize="20sp"/>-->
-    <!--</RelativeLayout>-->
+
 </LinearLayout>

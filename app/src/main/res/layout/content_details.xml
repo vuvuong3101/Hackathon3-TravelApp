@@ -133,11 +133,13 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:layout_gravity="center_vertical"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_location_on" />
-
                         <TextView
+                            android:layout_marginLeft="2dp"
+                            android:layout_gravity="center_vertical"
                             android:id="@+id/tv_location"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -154,7 +156,7 @@
                     android:layout_weight="1"
                     android:padding="0dp"
                     android:src="@drawable/ic_directions_black_24dp"
-                    app:backgroundTint="#01a9bf"
+                    app:backgroundTint="#0672c6"
                     app:fabSize="mini" />
 
             </LinearLayout>

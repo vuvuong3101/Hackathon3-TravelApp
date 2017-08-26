@@ -83,6 +83,13 @@ public class UploadFragment extends Fragment {
     }
 
     private void setEvent() {
+        ivUploadImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choosePhoto = false;
+                ThuVien();
+            }
+        });
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
