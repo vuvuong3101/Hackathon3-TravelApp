@@ -126,7 +126,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
                             notificationJSON.setTitle("Thông báo");
                             NotificationRequestJSON notificationRequestJSON = new NotificationRequestJSON();
                             notificationRequestJSON.setNotification(notificationJSON);
-                            notificationRequestJSON.setTo("hung");
+                            notificationRequestJSON.setTo(datamodel.getId());
 
                             RetrofitFactory retrofitFactory = RetrofitFactory.getInstance();
                             retrofitFactory.create(PushNotificationService.class).pushNotificationService(notificationRequestJSON).enqueue(new Callback<NotificationResponse>() {

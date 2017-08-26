@@ -53,7 +53,7 @@ public class NotificationFirebaseService extends FirebaseMessagingService {
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+//        startActivity(intent);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, 0);
 
         Notification.Builder builder = new Notification.Builder(this);

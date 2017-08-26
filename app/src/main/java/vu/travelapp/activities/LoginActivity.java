@@ -129,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString("name",profileModel.getName());
                             editor.putString("urlImage", profileModel.getUrlImage());
                             editor.commit();
-                            Log.d("share pre: ","" + sharedPreferences.getString("name",""));
+                            Log.d("share pre: ","" + sharedPreferences.getString("name","") + sharedPreferences.getString("urlImage",""));
                             URL url = new URL(profileModel.getUrlImage());
                             profileModel.setUrl(url);
 
