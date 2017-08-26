@@ -7,8 +7,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -45,7 +47,8 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         init(view);
         return view;
     }
-    
+
+
     private void init(View view) {
         rvSearch = (RecyclerView) view.findViewById(R.id.rv_search);
         dataModelList = new ArrayList<>();
@@ -53,7 +56,6 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         getAllDataModel.getDataModels().enqueue(new Callback<List<DataModelJson>>() {
             @Override
             public void onResponse(Call<List<DataModelJson>> call, Response<List<DataModelJson>> response) {
-                int maxRatio = 0;
                 for (int i = 0; i < response.body().size(); i++) {
                     DataModel dataModel = new DataModel();
                     dataModel.setName(response.body().get(i).getUsername());
@@ -64,17 +66,15 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
                     dataModel.setLike(response.body().get(i).getLike());
                     dataModel.setId(response.body().get(i).get_id());
                     int ratio = FuzzyMatch.getRatio((String) charSequence, response.body().get(i).getDestination(), false);
-                    if (ratio > maxRatio) {
-                        maxRatio = ratio;
-                        dataModelList.add(0, dataModel);
-                        Log.d("Max ratio: ", "" + maxRatio);
-                    } else{
-//                        dataModelList.add(dataModel);
-//                        Log.d("dataModel", ": "+dataModel.getDestination());
+                    if (ratio > 70) {
+                        dataModelList.add(dataModel);
                     }
                 }
-                Log.d(" Kết quả",":  "+dataModelList.get(0).getDestination());
-                adapterSearchFragment.notifyDataSetChanged();
+                if(dataModelList.size()==0){
+                    Toast.makeText(getContext(),"Không có thông tin cần tìm",Toast.LENGTH_SHORT).show();
+                } else{
+                    adapterSearchFragment.notifyDataSetChanged();
+                }
             }
 
             @Override

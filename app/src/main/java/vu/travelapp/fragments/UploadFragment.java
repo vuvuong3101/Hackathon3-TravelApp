@@ -98,9 +98,7 @@ public class UploadFragment extends Fragment {
                                     .build(getActivity());
                     startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
                 } catch (GooglePlayServicesRepairableException e) {
-                    Log.d("buggggggggggg", " 1");
                 } catch (GooglePlayServicesNotAvailableException e) {
-                    Log.d("buggggggggggg", " 1");
                 }
             }
         });
@@ -211,7 +209,8 @@ public class UploadFragment extends Fragment {
         this.profileModel = profileModel;
         Log.d(TAG, "onReceivedProfileModel: upload data");
     }
-
+    private boolean choosePhoto = false;
+    private Bitmap bitmap2;
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
@@ -219,34 +218,38 @@ public class UploadFragment extends Fragment {
                 Place place = PlaceAutocomplete.getPlace(getActivity(), data);
                 myDestination = (String) place.getName();
                 tvDestination.setText(myDestination);
+                ivUploadImage.setImageBitmap(bitmap2);
                 Log.i("hoho", "Place: " + myDestination);
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
                 Status status = PlaceAutocomplete.getStatus(getActivity(), data);
                 // TODO: Handle the error.
-                Log.i("hoho", status.getStatusMessage());
+                Log.i("", status.getStatusMessage());
 
             } else if (resultCode == getActivity().RESULT_CANCELED) {
                 // The user canceled the operation.
             }
         }
-        if (resultCode == getActivity().RESULT_OK) {
+        if (resultCode == getActivity().RESULT_OK && choosePhoto == false) {
             if (requestCode == REQUEST_CHOOSE_PHOTO) {
-                try {
-                    Uri imageUri = data.getData();
-                    getLinkURL(imageUri);
-                    InputStream is = getActivity().getContentResolver().openInputStream(imageUri);
-                    Bitmap bitmap = BitmapFactory.decodeStream(is);
+                    try {
+                        Uri imageUri = data.getData();
+                        getLinkURL(imageUri);
+                        InputStream is = getActivity().getContentResolver().openInputStream(imageUri);
+                        Bitmap bitmap = BitmapFactory.decodeStream(is);
+                        bitmap2 = bitmap;
 //                    String path = imageUri.getPath();
 //                    ExifInterface exif = new ExifInterface(path);
 //                    int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,1);
 //                    Matrix matrix = new Matrix();
 //                    matrix.postRotate(90);
 //                    Bitmap sourcebitmap = Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(),bitmap.getHeight(),matrix,true);
-                    ivUploadImage.setImageBitmap(bitmap);
-                    rlMain.setVisibility(View.VISIBLE);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                        ivUploadImage.setImageBitmap(bitmap);
+                        rlMain.setVisibility(View.VISIBLE);
+                        choosePhoto = true;
+                        Log.d("chosse"," "+choosePhoto);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
             } else if (requestCode == REQUEST_TAKE_PHOTO) {
                 Picasso.with(getContext()).load(data.getData()).into(ivUploadImage);
             }

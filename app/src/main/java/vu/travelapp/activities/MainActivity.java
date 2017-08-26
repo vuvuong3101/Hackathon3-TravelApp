@@ -137,14 +137,6 @@ public class MainActivity extends AppCompatActivity {
                 ScreenManager.openFragment(getSupportFragmentManager(), new SearchFragment(), R.id.rl_content);
             }
         });
-
-        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
-            @Override
-            public boolean onClose() {
-                ScreenManager.openFragment(getSupportFragmentManager(), new SearchFragment(), R.id.rl_content);
-                return true;
-            }
-        });
         return true;
     }
 

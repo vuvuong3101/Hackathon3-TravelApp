@@ -100,7 +100,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             for(DataSnapshot commentSnapshot : dataSnapshot.getChildren()){
                                 comment comment = (comment) commentSnapshot.getValue(comment.class);
-                                CommentJSONModel commentJSONModel = new CommentJSONModel("","","");
+                                CommentJSONModel commentJSONModel = new CommentJSONModel(comment.getName(),comment.getSentence(),comment.getUrlImage());
                                 commentJSONModels.add(commentJSONModel);
                             }
                             Log.d("size: ",""+commentJSONModels.size());
