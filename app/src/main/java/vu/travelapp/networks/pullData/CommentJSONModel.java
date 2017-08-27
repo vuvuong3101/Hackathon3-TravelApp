@@ -1,14 +1,22 @@
 package vu.travelapp.networks.pullData;
 
+import io.realm.RealmObject;
+import io.realm.RealmObjectSchema;
+
 /**
  * Created by trongphuong1011 on 8/19/2017.
  */
 
-public class CommentJSONModel {
+public class CommentJSONModel extends RealmObject {
+    //đó em cho thành object rồi
+    // và trong kia em set comment cho nó
+
     private String name;
     private String sentence;
     private String urlImage;
 
+    public CommentJSONModel() {
+    }
 
     public CommentJSONModel(String name, String sentence, String urlImage) {
         this.name = name;

@@ -78,6 +78,7 @@ public class AdapterCommentFragment extends RecyclerView.Adapter<AdapterCommentF
             super(itemView);
             this.init(itemView);
             view = itemView;
+            setIsRecyclable(false);
         }
 
         private void init(View itemView) {

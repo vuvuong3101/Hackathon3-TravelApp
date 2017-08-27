@@ -2,13 +2,15 @@ package vu.travelapp.models;
 
 import java.util.List;
 
+import io.realm.RealmList;
+import io.realm.RealmObject;
 import vu.travelapp.networks.pullData.CommentJSONModel;
 
 /**
  * Created by ADMIN on 8/11/2017.
  */
 
-public class DataModel {
+public class DataModel extends RealmObject {
     private String id;
     private String userid;
     private String image;
@@ -17,15 +19,18 @@ public class DataModel {
     private String destination;
     private String timeUpload;
     private int like;
-    private List<CommentJSONModel> comment;
+    private RealmList<CommentJSONModel> comment;
     public DataModel() {
     }
 
-    public List<CommentJSONModel> getComment() {
+    // đây là cái em lưu
+    // nó có 1 cái list
+
+    public RealmList<CommentJSONModel> getComment() {
         return comment;
     }
 
-    public void setComment(List<CommentJSONModel> comment) {
+    public void setComment(RealmList<CommentJSONModel> comment) {
         this.comment = comment;
     }
 
