@@ -117,6 +117,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             super(itemView);
             this.init(itemView);
             view = itemView;
+            setIsRecyclable(false);
         }
 
 
