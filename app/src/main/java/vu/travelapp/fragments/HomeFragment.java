@@ -24,12 +24,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.RealmList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import vu.travelapp.R;
 import vu.travelapp.adapter.AdapterHomeFragment;
 import vu.travelapp.models.DataModel;
+import vu.travelapp.models.RealmHandle;
 import vu.travelapp.networks.comment.comment;
 import vu.travelapp.networks.pullData.CommentJSONModel;
 import vu.travelapp.networks.pullData.DataModelJson;
@@ -94,7 +96,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     dataModel.setLike(response.body().get(i).getLike());
                     dataModel.setId(response.body().get(i).get_id());
                     databaseReference = database.getReference(response.body().get(i).get_id());
-                    final List<CommentJSONModel> commentJSONModels = new ArrayList<CommentJSONModel>();
+                    final RealmList<CommentJSONModel> commentJSONModels = new RealmList<>();
                     databaseReference.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -111,7 +113,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                         }
                     });
-                    dataModel.setComment(commentJSONModels);
+                    dataModel.setComment((RealmList<CommentJSONModel>) commentJSONModels);
+                    RealmHandle.addMusicTypes(dataModel);
                     dataModelList.add(dataModel);
                 }
                 adapterHomeFragment.notifyDataSetChanged();

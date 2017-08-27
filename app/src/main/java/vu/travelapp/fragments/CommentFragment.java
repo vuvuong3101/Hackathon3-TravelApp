@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import io.realm.RealmList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -67,7 +68,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
     private DatabaseReference databaseReference;
 
     private FirebaseMessaging firebaseMessaging;
-    List<CommentJSONModel> commentJSONModels = new ArrayList<CommentJSONModel>();
+    RealmList<CommentJSONModel> commentJSONModels = new RealmList<>();
     private static final String TAG = CommentFragment.class.toString();
 
     @Override
@@ -217,7 +218,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
                     Log.d("comment model 2", " đây rồi: " + comment.getName() + " " + comment.getSentence());
                     commentJSONModels.add(commentJSONModel);
                 }
-                datamodel.setComment(commentJSONModels);
+                datamodel.setComment((RealmList<CommentJSONModel>) commentJSONModels);
 
                 Log.d("chạy vào đây", " có hay không?" + datamodel.getComment().size());
                 adapterCommentFragment.notifyDataSetChanged();
