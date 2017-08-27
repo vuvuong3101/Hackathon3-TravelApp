@@ -43,7 +43,7 @@ import vu.travelapp.networks.RetrofitFactory;
  */
 public class HomeFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = HomeFragment.class.toString();
-    public static List<DataModel> dataModelList;
+    public static List<DataModel> dataModelList = new ArrayList<>();
     private RecyclerView rvHomeFragment;
     private AdapterHomeFragment adapterHomeFragment;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -60,10 +60,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.addToBackStack("HomeFragment");
         fragmentTransaction.commit();
-        this.init(view);
+        setupUI(view);
+        init(view);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refreshlayout);
         Refesh();
         return view;
+    }
+
+    private void setupUI(View view) {
+        ivImageHome = (ImageView) view.findViewById(R.id.item_image);
+        rvHomeFragment = (RecyclerView) view.findViewById(R.id.rv_data_home_fragment);
     }
 
     private void Refesh() {
@@ -78,9 +84,23 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void init(View view) {
-        ivImageHome = (ImageView) view.findViewById(R.id.item_image);
+        adapterHomeFragment = new AdapterHomeFragment(dataModelList, getContext(), getActivity().getSupportFragmentManager(), this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        rvHomeFragment.setLayoutManager(linearLayoutManager);
+        rvHomeFragment.setAdapter(adapterHomeFragment);
+        if(RealmHandle.getDataModel().size() == 0){
+            loadData();
+        } else {
+            Log.d("Realm size ",""+RealmHandle.getDataModel().size());
+            dataModelList.addAll(RealmHandle.getDataModel());
+            adapterHomeFragment.notifyDataSetChanged();
+        }
 
-        dataModelList = new ArrayList<>();
+    }
+
+    private void loadData(){
         GetAllDataModel getAllDataModel = RetrofitFactory.getInstance().create(GetAllDataModel.class);
         getAllDataModel.getDataModels().enqueue(new Callback<List<DataModelJson>>() {
             @Override
@@ -114,7 +134,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         }
                     });
                     dataModel.setComment((RealmList<CommentJSONModel>) commentJSONModels);
-                    RealmHandle.addMusicTypes(dataModel);
+                    RealmHandle.addDataModel(dataModel);
                     dataModelList.add(dataModel);
                 }
                 adapterHomeFragment.notifyDataSetChanged();
@@ -126,18 +146,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getContext(), "Không kết nối", Toast.LENGTH_SHORT).show();
             }
         });
-        rvHomeFragment = (RecyclerView) view.findViewById(R.id.rv_data_home_fragment);
-        adapterHomeFragment = new AdapterHomeFragment(dataModelList, getContext(), getActivity().getSupportFragmentManager(), this);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setReverseLayout(true);
-        linearLayoutManager.setStackFromEnd(true);
-        rvHomeFragment.setLayoutManager(linearLayoutManager);
-        rvHomeFragment.setAdapter(adapterHomeFragment);
-
-    }
-
-    private void pullComment(){
-
     }
 
 
