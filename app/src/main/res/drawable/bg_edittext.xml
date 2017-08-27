@@ -3,14 +3,14 @@
 
     <item>
         <shape>
-            <corners android:radius="6dp" />
-            <solid android:color="#fff" />
+            <corners android:radius="0dp" />
+            <solid android:color="#e6efefef" />
         </shape>
     </item>
     <item>
         <shape>
-            <solid android:color="#ffffff" />
-            <corners android:radius="6dp" />
+            <solid android:color="#e2e2e2" />
+            <corners android:radius="0dp" />
         </shape>
     </item>
     <item
@@ -18,9 +18,9 @@
         <!-- left is icon size + 2x side padding around icon-->
         <!-- 18 + 8 + 8 -->
         <shape>
-            <solid android:color="#ffffff" />
+            <solid android:color="#f1f1f1" />
             <corners android:radius="6dp"
-                android:topRightRadius="6dp"
+                android:topRightRadius="0dp"
                 android:topLeftRadius="0dp"
                 android:bottomRightRadius="6dp"
                 android:bottomLeftRadius="0dp"/>
@@ -28,11 +28,11 @@
     </item>
     <item>
         <shape>
-            <corners android:radius="1dp" />
+            <corners android:radius="0dp" />
             <solid android:color="@android:color/transparent" />
             <stroke
                 android:width="0dp"
-                android:color="#ffffff" />
+                android:color="#dfdfdf" />
         </shape>
     </item>
 

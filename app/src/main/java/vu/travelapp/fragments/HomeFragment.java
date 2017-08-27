@@ -32,11 +32,11 @@ import vu.travelapp.R;
 import vu.travelapp.adapter.AdapterHomeFragment;
 import vu.travelapp.models.DataModel;
 import vu.travelapp.models.RealmHandle;
+import vu.travelapp.networks.RetrofitFactory;
 import vu.travelapp.networks.comment.comment;
 import vu.travelapp.networks.pullData.CommentJSONModel;
 import vu.travelapp.networks.pullData.DataModelJson;
 import vu.travelapp.networks.pullData.GetAllDataModel;
-import vu.travelapp.networks.RetrofitFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -116,6 +116,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     dataModel.setLike(response.body().get(i).getLike());
                     dataModel.setId(response.body().get(i).get_id());
                     databaseReference = database.getReference(response.body().get(i).get_id());
+
                     final RealmList<CommentJSONModel> commentJSONModels = new RealmList<>();
                     databaseReference.addValueEventListener(new ValueEventListener() {
                         @Override

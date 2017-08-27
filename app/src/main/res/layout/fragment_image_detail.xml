@@ -108,7 +108,7 @@
             android:layout_marginRight="1dp"
             android:id="@+id/bt_send_commnet"
             android:layout_width="60dp"
-            android:layout_height="40dp"
+            android:layout_height="44dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:background="@drawable/radiussend"
