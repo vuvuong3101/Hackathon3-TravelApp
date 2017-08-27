@@ -20,11 +20,17 @@ public class DataModel extends RealmObject {
     private String timeUpload;
     private int like;
     private RealmList<CommentJSONModel> comment;
+    private boolean isLike;
     public DataModel() {
     }
 
-    // đây là cái em lưu
-    // nó có 1 cái list
+    public boolean isLike() {
+        return isLike;
+    }
+
+    public void setLike(boolean like) {
+        isLike = like;
+    }
 
     public RealmList<CommentJSONModel> getComment() {
         return comment;

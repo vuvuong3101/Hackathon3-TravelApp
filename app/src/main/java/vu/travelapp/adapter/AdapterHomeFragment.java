@@ -38,6 +38,7 @@ import vu.travelapp.fragments.UserFragment;
 import vu.travelapp.managers.ScreenManager;
 import vu.travelapp.models.DataModel;
 import vu.travelapp.models.ProfileModel;
+import vu.travelapp.models.RealmHandle;
 import vu.travelapp.networks.pullData.CommentJSONModel;
 import vu.travelapp.networks.updateData.UpdateLikeRequestModel;
 import vu.travelapp.networks.updateData.UpdateLikeResponseModel;

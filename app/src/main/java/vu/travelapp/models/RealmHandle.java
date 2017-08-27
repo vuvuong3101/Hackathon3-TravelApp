@@ -11,7 +11,7 @@ import io.realm.Realm;
 public class RealmHandle {
     public static Realm realm = Realm.getDefaultInstance();
 
-    public static void addMusicTypes(DataModel dataModel){
+    public static void addDataModel(DataModel dataModel){
         realm.beginTransaction();
         realm.copyToRealm(dataModel);
         realm.commitTransaction();
