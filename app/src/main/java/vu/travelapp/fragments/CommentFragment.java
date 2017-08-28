@@ -10,7 +10,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,7 +32,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import io.realm.RealmList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -68,7 +65,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
     private DatabaseReference databaseReference;
 
     private FirebaseMessaging firebaseMessaging;
-    RealmList<CommentJSONModel> commentJSONModels = new RealmList<>();
+    List<CommentJSONModel> commentJSONModels = new ArrayList<CommentJSONModel>();
     private static final String TAG = CommentFragment.class.toString();
 
     @Override
@@ -218,7 +215,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
                     Log.d("comment model 2", " đây rồi: " + comment.getName() + " " + comment.getSentence());
                     commentJSONModels.add(commentJSONModel);
                 }
-                datamodel.setComment((RealmList<CommentJSONModel>) commentJSONModels);
+                datamodel.setComment(commentJSONModels);
 
                 Log.d("chạy vào đây", " có hay không?" + datamodel.getComment().size());
                 adapterCommentFragment.notifyDataSetChanged();

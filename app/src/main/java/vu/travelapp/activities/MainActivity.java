@@ -171,11 +171,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        if (searchView != null && !searchView.isIconified()) {
+            searchView.setIconified(true);
+        }
+        getSupportFragmentManager().popBackStackImmediate("HomeFragment",0);
         spaceNavigationView.changeCurrentItem(0);
         hideSoftKeyboard(this);
         super.onBackPressed();
-
-
     }
 
     public static void hideSoftKeyboard(Activity activity) {

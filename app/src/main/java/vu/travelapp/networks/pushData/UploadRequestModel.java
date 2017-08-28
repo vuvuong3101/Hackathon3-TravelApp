@@ -8,12 +8,12 @@ public class UploadRequestModel {
     private String userid;
     private String image;
     private String username;
-    private String timeupload;
+    private long timeupload;
     private String destination;
     private String content;
     private int like;
 
-    public UploadRequestModel(String userid, String image, String username, String timeupload, String destination, String content, int like) {
+    public UploadRequestModel(String userid, String image, String username, long timeupload, String destination, String content, int like) {
         this.userid = userid;
         this.image = image;
         this.username = username;
@@ -55,11 +55,11 @@ public class UploadRequestModel {
         this.username = username;
     }
 
-    public String getTimeupload() {
+    public long getTimeupload() {
         return timeupload;
     }
 
-    public void setTimeupload(String timeupload) {
+    public void setTimeupload(long timeupload) {
         this.timeupload = timeupload;
     }
 

@@ -35,7 +35,6 @@ import org.greenrobot.eventbus.Subscribe;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -113,7 +112,8 @@ public class UploadFragment extends Fragment {
 
 
     private void postToServer() {
-        String timeUpload = DateFormat.getDateTimeInstance().format(new Date());
+        long timeUpload = new Date().getTime();
+//        String timeUpload = DateFormat.getDateTimeInstance().format(new Date());
         String destination = tvDestination.getText().toString();
         String description = etDescription.getText().toString();
         if (destination.isEmpty() || description.isEmpty()) {

@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -24,9 +23,9 @@ import retrofit2.Response;
 import vu.travelapp.R;
 import vu.travelapp.adapter.AdapterSearchFragment;
 import vu.travelapp.models.DataModel;
+import vu.travelapp.networks.RetrofitFactory;
 import vu.travelapp.networks.pullData.DataModelJson;
 import vu.travelapp.networks.pullData.GetAllDataModel;
-import vu.travelapp.networks.RetrofitFactory;
 import vu.travelapp.utils.FuzzyMatch;
 
 /**
@@ -97,4 +96,5 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         DataModel dataModel = (DataModel) v.getTag();
         Log.d("home fragment: ", "" + dataModel.getLike());
     }
+
 }

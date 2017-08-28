@@ -6,11 +6,9 @@
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView
+        android:layout_marginTop="6dp"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
-        android:padding="1dp"
-        app:cardCornerRadius="1dp"
-        android:layout_marginTop="6dp"
         android:layout_marginBottom="6dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -60,23 +58,15 @@
                         android:layout_height="wrap_content">
                         <ImageView
                             android:layout_centerVertical="true"
-                            android:id="@+id/public_icon"
+                            android:id="@+id/publica"
                             android:src="@drawable/ic_public"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
+
                         <TextView
+                            android:layout_toRightOf="@+id/publica"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="3dp"
-                            android:layout_toRightOf="@+id/public_icon"
-                            android:textSize="12sp"
-                            android:id="@+id/tv_1"
-                            android:text="Đăng lúc: "
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <TextView
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="1dp"
-                            android:layout_toRightOf="@+id/tv_1"
                             android:id="@+id/time"
                             android:textSize="12sp"
                             android:text="17/08/2017"
@@ -107,16 +97,14 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <com.github.siyamed.shapeimageview.RoundedImageView
+                    <ImageView
+                        android:adjustViewBounds="true"
                         android:id="@+id/item_image"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="0dp"
-                        android:minHeight="180dp"
-                        android:maxHeight="400dp"
-                        android:src="@drawable/sapa"
-                        app:siRadius="0dp">
-                    </com.github.siyamed.shapeimageview.RoundedImageView>
+                        android:src="@drawable/dafault">
+                    </ImageView>
                 </RelativeLayout>
                 <TextView
                     android:id="@+id/tv_destination_home"
@@ -127,11 +115,12 @@
                     android:ellipsize="end"
                     android:textStyle="bold"
                     android:textSize="14sp"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/textPrimary"
                     android:maxLines="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <TextView
+                    android:text="yeah"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="2dp"
@@ -142,7 +131,7 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="3"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/textSecond"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -150,7 +139,7 @@
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"
                 android:layout_marginBottom="1dp"
-                android:background="#e4e4e4"
+                android:background="#c9c9c9"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"/>
             <LinearLayout

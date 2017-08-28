@@ -86,7 +86,6 @@
             android:textSize="14sp"
             android:hint="Viết bình luận "
             android:imeOptions="actionSend"
-            android:inputType="textEmailAddress"
             android:paddingBottom="12dp"
             android:paddingLeft="8dp"
             android:paddingRight="12dp"
@@ -96,12 +95,12 @@
             android:layout_marginRight="1dp"
             android:id="@+id/bt_send_commnet"
             android:layout_width="60dp"
-            android:layout_height="42dp"
+            android:layout_height="42.5dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:background="@drawable/radiussend"
+            android:background="#eafcfbfb"
             android:text="Gửi"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="#00a4ea" />
     </RelativeLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout

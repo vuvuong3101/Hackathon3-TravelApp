@@ -3,13 +3,13 @@
 
     <item>
         <shape>
-            <corners android:radius="0dp" />
-            <solid android:color="#e6efefef" />
+            <corners android:radius="6dp" />
+            <solid android:color="#fff" />
         </shape>
     </item>
     <item>
         <shape>
-            <solid android:color="#e2e2e2" />
+            <solid android:color="#eafcfbfb" />
             <corners android:radius="0dp" />
         </shape>
     </item>
@@ -18,21 +18,21 @@
         <!-- left is icon size + 2x side padding around icon-->
         <!-- 18 + 8 + 8 -->
         <shape>
-            <solid android:color="#f1f1f1" />
-            <corners android:radius="6dp"
+            <solid android:color="#eafcfbfb" />
+            <corners android:radius="0dp"
                 android:topRightRadius="0dp"
                 android:topLeftRadius="0dp"
-                android:bottomRightRadius="6dp"
+                android:bottomRightRadius="0dp"
                 android:bottomLeftRadius="0dp"/>
         </shape>
     </item>
     <item>
         <shape>
-            <corners android:radius="0dp" />
+            <corners android:radius="1dp" />
             <solid android:color="@android:color/transparent" />
             <stroke
                 android:width="0dp"
-                android:color="#dfdfdf" />
+                android:color="#ffffff" />
         </shape>
     </item>
 

@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-import java.util.zip.Inflater;
 
 import vu.travelapp.R;
 import vu.travelapp.models.DataModel;
@@ -63,7 +62,7 @@ public class AdapterPostedProfileFragment extends RecyclerView.Adapter<AdapterPo
 
 
         public void setData(DataModel data){
-            Picasso.with(context).load(data.getImage()).into(ivPosted);
+            Picasso.with(context).load(data.getImage()).placeholder(R.drawable.dafault).error(R.drawable.error).into(ivPosted);
             view.setTag(data);
         }
     }

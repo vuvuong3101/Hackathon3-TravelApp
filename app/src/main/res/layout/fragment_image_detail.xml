@@ -25,10 +25,10 @@
             app:titleEnabled="false">
 
             <ImageView
+                android:src="@drawable/dafault"
                 android:id="@+id/header"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:background="@drawable/sapa"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax" />
 
@@ -102,7 +102,9 @@
             android:paddingBottom="12dp"
             android:paddingLeft="8dp"
             android:paddingRight="12dp"
-            android:paddingTop="12dp" />
+            android:paddingTop="12dp" >
+
+        </EditText>
 
         <Button
             android:layout_marginRight="1dp"
@@ -111,9 +113,10 @@
             android:layout_height="44dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:background="@drawable/radiussend"
+            android:background="#eafcfbfb"
             android:text="Gửi"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="#00a4ea" />
+
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

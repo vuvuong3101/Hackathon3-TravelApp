@@ -1,7 +1,6 @@
 package vu.travelapp.adapter;
 
 import android.content.Context;
-import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,7 +68,7 @@ public class AdapterSearchFragment extends RecyclerView.Adapter<AdapterSearchFra
 
         private void setData(DataModel data, Context context) {
             if(data != null) {
-                Picasso.with(context).load(data.getImage()).into(ivSearchImage);
+                Picasso.with(context).load(data.getImage()).placeholder(R.drawable.dafault).into(ivSearchImage);
                 tvDiaDiem.setText(data.getDestination());
                 view.setTag(data);
             }

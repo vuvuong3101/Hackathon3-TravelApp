@@ -1,6 +1,7 @@
 package vu.travelapp.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,7 +22,6 @@ import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -38,7 +38,6 @@ import vu.travelapp.fragments.UserFragment;
 import vu.travelapp.managers.ScreenManager;
 import vu.travelapp.models.DataModel;
 import vu.travelapp.models.ProfileModel;
-import vu.travelapp.models.RealmHandle;
 import vu.travelapp.networks.pullData.CommentJSONModel;
 import vu.travelapp.networks.updateData.UpdateLikeRequestModel;
 import vu.travelapp.networks.updateData.UpdateLikeResponseModel;
@@ -103,8 +102,9 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
 
     public class HomeModelViewHolder extends RecyclerView.ViewHolder {
         ImageView ivItemPictureHome;
-        TextView tvContent, tvUserName, tvTime, tv_like;
-        ImageView ivLike;
+        TextView tvContent, tvUserName, tv_like;
+        ImageView ivLike, ivPublic;
+        TextView tvTime;
         TextView tvLike, tv_comment;
         TextView tvDestination;
         LinearLayout llLike, llComment, content, llShareFaceBook;
@@ -124,6 +124,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
 
 
         private void init(View itemView) {
+            ivPublic = (ImageView) itemView.findViewById(R.id.publica);
             ivItemPictureHome = (ImageView) itemView.findViewById(R.id.item_image);
             tvContent = (TextView) itemView.findViewById(R.id.tv_content);
             tvUserName = (TextView) itemView.findViewById(R.id.user_name);
@@ -140,7 +141,6 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             tvDestination = (TextView) itemView.findViewById(R.id.tv_destination_home);
             llChat = (LinearLayout) itemView.findViewById(R.id.chat);
             llShareFaceBook = (LinearLayout) itemView.findViewById(R.id.share_facebook);
-
             avatarUser.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -170,15 +170,53 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
 
         }
 
+        private static final int SECOND_MILLIS = 1000;
+        private static final int MINUTE_MILLIS = 60 * SECOND_MILLIS;
+        private static final int HOUR_MILLIS = 60 * MINUTE_MILLIS;
+        private static final int DAY_MILLIS = 24 * HOUR_MILLIS;
+
+
+//        public  String getTimeAgo(long time) {
+//
+//        };
+
         public void setData(final DataModel dataModel, final Context context) {
             // get thời gian hiện tại:
-            String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+//            long time = Long.parseLong(dataModel.getTimeUpload());
+            long time = new Date().getTime() - 12;
+            if (time < 1000000000000L) {
+                time *= 1000;
+            }
+            long now = new Date().getTime();
+            if (time > now || time <= 0) {
+            }
+            final long i = now - time;
+            if (i < MINUTE_MILLIS) {
+                tvTime.setText("Vừa xong");
+                tvTime.setTextColor(Color.parseColor("#00a4ea"));
+                ivPublic.setImageResource(R.drawable.ic_public_blue);
+            } else if (i < 2 * MINUTE_MILLIS) {
+                tvTime.setText("1 phút trước");
+            } else if (i < 50 * MINUTE_MILLIS) {
+                String timeset = i / MINUTE_MILLIS + " phút trước";
+                tvTime.setText(timeset);
+            } else if (i < 90 * MINUTE_MILLIS) {
+                tvTime.setText("1 giờ trước");
+            } else if (i < 24 * HOUR_MILLIS) {
+                String timeset =  i / HOUR_MILLIS + " giờ trước";
+                tvTime.setText(timeset);
+            } else if (i < 48 * HOUR_MILLIS) {
+                tvTime.setText("Hôm qua");
+            } else {
+                String timeset =  i / DAY_MILLIS + " ngày trước";
+                tvTime.setText(timeset);
+            }
+
             ////
             if (dataModel != null) {
-                Picasso.with(context).load(dataModel.getImage()).into(ivItemPictureHome); //        <- chính nó đó
+                Picasso.with(context).load(dataModel.getImage()).placeholder(R.drawable.dafault).error(R.drawable.error).into(ivItemPictureHome); //        <- chính nó đó
                 tvUserName.setText(dataModel.getName());
                 tvContent.setText(dataModel.getContent());
-                tvTime.setText(dataModel.getTimeUpload());
                 tv_like.setText(String.valueOf(dataModel.getLike()));
                 tv_comment.setText(String.valueOf(dataModel.getComment().size()));
 

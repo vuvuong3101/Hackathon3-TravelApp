@@ -156,7 +156,7 @@
                     android:layout_weight="1"
                     android:padding="0dp"
                     android:src="@drawable/ic_directions_black_24dp"
-                    app:backgroundTint="#0672c6"
+                    app:backgroundTint="#0197c9"
                     app:fabSize="mini" />
 
             </LinearLayout>

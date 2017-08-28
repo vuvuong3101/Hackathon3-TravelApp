@@ -24,14 +24,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.realm.RealmList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import vu.travelapp.R;
 import vu.travelapp.adapter.AdapterHomeFragment;
 import vu.travelapp.models.DataModel;
-import vu.travelapp.models.RealmHandle;
 import vu.travelapp.networks.RetrofitFactory;
 import vu.travelapp.networks.comment.comment;
 import vu.travelapp.networks.pullData.CommentJSONModel;
@@ -43,7 +41,7 @@ import vu.travelapp.networks.pullData.GetAllDataModel;
  */
 public class HomeFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = HomeFragment.class.toString();
-    public static List<DataModel> dataModelList = new ArrayList<>();
+    public static List<DataModel> dataModelList;
     private RecyclerView rvHomeFragment;
     private AdapterHomeFragment adapterHomeFragment;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -60,16 +58,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.addToBackStack("HomeFragment");
         fragmentTransaction.commit();
-        setupUI(view);
-        init(view);
+        this.init(view);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refreshlayout);
         Refesh();
         return view;
-    }
-
-    private void setupUI(View view) {
-        ivImageHome = (ImageView) view.findViewById(R.id.item_image);
-        rvHomeFragment = (RecyclerView) view.findViewById(R.id.rv_data_home_fragment);
     }
 
     private void Refesh() {
@@ -84,23 +76,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void init(View view) {
-        adapterHomeFragment = new AdapterHomeFragment(dataModelList, getContext(), getActivity().getSupportFragmentManager(), this);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setReverseLayout(true);
-        linearLayoutManager.setStackFromEnd(true);
-        rvHomeFragment.setLayoutManager(linearLayoutManager);
-        rvHomeFragment.setAdapter(adapterHomeFragment);
-        if(RealmHandle.getDataModel().size() == 0){
-            loadData();
-        } else {
-            Log.d("Realm size ",""+RealmHandle.getDataModel().size());
-            dataModelList.addAll(RealmHandle.getDataModel());
-            adapterHomeFragment.notifyDataSetChanged();
-        }
+        ivImageHome = (ImageView) view.findViewById(R.id.item_image);
 
-    }
-
-    private void loadData(){
+        dataModelList = new ArrayList<>();
         GetAllDataModel getAllDataModel = RetrofitFactory.getInstance().create(GetAllDataModel.class);
         getAllDataModel.getDataModels().enqueue(new Callback<List<DataModelJson>>() {
             @Override
@@ -116,8 +94,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     dataModel.setLike(response.body().get(i).getLike());
                     dataModel.setId(response.body().get(i).get_id());
                     databaseReference = database.getReference(response.body().get(i).get_id());
-
-                    final RealmList<CommentJSONModel> commentJSONModels = new RealmList<>();
+                    final List<CommentJSONModel> commentJSONModels = new ArrayList<CommentJSONModel>();
                     databaseReference.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -134,8 +111,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                         }
                     });
-                    dataModel.setComment((RealmList<CommentJSONModel>) commentJSONModels);
-                    RealmHandle.addDataModel(dataModel);
+                    dataModel.setComment(commentJSONModels);
                     dataModelList.add(dataModel);
                 }
                 adapterHomeFragment.notifyDataSetChanged();
@@ -147,6 +123,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getContext(), "Không kết nối", Toast.LENGTH_SHORT).show();
             }
         });
+        rvHomeFragment = (RecyclerView) view.findViewById(R.id.rv_data_home_fragment);
+        adapterHomeFragment = new AdapterHomeFragment(dataModelList, getContext(), getActivity().getSupportFragmentManager(), this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        rvHomeFragment.setLayoutManager(linearLayoutManager);
+        rvHomeFragment.setAdapter(adapterHomeFragment);
+
     }
 
 
