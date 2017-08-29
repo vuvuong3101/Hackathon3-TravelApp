@@ -2,6 +2,7 @@ package vu.travelapp.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -133,7 +134,20 @@ public class MainActivity extends AppCompatActivity {
             public void accept(final CharSequence charSequence) throws Exception {
                 Log.d(TAG, "accept: " + charSequence);
                 EventBus.getDefault().postSticky(charSequence);
-                ScreenManager.openFragment(getSupportFragmentManager(), new SearchFragment(), R.id.rl_content);
+                ScreenManager.openFragment(getSupportFragmentManager(), new SearchFragment(), R.id.rl_content_bottom);
+            }
+        });
+
+        MenuItemCompat.setOnActionExpandListener(menuItem ,new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                ScreenManager.backFragment(getSupportFragmentManager());
+                return true;
             }
         });
         return true;

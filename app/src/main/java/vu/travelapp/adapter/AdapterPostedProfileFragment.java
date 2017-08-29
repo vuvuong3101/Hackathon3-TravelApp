@@ -62,7 +62,7 @@ public class AdapterPostedProfileFragment extends RecyclerView.Adapter<AdapterPo
 
 
         public void setData(DataModel data){
-            Picasso.with(context).load(data.getImage()).placeholder(R.drawable.dafault).error(R.drawable.error).into(ivPosted);
+            Picasso.with(context).load(data.getImage()).into(ivPosted);
             view.setTag(data);
         }
     }

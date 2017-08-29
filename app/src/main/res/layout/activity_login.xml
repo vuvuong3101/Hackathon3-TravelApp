@@ -10,38 +10,38 @@
         android:layout_height="match_parent">
         <ImageView
             android:scaleType="fitXY"
-            android:src="@drawable/background"
+            android:src="@drawable/gradient"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <ImageView
-            android:layout_marginTop="50dp"
+            android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
             android:src="@drawable/logo_login"
             android:layout_width="match_parent"
             android:layout_height="200dp" />
 
         <LinearLayout
+            android:layout_centerInParent="true"
             android:visibility="visible"
             android:orientation="horizontal"
             android:background="@drawable/radius"
             android:gravity="center_vertical"
             android:id="@+id/login_button"
+            android:layout_marginBottom="50dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="150dp"
             android:layout_alignParentBottom="true"
             android:layout_width="270dp"
             android:layout_height="45dp">
-                <ImageView
-                    android:layout_marginLeft="16dp"
+                <com.github.siyamed.shapeimageview.RoundedImageView
+                    android:layout_marginLeft="28dp"
                     android:src="@drawable/ic_facebook"
                     android:layout_width="32dp"
                     android:layout_height="32dp" />
                 <TextView
-                    android:layout_gravity="center_vertical|center"
                     android:layout_marginLeft="16dp"
                     android:text="Đăng nhập với Facebook"
                     android:textStyle="bold"
-                    android:textColor="#f9022b76"
+                    android:textColor="#f90e0e0e"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 

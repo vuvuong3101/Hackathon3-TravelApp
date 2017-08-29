@@ -5,121 +5,151 @@
     android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
-
+        android:padding="1dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="6dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="6dp"
         android:background="@color/colorPrimary"
-        app:cardCornerRadius="8dp">
-
+        >
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/image_rank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:orientation="vertical"
             android:padding="0dp">
 
             <ImageView
+                android:adjustViewBounds="true"
                 android:id="@+id/iv_image_rank"
                 android:layout_width="match_parent"
-                android:layout_height="320dp"
-                android:scaleType="centerCrop"
+                android:layout_height="wrap_content"
                 android:src="@drawable/sapa" />
 
-
-            <!--<android.support.design.widget.FloatingActionButton-->
-                <!--android:id="@+id/avatar_user_rank"-->
-                <!--android:layout_width="50dp"-->
-                <!--android:layout_height="50dp"-->
-                <!--android:layout_gravity="center_vertical"-->
-                <!--android:layout_marginBottom="20dp"-->
-                <!--android:layout_marginStart="10dp"-->
-                <!--android:layout_marginTop="292dp"-->
-                <!--android:src="@drawable/user" />-->
-
-
-            <LinearLayout
-                android:id="@+id/ll_info"
+            <ImageView
+                android:background="@drawable/gradienttop"
+                android:layout_width="match_parent"
+                android:layout_height="80dp" />
+            <ImageView
+                android:padding="16dp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_bookmark_border"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/iv_image_rank"
-                android:background="@color/colorPrimary"
-                android:orientation="horizontal"
-                android:paddingEnd="10dp">
+                android:layout_height="wrap_content" />
+            </RelativeLayout>
+        <RelativeLayout
+            android:layout_below="@+id/image_rank"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/count_like_rank"
+                android:id="@+id/rl_info"
+                android:layout_marginBottom="6dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:layout_marginLeft="4dp"
+                    android:id="@+id/title_image_rank"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAccent"
+                    android:text="Bà Nà hill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
                 <LinearLayout
-                    android:id="@+id/item_content_rank"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
+                    android:id="@+id/user_name_rank"
+                    android:layout_marginLeft="4dp"
+                    android:layout_below="@+id/title_image_rank"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
                     <TextView
-                        android:id="@+id/user_name_rank"
+                        android:textSize="14sp"
+                        android:textColor="#545454"
+                        android:text="Đăng bởi:"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="10dp"
-                        android:text="ADMIN"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textSize="14sp"
 
-                    <LinearLayout
+                        android:text="Marid reulend"
+                        android:textColor="#545454"
+                        android:layout_marginLeft="3dp"
+                        android:id="@+id/user_name"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <!--<TextView-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:paddingStart="10dp"-->
-                            <!--android:text="Ngày đăng:"-->
-                            <!--android:textColor="@color/textSecond"-->
-                            <!--android:textSize="12sp" />-->
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="10dp"
-                            android:text="05/08/2017"
-                            android:textColor="@color/textSecond"
-                            android:textSize="12sp" />
-                    </LinearLayout>
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/iv_image_rank">
-
-                <ImageView
-                    android:id="@+id/iv_bookmark_rank"
+                <LinearLayout
+                    android:layout_below="@+id/user_name_rank"
+                    android:id="@+id/location_rank"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:padding="16dp"
-                    android:src="@drawable/ic_like_selected" />
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/ic_location_on_blue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textSize="14sp"
+                        android:layout_marginLeft="3dp"
+                        android:textColor="#545454"
+                        android:text="Bà Nà hill , Việt Nam "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/tv_like_rank"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_toLeftOf="@id/iv_bookmark_rank"
-                    android:text="13"
-                    android:textColor="@color/bb_darkBackgroundColor" />
+                </LinearLayout>
+
             </RelativeLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_below="@+id/ll_info"/>
-        </RelativeLayout>
+            <RelativeLayout
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="6dp"
+                android:id="@+id/count_like_rank"
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/tv_like_rank"
+                        android:textSize="16sp"
+                        android:textColor="#313131"
+                        android:textStyle="bold"
+                        android:text="254"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textSize="14sp"
+                        android:textColor="#494949"
+                        android:text="Lượt thích "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
 
+            </RelativeLayout>
+        </RelativeLayout>
+        </RelativeLayout>
     </android.support.v7.widget.CardView>
 </RelativeLayout>

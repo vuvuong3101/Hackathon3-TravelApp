@@ -55,13 +55,15 @@ public class RankFragment extends Fragment implements View.OnClickListener {
             }
         });
     }
+
     private void init(View view) {
         dataModelList = new ArrayList<>();
         GetAllDataModel getAllDataModel = RetrofitFactory.getInstance().create(GetAllDataModel.class);
         getAllDataModel.getDataModels().enqueue(new Callback<List<DataModelJson>>() {
             @Override
             public void onResponse(Call<List<DataModelJson>> call, Response<List<DataModelJson>> response) {
-                int maxLike = 0;
+                int maxLike = 5;
+
                 for (int i = 0; i < response.body().size(); i++) {
                     DataModel dataModel = new DataModel();
                     dataModel.setName(response.body().get(i).getUsername());
@@ -75,15 +77,20 @@ public class RankFragment extends Fragment implements View.OnClickListener {
                         dataModelList.add(0, dataModel);
                         Log.d("Max like: ", "" + maxLike);
                     } else {
+                        Log.d(TAG, "onResponse: " + "chay vao else roi");
                         int dataSize = dataModelList.size();
                         for (int j = 0; j < dataSize; j++) {
-                            if (dataModel.getLike() >= dataModelList.get(j).getLike()) {
-                                dataModelList.add(j, dataModel);
-                                break;
-                            }
-                            if (dataModel.getLike() < dataModelList.get(dataSize - 1).getLike()) {
-                                dataModelList.add(dataModel);
-                                break;
+                            if (dataModelList.get(j).getLike() > maxLike) {
+
+
+                                if (dataModel.getLike() >= dataModelList.get(j).getLike()) {
+                                    dataModelList.add(j, dataModel);
+                                    break;
+                                }
+                                if (dataModel.getLike() < dataModelList.get(dataSize - 1).getLike()) {
+                                    dataModelList.add(dataModel);
+                                    break;
+                                }
                             }
                         }
                     }

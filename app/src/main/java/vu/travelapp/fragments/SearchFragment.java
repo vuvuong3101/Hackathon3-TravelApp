@@ -36,17 +36,26 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
     private List<DataModel> dataModelList;
     private RecyclerView rvSearch;
     private AdapterSearchFragment adapterSearchFragment;
-    private CharSequence charSequence;
+    CharSequence charSequence;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         EventBus.getDefault().register(this);
+
         init(view);
+
         return view;
     }
 
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        EventBus.getDefault().unregister(this);
+
+    }
 
     private void init(View view) {
         rvSearch = (RecyclerView) view.findViewById(R.id.rv_search);

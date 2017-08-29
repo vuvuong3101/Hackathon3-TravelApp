@@ -114,13 +114,12 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
         boolean like = false;
         LinearLayout llChat;
         AdapterCommentFragment adapterCommentFragment;
+
         public HomeModelViewHolder(View itemView) {
             super(itemView);
             this.init(itemView);
             view = itemView;
         }
-
-
 
 
         private void init(View itemView) {
@@ -134,7 +133,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             imageHomeFragment = (ImageView) itemView.findViewById(R.id.item_image);
             avatarUser = (ImageView) itemView.findViewById(R.id.avatar_user);
             tv_like = (TextView) itemView.findViewById(R.id.tv_like);
-            tv_comment = (TextView) itemView.findViewById(R.id.count_comment );
+            tv_comment = (TextView) itemView.findViewById(R.id.count_comment);
             ivLike = (ImageView) itemView.findViewById(R.id.ic_like);
             content = (LinearLayout) itemView.findViewById(R.id.item_content);
             tvTime = (TextView) itemView.findViewById(R.id.time);
@@ -176,14 +175,9 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
         private static final int DAY_MILLIS = 24 * HOUR_MILLIS;
 
 
-//        public  String getTimeAgo(long time) {
-//
-//        };
-
         public void setData(final DataModel dataModel, final Context context) {
             // get thời gian hiện tại:
-//            long time = Long.parseLong(dataModel.getTimeUpload());
-            long time = new Date().getTime() - 12;
+            long time = Long.parseLong(dataModel.getTimeUpload());
             if (time < 1000000000000L) {
                 time *= 1000;
             }
@@ -203,18 +197,18 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             } else if (i < 90 * MINUTE_MILLIS) {
                 tvTime.setText("1 giờ trước");
             } else if (i < 24 * HOUR_MILLIS) {
-                String timeset =  i / HOUR_MILLIS + " giờ trước";
+                String timeset = i / HOUR_MILLIS + " giờ trước";
                 tvTime.setText(timeset);
             } else if (i < 48 * HOUR_MILLIS) {
                 tvTime.setText("Hôm qua");
             } else {
-                String timeset =  i / DAY_MILLIS + " ngày trước";
+                String timeset = i / DAY_MILLIS + " ngày trước";
                 tvTime.setText(timeset);
             }
 
             ////
             if (dataModel != null) {
-                Picasso.with(context).load(dataModel.getImage()).placeholder(R.drawable.dafault).error(R.drawable.error).into(ivItemPictureHome); //        <- chính nó đó
+                Picasso.with(context).load(dataModel.getImage()).into(ivItemPictureHome); //        <- chính nó đó
                 tvUserName.setText(dataModel.getName());
                 tvContent.setText(dataModel.getContent());
                 tv_like.setText(String.valueOf(dataModel.getLike()));
@@ -272,7 +266,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             UpdateService updateService = retrofit.create(UpdateService.class);
             if (like == false) {
                 ivLike.setImageResource(R.drawable.ic_like_selected);
-                tv_like.setText(String.valueOf(data.getLike()+1));
+                tv_like.setText(String.valueOf(data.getLike() + 1));
                 updateService.updatelike(new UpdateLikeRequestModel(data.getId(), data.getLike() + 1)).enqueue(new Callback<UpdateLikeResponseModel>() {
                     @Override
                     public void onResponse(Call<UpdateLikeResponseModel> call, Response<UpdateLikeResponseModel> response) {

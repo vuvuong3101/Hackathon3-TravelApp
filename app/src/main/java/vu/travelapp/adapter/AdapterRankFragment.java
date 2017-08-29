@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -67,12 +67,12 @@ public class AdapterRankFragment extends RecyclerView.Adapter<AdapterRankFragmen
         private void init(View itemView) {
             ivImageRank = (ImageView) itemView.findViewById(R.id.iv_image_rank);
             tvLikeRank = (TextView) itemView.findViewById(R.id.tv_like_rank);
-            tvNameRank = (TextView) itemView.findViewById(R.id.user_name_rank);
+            tvNameRank = (TextView) itemView.findViewById(R.id.user_name);
         }
 
         private void setData(DataModel data, Context context) {
-            if(data != null) {
-                Glide.with(context).load(data.getImage()).into(ivImageRank);
+            if (data != null) {
+                Picasso.with(context).load(data.getImage()).into(ivImageRank);
                 tvLikeRank.setText(String.valueOf(data.getLike()));
                 tvNameRank.setText(data.getName());
                 view.setTag(data);

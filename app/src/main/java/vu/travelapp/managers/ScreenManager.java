@@ -18,6 +18,7 @@ public class ScreenManager {
     public static void openFragment(FragmentManager fragmentManager, Fragment fragment, int layoutID) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(layoutID, fragment);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
     public static void replaceFragment(FragmentManager fragmentManager, Fragment fragment, int layoutID) {
@@ -45,5 +46,9 @@ public class ScreenManager {
     public static  void fadeAnimation(Activity a)
     {
         a.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
+    public static  void backFragment(FragmentManager fragmentManager) {
+        fragmentManager.popBackStackImmediate();
     }
 }

@@ -12,21 +12,21 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/mac-vuongvu/Documents/Hackathon3-TravelApp/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="e9de86c119749d3bc571f17a68251026502d1b7f">
+        <dex dex="/Users/mac-vuongvu/Documents/Hackathon3-TravelApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_099899db2884625a89d8d627d75527a7ad727acc/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/mac-vuongvu/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.7.0/9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4/glide-3.7.0.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
         sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
         <dex dex="/Users/mac-vuongvu/Documents/Hackathon3-TravelApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/glide-3.7.0_c73b1875ba75c1957ba3f232fa40b243534d721f/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/mac-vuongvu/Documents/Hackathon3-TravelApp/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="902154f452f9ba32957a4e32999332253bb546ea">
-        <dex dex="/Users/mac-vuongvu/Documents/Hackathon3-TravelApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_099899db2884625a89d8d627d75527a7ad727acc/classes.dex" />
     </item>
     <item
         is-multidex="true"
