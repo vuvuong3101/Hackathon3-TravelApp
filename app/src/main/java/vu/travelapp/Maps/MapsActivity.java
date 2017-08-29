@@ -85,8 +85,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Geocoder geocoder = new Geocoder(getApplicationContext());
                     try {
                         List<Address> addressList = geocoder.getFromLocation(latitude, longtitude, 1);
-                        myLocation = addressList.get(0).getAddressLine(0) + "," + addressList.get(0).getLocality() + ",";
-                        myLocation += addressList.get(0).getCountryName();
+                        myLocation = addressList.get(0).getAddressLine(0);
                         mMap.addMarker(new MarkerOptions().position(latLng).title(myLocation));
                         if (moveCamera == false) {
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16f));
@@ -123,8 +122,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Geocoder geocoder = new Geocoder(getApplicationContext());
                     try {
                         List<Address> addressList = geocoder.getFromLocation(latitude, longtitude, 1);
-                        myLocation = addressList.get(0).getLocality() + ",";
-                        myLocation += addressList.get(0).getCountryName();
+                        myLocation = addressList.get(0).getLocality();
                         mMap.addMarker(new MarkerOptions().position(latLng).title(myLocation));
                         if (moveCamera == false) {
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16f));
@@ -165,7 +163,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void sendRequest() {
         try {
-            Log.d("mylocation: ",""+ myLocation);
+            Log.d("mylocation: ",""+ myLocation + " destination: "+destination);
             new DirectionFinder(this, myLocation, destination).execute();
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
