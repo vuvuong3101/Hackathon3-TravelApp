@@ -15,6 +15,7 @@ import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 
 import vu.travelapp.R;
 import vu.travelapp.activities.LoginActivity;
+import vu.travelapp.managers.ScreenManager;
 
 /**
  * Created by mac-vuongvu on 8/11/17.
@@ -56,7 +57,7 @@ public class SettingFragment  extends android.support.v4.app.Fragment{
         rlInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ScreenManager.openFragment(getActivity().getSupportFragmentManager(),new AboutMeFragment(),R.id.main);
             }
         });
         rlBack.setOnClickListener(new View.OnClickListener() {

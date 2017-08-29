@@ -2,6 +2,7 @@ package vu.travelapp.fragments;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.support.design.internal.NavigationMenu;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.luseen.spacenavigation.SpaceNavigationView;
 import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;

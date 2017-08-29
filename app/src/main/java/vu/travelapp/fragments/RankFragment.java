@@ -72,6 +72,7 @@ public class RankFragment extends Fragment implements View.OnClickListener {
                     dataModel.setContent(response.body().get(i).getContent());
                     dataModel.setLike(response.body().get(i).getLike());
                     dataModel.setId(response.body().get(i).get_id());
+                    dataModel.setDestination(response.body().get(i).getDestination());
                     if (dataModel.getLike() > maxLike) {
                         maxLike = dataModel.getLike();
                         dataModelList.add(0, dataModel);

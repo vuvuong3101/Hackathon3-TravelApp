@@ -37,6 +37,7 @@ import vu.travelapp.R;
 import vu.travelapp.fragments.HomeFragment;
 import vu.travelapp.fragments.RankFragment;
 import vu.travelapp.fragments.SearchFragment;
+import vu.travelapp.fragments.SettingFragment;
 import vu.travelapp.fragments.UploadFragment;
 import vu.travelapp.fragments.UserFragment;
 import vu.travelapp.managers.ScreenManager;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     public static String id_me;
     private static final String TAG = MainActivity.class.toString();
     private Toolbar toolbar;
-    private RelativeLayout user;
+    private RelativeLayout settings;
     private ProfileModel profileModel;
     private SpaceNavigationView spaceNavigationView;
     private SearchView searchView;
@@ -73,18 +74,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void progress() {
-        user.setOnClickListener(new View.OnClickListener() {
+        settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 requestFaceboook();
-                ScreenManager.replaceFragment(getSupportFragmentManager(), new UserFragment(), R.id.main);
+                ScreenManager.replaceFragment(getSupportFragmentManager(), new SettingFragment(), R.id.main);
 
             }
         });
         spaceNavigationView.addSpaceItem(new SpaceItem("", R.drawable.ic_home));
         spaceNavigationView.addSpaceItem(new SpaceItem("", R.drawable.ic_newplace));
         spaceNavigationView.addSpaceItem(new SpaceItem("", R.drawable.ic_fav));
-        spaceNavigationView.addSpaceItem(new SpaceItem("", R.drawable.ic_search));
+        spaceNavigationView.addSpaceItem(new SpaceItem("", R.drawable.ic_person));
         spaceNavigationView.changeCenterButtonIcon(R.drawable.ic_plus);
         spaceNavigationView.setSpaceOnClickListener(new SpaceOnClickListener() {
             @Override
@@ -98,11 +99,10 @@ public class MainActivity extends AppCompatActivity {
                     ScreenManager.openFragment(getSupportFragmentManager(), new HomeFragment(), R.id.rl_content);
                 } else if (itemIndex == 1) {
                     ScreenManager.openFragment(getSupportFragmentManager(), new RankFragment(), R.id.rl_content);
-
                 } else if (itemIndex == 2) {
                     ScreenManager.openFragment(getSupportFragmentManager(), new HomeFragment(), R.id.rl_content);
                 } else if (itemIndex == 3) {
-                    ScreenManager.openFragment(getSupportFragmentManager(), new HomeFragment(), R.id.rl_content);
+                    ScreenManager.openFragment(getSupportFragmentManager(), new UserFragment(), R.id.main);
                 }
             }
 
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
     private void Init() {
         spaceNavigationView = (SpaceNavigationView) findViewById(R.id.space);
         toolbar = (Toolbar) findViewById(R.id.toolbar_home);
-        user = (RelativeLayout) findViewById(R.id.profile_user);
+        settings = (RelativeLayout) findViewById(R.id.settings);
         setSupportActionBar(toolbar);
         ScreenManager.openFragment(getSupportFragmentManager(), new HomeFragment(), R.id.rl_content);
     }

@@ -57,6 +57,7 @@ public class AdapterRankFragment extends RecyclerView.Adapter<AdapterRankFragmen
         ImageView ivImageRank;
         TextView tvLikeRank;
         TextView tvNameRank;
+        TextView tvDestinationRank;
 
         public RankModelViewHolder(View itemView) {
             super(itemView);
@@ -68,6 +69,7 @@ public class AdapterRankFragment extends RecyclerView.Adapter<AdapterRankFragmen
             ivImageRank = (ImageView) itemView.findViewById(R.id.iv_image_rank);
             tvLikeRank = (TextView) itemView.findViewById(R.id.tv_like_rank);
             tvNameRank = (TextView) itemView.findViewById(R.id.user_name);
+            tvDestinationRank = (TextView) itemView.findViewById(R.id.tv_destination_rank);
         }
 
         private void setData(DataModel data, Context context) {
@@ -75,6 +77,7 @@ public class AdapterRankFragment extends RecyclerView.Adapter<AdapterRankFragmen
                 Picasso.with(context).load(data.getImage()).into(ivImageRank);
                 tvLikeRank.setText(String.valueOf(data.getLike()));
                 tvNameRank.setText(data.getName());
+                tvDestinationRank.setText(data.getDestination());
                 view.setTag(data);
             }
         }
