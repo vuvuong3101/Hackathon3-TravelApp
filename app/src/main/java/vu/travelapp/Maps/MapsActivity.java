@@ -171,9 +171,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
-    public void onBackPressed() {
-        onBackPressed();
-    }
+    public void onBackPressed() {super.onBackPressed();}
 
     @Override
     public void onMapReady(GoogleMap googleMap) {

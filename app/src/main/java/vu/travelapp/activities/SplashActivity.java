@@ -35,7 +35,6 @@ public class SplashActivity extends AppCompatActivity {
             protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
                if (currentAccessToken == null){
 
-
                }else ;
                 Log.d(TAG, String.format("onCurrentAccessTokenChanged: \n%s \n%s", oldAccessToken, currentAccessToken));
             }
@@ -48,12 +47,11 @@ public class SplashActivity extends AppCompatActivity {
         }else {
             Intent i = new Intent(SplashActivity.this, LoginActivity.class);
             startActivity(i);
-            finish();
+            SplashActivity.this.finish();
         }
     }
 
     private class BackgroundSplashTask extends AsyncTask<Void, Void, Void> {
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();

@@ -44,12 +44,8 @@ public class ImageDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_image_detail,container,false);
         EventBus.getDefault().register(this);
-
         init(view);
         process();
-
-
-
         return view;
     }
 
@@ -91,6 +87,12 @@ public class ImageDetailFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         adapterCommentFragment.notifyDataSetChanged();
         recyclerView.setAdapter(adapterCommentFragment);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
     }
 

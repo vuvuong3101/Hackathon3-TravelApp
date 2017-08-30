@@ -1,6 +1,7 @@
 package vu.travelapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
@@ -30,6 +31,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import vu.travelapp.Maps.MapsActivity;
 import vu.travelapp.R;
 import vu.travelapp.activities.MainActivity;
 import vu.travelapp.fragments.CommentFragment;
@@ -107,7 +109,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
         TextView tvTime;
         TextView tvLike, tv_comment;
         TextView tvDestination;
-        LinearLayout llLike, llComment, content, llShareFaceBook;
+        LinearLayout llLike, llComment, content, llShareFaceBook, llLocation;
         ImageView imageHomeFragment;
         ImageView avatarUser;
         private ProfileModel profileModel;
@@ -140,6 +142,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             tvDestination = (TextView) itemView.findViewById(R.id.tv_destination_home);
             llChat = (LinearLayout) itemView.findViewById(R.id.chat);
             llShareFaceBook = (LinearLayout) itemView.findViewById(R.id.share_facebook);
+            llLocation = (LinearLayout) itemView.findViewById(R.id.location);
             avatarUser.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -219,6 +222,15 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 Picasso.with(context).load("https://graph.facebook.com/" + dataModels.get(getAdapterPosition()).getUserid() + "/picture?type=large").into(avatarUser);
             }
 
+            llLocation.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EventBus.getDefault().postSticky(dataModel);
+                    Intent intent = new Intent(context,MapsActivity.class);
+                    context.startActivity(intent);
+                }
+            });
+
             llChat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -254,7 +266,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 @Override
                 public void onClick(View v) {
                     EventBus.getDefault().postSticky(dataModel);
-                    ScreenManager.replaceFragment2(imageDetailFragment.getSupportFragmentManager(), new ImageDetailFragment(), R.id.main);
+                    ScreenManager.openFragment(imageDetailFragment.getSupportFragmentManager(), new ImageDetailFragment(), R.id.main);
                 }
             });
         }
