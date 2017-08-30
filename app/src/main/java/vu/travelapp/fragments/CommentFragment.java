@@ -147,28 +147,6 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
                 hideSoftKeyboard(getActivity());
 
                 adapterCommentFragment.notifyDataSetChanged();
-//                if(etComment.getText()==null){
-//                    Toast.makeText(getActivity(),"Chưa có comment nào!",Toast.LENGTH_SHORT).show();
-//                }else {
-
-//                    Retrofit retrofit = new Retrofit.Builder()
-//                            .baseUrl("https://diphuot.herokuapp.com/api/").addConverterFactory(GsonConverterFactory.create())
-//                            .build();
-//                    CommentService commentService = retrofit.create(CommentService.class);
-//                    commentService.commentService(new RequestCommentJSON(datamodel.getId(), comment)).enqueue(new Callback<ResponseCommentJSON>() {
-//                        @Override
-//                        public void onResponse(Call<ResponseCommentJSON> call, Response<ResponseCommentJSON> response) {
-//                            String mess = response.body().getMessage();
-//                            Log.d("upload data: ", "success" + mess);
-//                            pullData();
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<ResponseCommentJSON> call, Throwable t) {
-//                            Log.d("error: ", "" + t);
-//                        }
-//                    });
-//                }
             }
         });
     }
@@ -182,29 +160,6 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
     }
 
     private void pullData() {
-//        GetAllDataModel getAllDataModel = RetrofitFactory.getInstance().create(GetAllDataModel.class);
-//        getAllDataModel.getDataModels().enqueue(new Callback<List<DataModelJson>>() {
-//            @Override
-//            public void onResponse(Call<List<DataModelJson>> call, Response<List<DataModelJson>> response) {
-//                for (int i = 0; i < response.body().size(); i++) {
-//                    if(response.body().get(i).get_id().equals(datamodel.getId())==true) {
-//                        List<CommentJSONModel> commentJSONModels = new ArrayList<>();
-//                        for (CommentJSONModel commentJSONModel : response.body().get(i).getComment()) {
-//                            commentJSONModels.add(commentJSONModel);
-//                            Log.d("", "comment: " + commentJSONModel.getName() + "   " + commentJSONModel.getSentence());
-//                        }
-//                        datamodel.setComment(commentJSONModels);
-//                    }
-//                }
-//                adapterCommentFragment.notifyDataSetChanged();
-//                swipeRefreshLayout.setRefreshing(false);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<DataModelJson>> call, Throwable t) {
-//                Toast.makeText(getContext(), "Không kết nối", Toast.LENGTH_SHORT).show();
-//            }
-//        });
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
