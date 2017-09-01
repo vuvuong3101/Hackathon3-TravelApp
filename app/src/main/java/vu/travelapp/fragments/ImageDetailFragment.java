@@ -31,13 +31,22 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import vu.travelapp.Maps.MapsActivity;
 import vu.travelapp.R;
 import vu.travelapp.adapter.AdapterCommentFragment;
 import vu.travelapp.models.DataModel;
+import vu.travelapp.networks.RetrofitFactory;
 import vu.travelapp.networks.comment.comment;
+import vu.travelapp.networks.notifications_service.NotificationJSON;
+import vu.travelapp.networks.notifications_service.NotificationRequestJSON;
+import vu.travelapp.networks.notifications_service.NotificationResponse;
+import vu.travelapp.networks.notifications_service.PushNotificationService;
 import vu.travelapp.networks.pullData.CommentJSONModel;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -99,24 +108,11 @@ public class ImageDetailFragment extends Fragment {
                 getActivity().onBackPressed();
             }
         });
-//        tvDestination.setText(dataModel.getDestination());
-//        btSendComment.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                final comment comment = new comment(name, String.valueOf(etComment.getText()), urlImage);
-//                Log.d("comment: ", "" + etComment.getText().toString());
-//                databaseReference.push().setValue(comment);
-//                Log.d("succesful ", "comment");
-//                etComment.setText("");
-//                pullData();
-//                adapterCommentFragment.notifyDataSetChanged();
-//            }
-//        });
+
         tvContent.setText(dataModel.getContent());
         Picasso.with(getContext()).load(dataModel.getImage()).into(imageHeader);
         tvLike.setText(String.valueOf(dataModel.getLike()));
         tvComment.setText(String.valueOf(dataModel.getComment().size()));
-
         adapterCommentFragment = new AdapterCommentFragment
                 (commentJSONModels, getContext(), getActivity().getSupportFragmentManager());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -125,7 +121,18 @@ public class ImageDetailFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         adapterCommentFragment.notifyDataSetChanged();
         recyclerView.setAdapter(adapterCommentFragment);
-
+        btSendComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final comment comment = new comment(name, String.valueOf(etComment.getText()), urlImage);
+                Log.d("comment: ", "" + etComment.getText().toString());
+                databaseReference.push().setValue(comment);
+                Log.d("succesful ", "comment");
+                etComment.setText("");
+                pullData();
+                adapterCommentFragment.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -165,7 +172,10 @@ public class ImageDetailFragment extends Fragment {
     }
 
     private void init(View view) {
+        pullData();
+        etComment = (EditText) view.findViewById(R.id.et_comment_detail);
         tvLike = (TextView) view.findViewById(R.id.count_like);
+        btSendComment = (Button) view.findViewById(R.id.bt_send_commnet_detail);
         tvComment = (TextView) view.findViewById(R.id.count_comment_detail);
         recyclerView = (RecyclerView) view.findViewById(R.id.rv_comment_detail);
         fabDirection = (FloatingActionButton) view.findViewById(R.id.iv_location);
