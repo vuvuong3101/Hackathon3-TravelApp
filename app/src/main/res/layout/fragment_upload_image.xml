@@ -7,7 +7,7 @@
     android:background="@color/colorPrimary"
     android:clickable="true"
     android:orientation="vertical"
-    android:visibility="invisible">
+    android:visibility="visible">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -98,32 +98,7 @@
         android:layout_below="@id/appbar"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp">
-        <LinearLayout
-            android:background="@drawable/styletext"
 
-            android:id="@+id/checkin"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_margin="3dp"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_location_on_blue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:textColor="#0057c9"
-                android:gravity="center_vertical"
-                android:id="@+id/tv_destination"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:hint="  Chọn địa điểm"
-                android:padding="5dp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
 
         <android.support.v7.widget.CardView
             android:background="@drawable/styletext"
@@ -131,7 +106,6 @@
             android:id="@+id/cardview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/checkin"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="11dp"
             android:layout_marginRight="6dp"
@@ -146,20 +120,54 @@
                 <com.github.siyamed.shapeimageview.RoundedImageView
                     android:foregroundGravity="top"
                     app:siRadius="3dp"
-                    app:siBorderWidth="1dp"
-                    app:siBorderColor="#a9a9a9"
-                    android:background="@drawable/styletext"
                     android:id="@+id/iv_upload_image"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="5dp"
-                    android:elevation="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_margin="10dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/plus" />
+                <TextView
+                    android:id="@+id/tv_1"
+                    android:layout_marginBottom="1dp"
+                    android:textStyle="italic"
+                    android:textSize="12sp"
+                    android:text="Nhấp vào ảnh để thay đổi"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_below="@id/iv_upload_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/styletext"
+                    android:layout_below="@id/tv_1"
+                    android:id="@+id/checkin"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_margin="3dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_location_on_blue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textColor="#0057c9"
+                        android:gravity="center_vertical"
+                        android:id="@+id/tv_destination"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:hint="  Chọn địa điểm"
+                        android:padding="5dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
                 <EditText
                     android:maxLength="200"
                     android:maxLines="4"
-                    android:textStyle="bold"
                     android:gravity="top"
                     android:id="@+id/et_title"
                     android:layout_width="match_parent"
@@ -168,14 +176,14 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_toRightOf="@id/iv_upload_image"
+                    android:layout_below="@id/checkin"
                     android:background="@drawable/styletext"
                     android:hint="Tiêu đề bài viết"
                     android:textSize="14sp"
                     android:padding="10dp" />
 
                 <EditText
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     android:layout_below="@+id/et_title"
                     android:gravity="top"
                     android:id="@+id/et_description"
@@ -183,7 +191,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
                     android:layout_margin="10dp"
-                    android:layout_toRightOf="@id/iv_upload_image"
                     android:background="@drawable/styletext"
                     android:hint="Viết mô tả"
                     android:textSize="14sp"

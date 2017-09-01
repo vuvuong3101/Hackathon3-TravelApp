@@ -50,7 +50,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:gravity="center"
-                android:text="Copyright 2017 by Travelzone"
+                android:text="Copyright 2017 by TravelZone"
                 android:textSize="20sp" />
 
             <TextView
@@ -58,7 +58,12 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:autoLink="web"
-                android:text="Đang phát triển bởi Travel Team " />
+                android:text="Đang phát triển bởi Travel Team VHP"/>
+            <TextView
+                android:text="TechKids.Vn"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
 

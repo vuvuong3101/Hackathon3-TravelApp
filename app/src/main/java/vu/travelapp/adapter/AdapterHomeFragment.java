@@ -190,7 +190,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             final long i = now - time;
             if (i < MINUTE_MILLIS) {
                 tvTime.setText("Vừa xong");
-                tvTime.setTextColor(Color.parseColor("#00a4ea"));
+                tvTime.setTextColor(Color.parseColor("#36b0e9"));
                 ivPublic.setImageResource(R.drawable.ic_public_blue);
             } else if (i < 2 * MINUTE_MILLIS) {
                 tvTime.setText("1 phút trước");

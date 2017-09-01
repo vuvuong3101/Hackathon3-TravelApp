@@ -105,19 +105,32 @@
                         android:layout_margin="0dp">
                     </ImageView>
                 </RelativeLayout>
-                <TextView
-                    android:id="@+id/tv_destination_home"
-                    android:layout_marginTop="10dp"
-                    android:text="SApa "
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:ellipsize="end"
-                    android:textStyle="bold"
-                    android:textSize="14sp"
-                    android:textColor="@color/textPrimary"
-                    android:maxLines="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_location_on_blue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tv_destination_home"
+                        android:layout_marginTop="10dp"
+                        android:text="SApa "
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="3dp"
+                        android:ellipsize="end"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="#d65ac0cc"
+                        android:maxLines="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
                 <TextView
                     android:text="yeah"
                     android:layout_marginLeft="10dp"
