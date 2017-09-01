@@ -41,7 +41,7 @@
                         android:gravity="center_horizontal">
 
                         <RelativeLayout
-                            android:id="@+id/settings"
+                            android:id="@+id/user"
                             android:layout_width="?actionBarSize"
                             android:layout_height="match_parent"
                             android:paddingLeft="16dp"
@@ -52,13 +52,13 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:padding="0dp"
-                                android:src="@drawable/ic_settings" />
+                                android:src="@drawable/ic_person" />
                         </RelativeLayout>
 
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_toRightOf="@id/settings">
+                            android:layout_toRightOf="@id/user">
 
                             <ImageView
                                 android:id="@+id/logo"

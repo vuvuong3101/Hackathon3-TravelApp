@@ -9,6 +9,7 @@
         android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_search"
                 android:layout_below="@+id/appbar"
@@ -17,6 +18,14 @@
                 android:layout_height="match_parent">
 
             </android.support.v7.widget.RecyclerView>
-
+        <TextView
+            android:gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/notFindLocation"
+            android:visibility="gone"
+            android:layout_margin="16dp"
+            android:text="Không có địa điểm cần tìm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 </RelativeLayout>

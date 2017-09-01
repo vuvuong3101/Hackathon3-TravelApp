@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
@@ -42,6 +43,7 @@ import vu.travelapp.Maps.Models.DirectionFinder;
 import vu.travelapp.Maps.Models.DirectionFinderListener;
 import vu.travelapp.Maps.Models.Route;
 import vu.travelapp.R;
+import vu.travelapp.activities.MainActivity;
 import vu.travelapp.models.DataModel;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
@@ -171,7 +173,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
-    public void onBackPressed() {super.onBackPressed();}
+    public void onBackPressed() {
+        Intent setIntent = new Intent(this, MainActivity.class);
+        startActivity(setIntent);
+        super.onBackPressed();}
 
     @Override
     public void onMapReady(GoogleMap googleMap) {

@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     public static String id_me;
     private static final String TAG = MainActivity.class.toString();
     private Toolbar toolbar;
-    private RelativeLayout settings;
+    private RelativeLayout user;
     private ProfileModel profileModel;
     private SpaceNavigationView spaceNavigationView;
     private SearchView searchView;
@@ -74,18 +74,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void progress() {
-        settings.setOnClickListener(new View.OnClickListener() {
+        user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 requestFaceboook();
-                ScreenManager.replaceFragment(getSupportFragmentManager(), new SettingFragment(), R.id.main);
+                ScreenManager.replaceFragment(getSupportFragmentManager(), new UserFragment(), R.id.main);
 
             }
         });
         spaceNavigationView.addSpaceItem(new SpaceItem("", R.drawable.ic_home));
         spaceNavigationView.addSpaceItem(new SpaceItem("", R.drawable.ic_newplace));
         spaceNavigationView.addSpaceItem(new SpaceItem("", R.drawable.ic_fav));
-        spaceNavigationView.addSpaceItem(new SpaceItem("", R.drawable.ic_person));
+        spaceNavigationView.addSpaceItem(new SpaceItem("", R.drawable.ic_settings));
         spaceNavigationView.changeCenterButtonIcon(R.drawable.ic_plus);
         spaceNavigationView.setSpaceOnClickListener(new SpaceOnClickListener() {
             @Override
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (itemIndex == 2) {
                     ScreenManager.openFragment(getSupportFragmentManager(), new HomeFragment(), R.id.rl_content);
                 } else if (itemIndex == 3) {
-                    ScreenManager.openFragment(getSupportFragmentManager(), new UserFragment(), R.id.main);
+                    ScreenManager.openFragment(getSupportFragmentManager(), new SettingFragment(), R.id.main);
                 }
             }
 
@@ -147,6 +147,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
                 ScreenManager.backFragment(getSupportFragmentManager());
+                onBackPressed();
+                ScreenManager.openFragment(getSupportFragmentManager(), new HomeFragment(), R.id.rl_content);
                 return true;
             }
         });
@@ -156,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
     private void Init() {
         spaceNavigationView = (SpaceNavigationView) findViewById(R.id.space);
         toolbar = (Toolbar) findViewById(R.id.toolbar_home);
-        settings = (RelativeLayout) findViewById(R.id.settings);
+        user = (RelativeLayout) findViewById(R.id.user);
         setSupportActionBar(toolbar);
         ScreenManager.openFragment(getSupportFragmentManager(), new HomeFragment(), R.id.rl_content);
     }

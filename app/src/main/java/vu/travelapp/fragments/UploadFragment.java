@@ -198,6 +198,7 @@ public class UploadFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 getActivity().onBackPressed();
+                
             }
         });
     }

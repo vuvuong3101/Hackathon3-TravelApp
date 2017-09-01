@@ -9,7 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -37,6 +37,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
     private RecyclerView rvSearch;
     private AdapterSearchFragment adapterSearchFragment;
     CharSequence charSequence;
+    private TextView notFindLocation;
 
     @Nullable
     @Override
@@ -58,6 +59,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
     }
 
     private void init(View view) {
+        notFindLocation = (TextView) view.findViewById(R.id.notFindLocation);
         rvSearch = (RecyclerView) view.findViewById(R.id.rv_search);
         dataModelList = new ArrayList<>();
         GetAllDataModel getAllDataModel = RetrofitFactory.getInstance().create(GetAllDataModel.class);
@@ -79,7 +81,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
                     }
                 }
                 if(dataModelList.size()==0){
-                    Toast.makeText(getContext(),"Không có thông tin cần tìm",Toast.LENGTH_SHORT).show();
+                    notFindLocation.setVisibility(View.VISIBLE);
                 } else{
                     adapterSearchFragment.notifyDataSetChanged();
                 }
