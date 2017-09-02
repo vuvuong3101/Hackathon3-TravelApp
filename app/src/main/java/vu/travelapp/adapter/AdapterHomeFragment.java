@@ -216,7 +216,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 tvContent.setText(dataModel.getContent());
                 tv_like.setText(String.valueOf(dataModel.getLike()));
                 tv_comment.setText(String.valueOf(dataModel.getComment().size()));
-
+                tvTime.setText(String.valueOf(dataModel.getTimeUpload())+" ngày trước");
                 view.setTag(dataModel);
                 tvDestination.setText(dataModel.getDestination());
                 Picasso.with(context).load("https://graph.facebook.com/" + dataModels.get(getAdapterPosition()).getUserid() + "/picture?type=large").into(avatarUser);
