@@ -19,6 +19,10 @@ public class NotificationRequestJSON {
         this.to = String.format("/topics/%s",topic);
     }
 
+    public void setToLike(String topicLike){
+        this.to = String.format("/topics/%s",topicLike+"_like");
+    }
+
     public NotificationJSON getNotification() {
         return notification;
     }

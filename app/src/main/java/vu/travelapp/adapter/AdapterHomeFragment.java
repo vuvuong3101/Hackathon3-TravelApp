@@ -1,7 +1,9 @@
 package vu.travelapp.adapter;
 
+import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareDialog;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
@@ -40,10 +43,16 @@ import vu.travelapp.fragments.UserFragment;
 import vu.travelapp.managers.ScreenManager;
 import vu.travelapp.models.DataModel;
 import vu.travelapp.models.ProfileModel;
+import vu.travelapp.networks.RetrofitFactory;
+import vu.travelapp.networks.notifications_service.NotificationJSON;
+import vu.travelapp.networks.notifications_service.NotificationRequestJSON;
+import vu.travelapp.networks.notifications_service.NotificationResponse;
+import vu.travelapp.networks.notifications_service.PushNotificationService;
 import vu.travelapp.networks.pullData.CommentJSONModel;
 import vu.travelapp.networks.updateData.UpdateLikeRequestModel;
 import vu.travelapp.networks.updateData.UpdateLikeResponseModel;
 import vu.travelapp.networks.updateData.UpdateService;
+import vu.travelapp.utils.Util;
 
 /**
  * Created by ADMIN on 8/11/2017.
@@ -61,6 +70,8 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
     Fragment fragment;
     ShareDialog shareDialog;
     private CommentJSONModel commentJSONModel;
+
+    public static boolean isLike = false;
 
     public AdapterHomeFragment(List<DataModel> dataModels, Context context, FragmentManager fragmentManager, Fragment fragment) {
         this.dataModels = dataModels;
@@ -123,7 +134,6 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             view = itemView;
         }
 
-
         private void init(View itemView) {
             ivPublic = (ImageView) itemView.findViewById(R.id.publica);
             ivItemPictureHome = (ImageView) itemView.findViewById(R.id.item_image);
@@ -156,27 +166,23 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 }
             });
 
-            tvUserName.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    profileModel = new ProfileModel();
-                    profileModel.setName(dataModels.get(getAdapterPosition()).getName());
-                    profileModel.setId(dataModels.get(getAdapterPosition()).getUserid());
-                    profileModel.setUrlImage("https://graph.facebook.com/" + profileModel.getId() + "/picture?type=large");
-                    EventBus.getDefault().postSticky(profileModel);
-                    ScreenManager.replaceFragment2(fragmentManager, new UserFragment(), R.id.main);
-
-                }
-            });
-
-
+//            tvUserName.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    profileModel = new ProfileModel();
+//                    profileModel.setName(dataModels.get(getAdapterPosition()).getName());
+//                    profileModel.setId(dataModels.get(getAdapterPosition()).getUserid());
+//                    profileModel.setUrlImage("https://graph.facebook.com/" + profileModel.getId() + "/picture?type=large");
+//                    EventBus.getDefault().postSticky(profileModel);
+//                    ScreenManager.replaceFragment2(fragmentManager, new UserFragment(), R.id.main);
+//                }
+//            });
         }
 
         private static final int SECOND_MILLIS = 1000;
         private static final int MINUTE_MILLIS = 60 * SECOND_MILLIS;
         private static final int HOUR_MILLIS = 60 * MINUTE_MILLIS;
         private static final int DAY_MILLIS = 24 * HOUR_MILLIS;
-
 
         public void setData(final DataModel dataModel, final Context context) {
             // get thời gian hiện tại:
@@ -189,10 +195,9 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             }
             final long i = now - time;
             if (i < MINUTE_MILLIS) {
-                Log.d(TAG, "setData: " + "chan vkl");
+                tvTime.setText("Vừa xong");
                 tvTime.setTextColor(Color.parseColor("#36b0e9"));
                 ivPublic.setImageResource(R.drawable.ic_public_blue);
-                tvTime.setText("Now");
             } else if (i < 2 * MINUTE_MILLIS) {
                 tvTime.setText("1 phút trước");
             } else if (i < 50 * MINUTE_MILLIS) {
@@ -210,13 +215,13 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 tvTime.setText(timeset);
             }
 
-            ////
             if (dataModel != null) {
                 Picasso.with(context).load(dataModel.getImage()).into(ivItemPictureHome); //        <- chính nó đó
                 tvUserName.setText(dataModel.getName());
                 tvContent.setText(dataModel.getContent());
                 tv_like.setText(String.valueOf(dataModel.getLike()));
                 tv_comment.setText(String.valueOf(dataModel.getComment().size()));
+
                 view.setTag(dataModel);
                 tvDestination.setText(dataModel.getDestination());
                 Picasso.with(context).load("https://graph.facebook.com/" + dataModels.get(getAdapterPosition()).getUserid() + "/picture?type=large").into(avatarUser);
@@ -226,7 +231,7 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 @Override
                 public void onClick(View v) {
                     EventBus.getDefault().postSticky(dataModel);
-                    Intent intent = new Intent(context,MapsActivity.class);
+                    Intent intent = new Intent(context, MapsActivity.class);
                     context.startActivity(intent);
                 }
             });
@@ -243,6 +248,10 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 @Override
                 public void onClick(View v) {
                     UpdateLike(dataModel);
+                    //TODO: Bắn notification khi like
+                    /*********************- Push notification android -**********************/
+
+                    /************************************************************************/
                 }
             });
 
@@ -251,14 +260,16 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 public void onClick(View v) {
                     Toast.makeText(context, "Click share facebook", Toast.LENGTH_SHORT).show();
                     //TODO: Share facebook
-                    Uri uriImage = Uri.parse(dataModel.getImage().toString());
+                    //Uri uriImage = Uri.parse(dataModel.getImage().toString());
+                    Bitmap uriImage = Util.getBitmapFromURL(dataModel.getImage());
                     SharePhoto photo = new SharePhoto.Builder()
-                            .setImageUrl(uriImage)
+                            .setBitmap(uriImage)
                             .build();
                     SharePhotoContent content = new SharePhotoContent.Builder()
                             .addPhoto(photo)
                             .build();
                     shareDialog.show(content);
+                    Log.d(TAG, "onClick: sharefacebook");
                 }
             });
             final MainActivity imageDetailFragment = (MainActivity) context;
@@ -271,12 +282,37 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             });
         }
 
+        private void subscribeTopicLike(DataModel dataModel) {
+            FirebaseMessaging.getInstance().subscribeToTopic(dataModel.getId() + "_like");
+            Log.d(TAG, String.format("subscribeTopicLike: Đã subscribe topic = %s", dataModel.getId() + "_like"));
+        }
+
+        private void pushNotification(DataModel dataModel) {
+            NotificationJSON notificationJSON = new NotificationJSON();
+            notificationJSON.setBody("Một bạn đã like ảnh của bạn");
+            notificationJSON.setTitle("Thông báo");
+            NotificationRequestJSON notificationRequestJSON = new NotificationRequestJSON();
+            notificationRequestJSON.setNotification(notificationJSON);
+            notificationRequestJSON.setToLike(dataModel.getId());
+            RetrofitFactory.getInstance().create(PushNotificationService.class).pushNotificationService(notificationRequestJSON).enqueue(new Callback<NotificationResponse>() {
+                @Override
+                public void onResponse(Call<NotificationResponse> call, Response<NotificationResponse> response) {
+                    Log.d(TAG, String.format("onResponse: Đã gửi notification like.....response = %s", response.body().getMessage_id()));
+                }
+
+                @Override
+                public void onFailure(Call<NotificationResponse> call, Throwable t) {
+                    Log.d(TAG, String.format("onFailure: Lỗi nè?????---", t.toString()));
+                }
+            });
+        }
+
         private void UpdateLike(DataModel data) {
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("https://diphuot.herokuapp.com/api/").addConverterFactory(GsonConverterFactory.create()).build();
             data.getId();
             UpdateService updateService = retrofit.create(UpdateService.class);
-            if (like == false) {
+            if (!like) {
                 ivLike.setImageResource(R.drawable.ic_like_selected);
                 tv_like.setText(String.valueOf(data.getLike() + 1));
                 updateService.updatelike(new UpdateLikeRequestModel(data.getId(), data.getLike() + 1)).enqueue(new Callback<UpdateLikeResponseModel>() {
@@ -291,6 +327,9 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                     }
                 });
                 like = true;
+//                this.subscribeTopicLike(data);
+//                this.pushNotification(data);
+                isLike = true;
             } else {
                 ivLike.setImageResource(R.drawable.ic_like);
                 tv_like.setText(String.valueOf(data.getLike()));
@@ -306,6 +345,8 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                     }
                 });
                 like = false;
+
+                isLike = false;
             }
         }
     }

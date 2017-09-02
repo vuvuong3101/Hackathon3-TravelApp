@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -31,22 +32,32 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import vu.travelapp.Maps.MapsActivity;
 import vu.travelapp.R;
 import vu.travelapp.adapter.AdapterCommentFragment;
 import vu.travelapp.models.DataModel;
+import vu.travelapp.networks.RetrofitFactory;
 import vu.travelapp.networks.comment.comment;
+import vu.travelapp.networks.notifications_service.NotificationJSON;
+import vu.travelapp.networks.notifications_service.NotificationRequestJSON;
+import vu.travelapp.networks.notifications_service.NotificationResponse;
+import vu.travelapp.networks.notifications_service.PushNotificationService;
 import vu.travelapp.networks.pullData.CommentJSONModel;
 
 import static android.content.Context.MODE_PRIVATE;
 
 public class ImageDetailFragment extends Fragment {
+    private static final String TAG = ImageDetailFragment.class.toString();
     private LinearLayout fabDirection;
     private DataModel dataModel;
     private ImageView imageHeader;
-    private TextView tvDestination, tvContent, tvLike,tvComment;
+    private TextView tvDestination, tvContent, tvLike, tvComment;
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private RelativeLayout iv_back;
@@ -57,10 +68,14 @@ public class ImageDetailFragment extends Fragment {
     AdapterCommentFragment adapterCommentFragment;
     List<CommentJSONModel> commentJSONModels = new ArrayList<CommentJSONModel>();
     private DatabaseReference databaseReference;
+
+    //  List<DataModel> dataModelListPosted = new ArrayList<>();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_image_detail,container,false);
+        View view = inflater.inflate(R.layout.fragment_image_detail, container, false);
+        //EventBus.getDefault().register(this);       //nhận list posted từ user_fragment
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("datauser", MODE_PRIVATE);
         name = sharedPreferences.getString("name", "");
         urlImage = sharedPreferences.getString("urlImage", "");
@@ -70,6 +85,7 @@ public class ImageDetailFragment extends Fragment {
         commentJSONModels = dataModel.getComment();
         init(view);
         process();
+        Log.d(TAG, "onCreateView: Đã khởi tạo fragment image detail");
         return view;
     }
 
@@ -80,15 +96,15 @@ public class ImageDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 EventBus.getDefault().postSticky(dataModel);
-                Intent intent = new Intent(getActivity(),MapsActivity.class);
+                Intent intent = new Intent(getActivity(), MapsActivity.class);
                 startActivity(intent);
             }
         });
         imageHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for(CommentJSONModel commentJSONModel: dataModel.getComment()){
-                    Log.d("","adapter home nhé!: "+ commentJSONModel.getName()+"   "+commentJSONModel.getSentence());
+                for (CommentJSONModel commentJSONModel : dataModel.getComment()) {
+                    Log.d("", "adapter home nhé!: " + commentJSONModel.getName() + "   " + commentJSONModel.getSentence());
                 }
 
             }
@@ -132,10 +148,17 @@ public class ImageDetailFragment extends Fragment {
 
     }
 
+//    @Subscribe(sticky = true)
+//    public void onReceivedListPosted(List<DataModel> dataModels) {
+//        this.dataModelListPosted = dataModels;
+//        Log.d(TAG, "onReceivedListPosted: Đã nhận ListPosted");
+//
+//    }
+
     @Subscribe(sticky = true)
-    public void onReceivedDataModel(DataModel dataModel){
+    public void onReceivedDataModel(DataModel dataModel) {
         this.dataModel = dataModel;
-        Log.d("data destination: ",""+ dataModel.getDestination());
+        Log.d("data destination: ", "" + dataModel.getDestination());
     }
 
     private void pullData() {
@@ -175,7 +198,4 @@ public class ImageDetailFragment extends Fragment {
 //        tvDestination = (TextView) view.findViewById(R.id.tv_destination);
         tvContent = (TextView) view.findViewById(R.id.tv_content);
     }
-
-
-
 }

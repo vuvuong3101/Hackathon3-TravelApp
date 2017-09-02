@@ -17,7 +17,7 @@ import static com.makeramen.roundedimageview.RoundedImageView.TAG;
 public class ScreenManager {
     public static void openFragment(FragmentManager fragmentManager, Fragment fragment, int layoutID) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(layoutID, fragment);
+        fragmentTransaction.add(layoutID, fragment);//tu rep sua thanh add
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }

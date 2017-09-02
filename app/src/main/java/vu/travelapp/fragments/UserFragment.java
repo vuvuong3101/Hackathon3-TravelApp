@@ -30,7 +30,7 @@ import vu.travelapp.managers.ScreenManager;
 import vu.travelapp.models.DataModel;
 import vu.travelapp.models.ProfileModel;
 
-public class UserFragment extends Fragment {
+public class UserFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = UserFragment.class.toString();
     ImageView avatar, ivImageCrop;
     Dialog dialog;
@@ -49,6 +49,7 @@ public class UserFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_user, container, false);
         EventBus.getDefault().register(this);
         FindView(view);
+        adapter.setOnItemClick(this);
         return view;
     }
 
@@ -72,7 +73,7 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "backsetting " + "ok ok");
-               getActivity().getSupportFragmentManager().popBackStackImmediate();
+                getActivity().getSupportFragmentManager().popBackStackImmediate();
             }
         });
         ivSetting.setOnClickListener(new View.OnClickListener() {
@@ -111,15 +112,25 @@ public class UserFragment extends Fragment {
         this.cleardata();
         for (int i = 0; i < HomeFragment.dataModelList.size(); i++){
             if (profileModel.getId().equals(HomeFragment.dataModelList.get(i).getUserid())){
+                //TODO: get data
                 DataModel data = new DataModel();
+                data.setTimeUpload(HomeFragment.dataModelList.get(i).getTimeUpload());
+                data.setName(HomeFragment.dataModelList.get(i).getName());
                 data.setImage(HomeFragment.dataModelList.get(i).getImage());
+                data.setUserid(HomeFragment.dataModelList.get(i).getUserid());
+                data.setDestination(HomeFragment.dataModelList.get(i).getDestination());
+                data.setContent(HomeFragment.dataModelList.get(i).getContent());
+                data.setLike(HomeFragment.dataModelList.get(i).getLike());
+                data.setId(HomeFragment.dataModelList.get(i).getId());
+                data.setComment(HomeFragment.dataModelList.get(i).getComment());
+                Log.d(TAG, String.format("loadPostedPicture: %s", data.toString()));
                 listPosted.add(data);
             }
             adapter.notifyDataSetChanged();
         }
     }
     private void cleardata(){
-       listPosted.clear();
+        listPosted.clear();
     }
 
     @Subscribe(sticky = true)
@@ -137,12 +148,21 @@ public class UserFragment extends Fragment {
     }
 
     public final void CloseandClear() {
-        //TODO: 
+        //TODO:
     }
 
     @Override
     public void onStop() {
         EventBus.getDefault().unregister(this);
         super.onStop();
+    }
+
+    @Override
+    public void onClick(View v) {
+        DataModel dataModel = (DataModel) v.getTag();
+        EventBus.getDefault().postSticky(dataModel);
+
+        ScreenManager.openFragment(getActivity().getSupportFragmentManager(), new ImageDetailFragment(),R.id.main);
+        Log.d(TAG, "onClick: Chuyển sang fragment detail -  "+dataModel.toString());
     }
 }

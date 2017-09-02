@@ -13,11 +13,15 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import vu.travelapp.R;
 import vu.travelapp.activities.MainActivity;
+import vu.travelapp.adapter.AdapterHomeFragment;
+import vu.travelapp.fragments.CommentFragment;
+import vu.travelapp.fragments.HomeFragment;
 
 
 /**
@@ -30,40 +34,74 @@ public class NotificationFirebaseService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
+        // không hiện noti với chính thiết bị chủ động tạo noti.
         this.createNotification();
+        this.createToast();
 
+        CommentFragment.isChecked = false;
+        AdapterHomeFragment.isLike = false;
+        Log.d(TAG, String.format("onMessageReceived: new notification, isCheck: %s", CommentFragment.isChecked));
+    }
+
+    private void createNotification() {
+        if (!CommentFragment.isChecked) {
+            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+            Intent intent = new Intent(this, MainActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, 0);
+
+            Notification.Builder builder = new Notification.Builder(this);
+            builder.setContentText("Thông báo từ Travel App");
+            builder.setContentText("Có thông bình luận mới chưa đọc");
+            builder.setSmallIcon(R.drawable.ic_share_white_24dp);
+            builder.setContentIntent(pendingIntent);
+            builder.setAutoCancel(true);
+
+            notificationManager.notify(1, builder.build());
+        }
+//        if (AdapterHomeFragment.isLike){
+//            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+//
+//            Intent intent = new Intent(this, MainActivity.class);
+//            PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, 0);
+//
+//            Notification.Builder builder = new Notification.Builder(this);
+//            builder.setContentText("Thông báo từ Travel App");
+//            builder.setContentText("Bài viết của bạn được người khác like!");
+//            builder.setSmallIcon(R.drawable.ic_share_white_24dp);
+//            builder.setContentIntent(pendingIntent);
+//            builder.setAutoCancel(true);
+//
+//            notificationManager.notify(1, builder.build());
+//        }
+    }
+
+    private void createToast() {
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(new Runnable() {
             public void run() {
-           //     Toast.makeText(getApplicationContext(), "Toast on UI thread", Toast.LENGTH_SHORT).show();
-                final View viewToast = LayoutInflater.from(getApplicationContext()).inflate(R.layout.cus_toast, null);
-                ((TextView) viewToast.findViewById(R.id.tv_title)).setText("Thông báo");
-                ((TextView) viewToast.findViewById(R.id.tv_mess)).setText("Bạn có thông báo mới");
-                Toast toast = new Toast(getApplicationContext());
-                toast.setView(viewToast);
-                toast.setDuration(Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.TOP | Gravity.FILL_HORIZONTAL, 0, 0);
-                toast.show();
+                if (!CommentFragment.isChecked) {
+                    final View viewToast = LayoutInflater.from(getApplicationContext()).inflate(R.layout.cus_toast, null);
+                    ((TextView) viewToast.findViewById(R.id.tv_title)).setText("Thông báo");
+                    ((TextView) viewToast.findViewById(R.id.tv_mess)).setText("Bạn có thông báo mới");
+                    Toast toast = new Toast(getApplicationContext());
+                    toast.setView(viewToast);
+                    toast.setDuration(Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.TOP | Gravity.FILL_HORIZONTAL, 0, 0);
+                    toast.show();
+                }
+//                if (AdapterHomeFragment.isLike) {
+//                    final View viewToast = LayoutInflater.from(getApplicationContext()).inflate(R.layout.cus_toast, null);
+//                    ((TextView) viewToast.findViewById(R.id.tv_title)).setText("Thông báo");
+//                    ((TextView) viewToast.findViewById(R.id.tv_mess)).setText("Một bạn đã like ảnh bạn");
+//                    Toast toast = new Toast(getApplicationContext());
+//                    toast.setView(viewToast);
+//                    toast.setDuration(Toast.LENGTH_LONG);
+//                    toast.setGravity(Gravity.TOP | Gravity.FILL_HORIZONTAL, 0, 0);
+//                    toast.show();
+//
+//                }
             }
         });
-        Log.d(TAG, "onMessageReceived: new notification");
-    }
-
-    public void createNotification(){
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-
-        Intent intent = new Intent(this, MainActivity.class);
-//        startActivity(intent);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, 0);
-
-        Notification.Builder builder = new Notification.Builder(this);
-        builder.setContentText("Thông báo từ Travel App");
-        builder.setContentText("Có thông bình luận mới chưa đọc");
-        builder.setSmallIcon(R.drawable.ic_share_white_24dp);
-        builder.setContentIntent(pendingIntent);
-        builder.setAutoCancel(true);
-
-        notificationManager.notify(1, builder.build());
-
     }
 }

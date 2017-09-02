@@ -1,6 +1,7 @@
 package vu.travelapp.fragments;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +21,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +41,8 @@ import vu.travelapp.networks.pullData.CommentJSONModel;
 import vu.travelapp.networks.pullData.DataModelJson;
 import vu.travelapp.networks.pullData.GetAllDataModel;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -48,20 +55,28 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private ImageView ivImageHome;
     private DatabaseReference databaseReference;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private String name, id; //
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.addToBackStack("HomeFragment");
         fragmentTransaction.commit();
+        this.getProfileModel();
         this.init(view);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refreshlayout);
         Refesh();
+        Log.d(TAG, String.format("onCreateView: %s ", name));
         return view;
+    }
+
+
+    private void getProfileModel() { //TODO: lấy data profile_model và add user vào topic
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("datauser", MODE_PRIVATE);
+        this.name = sharedPreferences.getString("name", "");
     }
 
     private void Refesh() {
@@ -98,12 +113,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     databaseReference.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            for(DataSnapshot commentSnapshot : dataSnapshot.getChildren()){
+                            for (DataSnapshot commentSnapshot : dataSnapshot.getChildren()) {
                                 comment comment = (comment) commentSnapshot.getValue(comment.class);
-                                CommentJSONModel commentJSONModel = new CommentJSONModel(comment.getName(),comment.getSentence(),comment.getUrlImage());
+                                CommentJSONModel commentJSONModel = new CommentJSONModel(comment.getName(), comment.getSentence(), comment.getUrlImage());
                                 commentJSONModels.add(commentJSONModel);
                             }
-                            Log.d("size: ",""+commentJSONModels.size());
+                            Log.d("size: ", "" + commentJSONModels.size());
                         }
 
                         @Override
@@ -111,6 +126,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                         }
                     });
+                    if (name.equals(dataModel.getName())) {
+                        FirebaseMessaging.getInstance().subscribeToTopic(dataModel.getId());
+                        FirebaseMessaging.getInstance().subscribeToTopic(dataModel.getId() + "_like");
+                        Log.d(TAG, String.format("getProfileModel: Đã subrice 1 topic %s", name));
+                    }
                     dataModel.setComment(commentJSONModels);
                     dataModelList.add(dataModel);
                 }
@@ -130,9 +150,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         linearLayoutManager.setStackFromEnd(true);
         rvHomeFragment.setLayoutManager(linearLayoutManager);
         rvHomeFragment.setAdapter(adapterHomeFragment);
-
     }
 
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        // Log.d(TAG, "onStop: Đã hủy đăng ký nhận listPosted");
+        super.onStop();
+    }
 
     @Override
     public void onClick(View v) {

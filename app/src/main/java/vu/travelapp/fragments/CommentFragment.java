@@ -59,10 +59,11 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
     private Button btSendComment;
     private List<DataModel> dataModelList;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private String name, urlImage;
+    private  String name, urlImage;
     private RelativeLayout back;
     private TextInputEditText inputText;
     private DatabaseReference databaseReference;
+    public static boolean isChecked = false;
 
     private FirebaseMessaging firebaseMessaging;
     List<CommentJSONModel> commentJSONModels = new ArrayList<CommentJSONModel>();
@@ -117,10 +118,12 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
                             Log.d("succesful ", "comment");
                             etComment.setText("");
                             rvComment.smoothScrollToPosition(Integer.valueOf(datamodel.getComment().size()));
-                            postNotifications();
                             /*******************PUSH NOTIFICATION*********************/
+                            postNotifications();
+                            isChecked = true; //Nếu do người dùng click thì không TOAST - Notification tới chính thiết bị này.
+
                             NotificationJSON notificationJSON = new NotificationJSON();
-                            notificationJSON.setBody(String.format("Bạn %s giấu tên đã bình luận vào ảnh!", comment.getName()));
+                            notificationJSON.setBody(String.format("Bạn %s đã bình luận vào ảnh!", comment.getName()));
                             notificationJSON.setTitle("Thông báo");
                             NotificationRequestJSON notificationRequestJSON = new NotificationRequestJSON();
                             notificationRequestJSON.setNotification(notificationJSON);
@@ -217,6 +220,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
         if (firebaseMessaging == null) {
             firebaseMessaging = FirebaseMessaging.getInstance();
             firebaseMessaging.subscribeToTopic(datamodel.getId());
+            // firebaseMessaging.subscribeToTopic(datamodel.getId()+"_like");
             Log.d(TAG, String.format("postNotifications: Đã đăng kí user vào topic: %s", datamodel.getId()));
         }
     }
