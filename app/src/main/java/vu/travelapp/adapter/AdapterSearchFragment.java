@@ -54,7 +54,7 @@ public class AdapterSearchFragment extends RecyclerView.Adapter<AdapterSearchFra
 
     public class SearchModelViewHolder extends RecyclerView.ViewHolder {
         ImageView ivSearchImage;
-        TextView tvDiaDiem;
+        TextView tvDiaDiem, desSearch;
 
         public SearchModelViewHolder(View itemView) {
             super(itemView);
@@ -64,12 +64,14 @@ public class AdapterSearchFragment extends RecyclerView.Adapter<AdapterSearchFra
         private void init(View itemView) {
             ivSearchImage = (ImageView) itemView.findViewById(R.id.iv_search_image);
             tvDiaDiem = (TextView) itemView.findViewById(R.id.tv_dia_diem);
+            desSearch = (TextView) itemView.findViewById(R.id.content_search);
         }
 
         private void setData(DataModel data, Context context) {
             if(data != null) {
                 Picasso.with(context).load(data.getImage()).placeholder(R.drawable.dafault).into(ivSearchImage);
                 tvDiaDiem.setText(data.getDestination());
+                desSearch.setText(data.getContent());
                 view.setTag(data);
             }
         }

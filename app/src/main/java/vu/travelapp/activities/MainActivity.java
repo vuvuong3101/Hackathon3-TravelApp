@@ -1,12 +1,15 @@
 package vu.travelapp.activities;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -203,6 +206,37 @@ public class MainActivity extends AppCompatActivity {
         inputMethodManager.hideSoftInputFromWindow(
                 activity.getCurrentFocus().getWindowToken(), 0);
     }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) { // this is override method
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            showExitConfirmDialog(); // call the function below
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    public void showExitConfirmDialog(){ // just show an dialog
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Thông báo"); // set title
+        dialog.setMessage("Bạn muốn thoát TravelZone ?"); // set message
+        dialog.setPositiveButton("Thoát",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        MainActivity.this.finish();
+
+                    }
+                });
+        dialog.setNegativeButton("Quay lại",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+        dialog.create().show();
+    }
+
 
 
 }

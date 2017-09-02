@@ -51,7 +51,7 @@
                 android:layout_marginRight="20dp"
                 android:gravity="center"
                 android:text="Copyright 2017 by TravelZone"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -61,18 +61,19 @@
                 android:text="Đang phát triển bởi Travel Team VHP"/>
         </LinearLayout>
         <RelativeLayout
+            android:padding="16dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/ll_above">
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="110dp"
+                android:layout_width="70dp"
                 android:layout_height="110dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_centerVertical="true"
                 android:src="@drawable/avatar" />
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="110dp"
+                android:layout_width="70dp"
                 android:layout_height="110dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
@@ -80,7 +81,7 @@
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/vuvuong" />
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="110dp"
+                android:layout_width="70dp"
                 android:layout_height="110dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
@@ -90,7 +91,7 @@
             <TextView
                 android:text="TECHKID TEAM"
                 android:textStyle="bold"
-                android:textSize="23sp"
+                android:textSize="18sp"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="40dp"

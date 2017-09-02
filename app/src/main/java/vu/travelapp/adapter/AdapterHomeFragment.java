@@ -189,9 +189,10 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
             }
             final long i = now - time;
             if (i < MINUTE_MILLIS) {
-                tvTime.setText("Vừa xong");
+                Log.d(TAG, "setData: " + "chan vkl");
                 tvTime.setTextColor(Color.parseColor("#36b0e9"));
                 ivPublic.setImageResource(R.drawable.ic_public_blue);
+                tvTime.setText("Now");
             } else if (i < 2 * MINUTE_MILLIS) {
                 tvTime.setText("1 phút trước");
             } else if (i < 50 * MINUTE_MILLIS) {
@@ -216,7 +217,6 @@ public class AdapterHomeFragment extends RecyclerView.Adapter<AdapterHomeFragmen
                 tvContent.setText(dataModel.getContent());
                 tv_like.setText(String.valueOf(dataModel.getLike()));
                 tv_comment.setText(String.valueOf(dataModel.getComment().size()));
-                tvTime.setText(String.valueOf(dataModel.getTimeUpload())+" ngày trước");
                 view.setTag(dataModel);
                 tvDestination.setText(dataModel.getDestination());
                 Picasso.with(context).load("https://graph.facebook.com/" + dataModels.get(getAdapterPosition()).getUserid() + "/picture?type=large").into(avatarUser);

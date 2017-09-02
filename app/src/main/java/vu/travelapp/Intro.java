@@ -71,7 +71,7 @@ public class Intro extends AppCompatActivity {
         acessTokenTracker = new AccessTokenTracker() {
             @Override
             protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken newAccessToken) {
-                //updateWithToken(newAccessToken);
+                updateWithToken(newAccessToken);
                 onClickSign();
                 Log.d(TAG, "onCurrentAccessTokenChanged: đã đăng nhập lại với facebook");
             }
@@ -135,7 +135,9 @@ public class Intro extends AppCompatActivity {
                             EventBus.getDefault().postSticky(profileModel); //Chuyển dữ liệu profile sang Home Screen Activity
                             Log.d(TAG, "onCompleted: Đã lấy dữ liệu người dùng từ facebook" + profileModel.getLocation() + profileModel.getBirthday());
                             Intent intent = new Intent(Intro.this, MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
+                            finish();
                         } catch (JSONException | IOException e) {
                             e.printStackTrace();
                         }

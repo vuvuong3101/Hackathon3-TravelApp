@@ -11,6 +11,7 @@ public class comment {
 
 
 
+
     public comment(String name, String sentence, String urlImage) {
         this.name = name;
         this.sentence = sentence;

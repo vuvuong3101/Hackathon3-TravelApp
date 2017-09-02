@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -17,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -31,28 +31,19 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import vu.travelapp.Maps.MapsActivity;
 import vu.travelapp.R;
 import vu.travelapp.adapter.AdapterCommentFragment;
 import vu.travelapp.models.DataModel;
-import vu.travelapp.networks.RetrofitFactory;
 import vu.travelapp.networks.comment.comment;
-import vu.travelapp.networks.notifications_service.NotificationJSON;
-import vu.travelapp.networks.notifications_service.NotificationRequestJSON;
-import vu.travelapp.networks.notifications_service.NotificationResponse;
-import vu.travelapp.networks.notifications_service.PushNotificationService;
 import vu.travelapp.networks.pullData.CommentJSONModel;
 
 import static android.content.Context.MODE_PRIVATE;
 
 public class ImageDetailFragment extends Fragment {
-    private FloatingActionButton fabDirection;
+    private LinearLayout fabDirection;
     private DataModel dataModel;
     private ImageView imageHeader;
     private TextView tvDestination, tvContent, tvLike,tvComment;
@@ -178,7 +169,7 @@ public class ImageDetailFragment extends Fragment {
         btSendComment = (Button) view.findViewById(R.id.bt_send_commnet_detail);
         tvComment = (TextView) view.findViewById(R.id.count_comment_detail);
         recyclerView = (RecyclerView) view.findViewById(R.id.rv_comment_detail);
-        fabDirection = (FloatingActionButton) view.findViewById(R.id.iv_location);
+        fabDirection = (LinearLayout) view.findViewById(R.id.location);
         iv_back = (RelativeLayout) view.findViewById(R.id.back_detals);
         imageHeader = (ImageView) view.findViewById(R.id.header);
 //        tvDestination = (TextView) view.findViewById(R.id.tv_destination);
