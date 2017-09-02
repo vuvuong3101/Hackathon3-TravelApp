@@ -11,6 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
@@ -22,8 +28,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import vu.travelapp.R;
 import vu.travelapp.adapter.AdapterSearchFragment;
+import vu.travelapp.managers.ScreenManager;
 import vu.travelapp.models.DataModel;
 import vu.travelapp.networks.RetrofitFactory;
+import vu.travelapp.networks.comment.comment;
+import vu.travelapp.networks.pullData.CommentJSONModel;
 import vu.travelapp.networks.pullData.DataModelJson;
 import vu.travelapp.networks.pullData.GetAllDataModel;
 import vu.travelapp.utils.FuzzyMatch;
@@ -38,6 +47,8 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
     private AdapterSearchFragment adapterSearchFragment;
     CharSequence charSequence;
     private TextView notFindLocation;
+    private DatabaseReference databaseReference;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     @Nullable
     @Override
@@ -75,6 +86,25 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
                     dataModel.setContent(response.body().get(i).getContent());
                     dataModel.setLike(response.body().get(i).getLike());
                     dataModel.setId(response.body().get(i).get_id());
+                    databaseReference = database.getReference(response.body().get(i).get_id());
+                    final List<CommentJSONModel> commentJSONModels = new ArrayList<CommentJSONModel>();
+                    databaseReference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for(DataSnapshot commentSnapshot : dataSnapshot.getChildren()){
+                                comment comment = (comment) commentSnapshot.getValue(comment.class);
+                                CommentJSONModel commentJSONModel = new CommentJSONModel(comment.getName(),comment.getSentence(),comment.getUrlImage());
+                                commentJSONModels.add(commentJSONModel);
+                            }
+                            Log.d("size: ",""+commentJSONModels.size());
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                    dataModel.setComment(commentJSONModels);
                     int ratio = FuzzyMatch.getRatio((String) charSequence, response.body().get(i).getDestination(), false);
                     if (ratio > 70) {
                         dataModelList.add(dataModel);
@@ -105,7 +135,8 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         DataModel dataModel = (DataModel) v.getTag();
-        Log.d("home fragment: ", "" + dataModel.getLike());
+        EventBus.getDefault().postSticky(dataModel);
+        ScreenManager.openFragment(getActivity().getSupportFragmentManager(),new ImageDetailFragment(),R.id.main);
     }
 
 }
